@@ -17,8 +17,8 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	...props
 }) => {
 	const { title, size } = game;
-	const seededColor = seedColor(title);
-	const formattedSize = useFormattedSize(size, {
+	const seededColor = seedColor(title ?? '');
+	const formattedSize = useFormattedSize(size ?? 0, {
 		roundPrecision: 2,
 	});
 
@@ -28,11 +28,12 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 			style={{
 				borderLeft: `${1 / 4}em solid ${seededColor.toHex()}`,
 			}}
+			{...props}
 		>
 			<div className={cn(styles.info)}>
 				<div>
 					<h4>
-						<TextOverflow text={title} />
+						<TextOverflow text={title ?? ''} />
 					</h4>
 				</div>
 

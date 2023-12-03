@@ -16,8 +16,6 @@ const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> = ({
 	label,
 	...props
 }) => {
-	// const memoizedGames = useMemo(() => games, [games]);
-
 	const memoizedGames = useFilteredGames(games ?? []);
 
 	return (
