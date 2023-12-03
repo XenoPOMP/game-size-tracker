@@ -1,1 +1,5 @@
 @import "font-declarations/sf-pro-display";
+
+%mainFont {
+  @extend %sfProDisplay;
+}

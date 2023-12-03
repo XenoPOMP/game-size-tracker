@@ -10,7 +10,7 @@
 }
 
 body {
-  @extend %sfProDisplay;
+  @extend %mainFont;
 
   @apply bg-primary text-red-600;
 }
