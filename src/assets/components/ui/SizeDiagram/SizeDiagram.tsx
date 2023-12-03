@@ -51,25 +51,6 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 					);
 				})}
 			</article>
-
-			{games.map(({ title, size }) => {
-				const colorSeed = seedColor(title);
-
-				return (
-					<div className={cn('flex gap-[.5em] flex-wrap items-center')}>
-						<div
-							className={`h-[10px] aspect-square`}
-							style={{
-								background: colorSeed.toHex(),
-							}}
-						></div>
-
-						{title}
-
-						<div>| {roundNumber(getPercentage(size), 2)}%</div>
-					</div>
-				);
-			})}
 		</section>
 	);
 };
