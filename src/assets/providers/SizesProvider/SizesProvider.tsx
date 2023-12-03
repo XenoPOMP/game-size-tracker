@@ -7,7 +7,7 @@ import type { SizesProviderProps } from './SizesProvider.props';
 const SizesProvider: FC<PropsWithChildren<SizesProviderProps>> = ({
 	children,
 }) => {
-	return <div className={cn(styles.sizes)}>{children}</div>;
+	return <>{children}</>;
 };
 
 export default SizesProvider;

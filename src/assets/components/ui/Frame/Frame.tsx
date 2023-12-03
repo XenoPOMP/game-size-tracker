@@ -4,6 +4,7 @@ import { FC } from 'react';
 import FullscreenStateProvider from '@contexts/FullscreenState.context';
 
 import ControlButton from '@ui/Frame/ControlButton/ControlButton';
+import ThemeSwitcher from '@ui/ThemeSwitcher/ThemeSwitcher';
 
 import useAppSettings from '@hooks/useAppSettings';
 
@@ -20,10 +21,12 @@ const Frame: FC<FrameProps> = ({}) => {
 
 	return (
 		<header className={cn(styles.appFrame)}>
-			<section>{appName.get()}</section>
+			<section className={cn(styles.controls)}>
+				<ThemeSwitcher />
+			</section>
 
 			<FullscreenStateProvider>
-				<section className={cn(styles.trafficLights)}>
+				<section className={cn(styles.trafficLights, styles.controls)}>
 					<ControlButton action={'minimize'} />
 
 					<ControlButton action={'maximize'} />

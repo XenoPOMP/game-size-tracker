@@ -4,4 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {}
+:root {
+  font-size: 20px;
+}
+
+body {
+  @apply bg-primary;
+}

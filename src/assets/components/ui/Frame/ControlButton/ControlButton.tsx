@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { ipcRenderer } from 'electron';
-import { FC, useContext, useState } from 'react';
+import { LucideProps, Maximize2, Minimize2, Minus, X } from 'lucide-react';
+import { ComponentProps, FC, useContext, useState } from 'react';
 
 import { FullscreenStateContext } from '@contexts/FullscreenState.context';
 
@@ -22,13 +23,34 @@ const ControlButton: FC<ControlButtonProps> = ({ action }) => {
 	 * @constructor
 	 */
 	const Content: FC<unknown> = () => {
+		const sharedIconProps: LucideProps = {
+			width: '100%',
+			height: '100%',
+		};
+
 		switch (action) {
 			case 'minimize':
-				return <>_</>;
+				return (
+					<>
+						<Minus {...sharedIconProps} />
+					</>
+				);
 			case 'maximize':
-				return isFullscreen ? <>\/</> : <>^</>;
+				return isFullscreen ? (
+					<>
+						<Minimize2 {...sharedIconProps} />
+					</>
+				) : (
+					<>
+						<Maximize2 {...sharedIconProps} />
+					</>
+				);
 			case 'close':
-				return <>x</>;
+				return (
+					<>
+						<X {...sharedIconProps} />
+					</>
+				);
 		}
 	};
 
