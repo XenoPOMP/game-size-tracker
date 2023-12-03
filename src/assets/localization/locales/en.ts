@@ -26,6 +26,11 @@ const en: Localization = {
 		en: 'English',
 		ru: 'Русский',
 	},
+
+	groupNames: {
+		steam: 'Steam',
+		other: 'Other',
+	},
 };
 
 export default en;

@@ -54,7 +54,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 			) : (
 				<>
 					<section className={cn('flex flex-col gap-[1.5em]')}>
-						<GamesSection games={steamGames} label={'Steam'} />
+						<GamesSection games={steamGames} label={loc.groupNames.steam} />
 					</section>
 				</>
 			)}
