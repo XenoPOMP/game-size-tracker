@@ -1,6 +1,8 @@
 import { MainPageLocales } from '@localization/types/main-page-locales';
 import { MetaLocales } from '@localization/types/meta-locales';
 
+import { AppSettings } from '@redux/reducers/appSettingsSlice';
+
 export interface Localization extends MetaLocales {
 	pages: {
 		main: MainPageLocales;
@@ -10,4 +12,6 @@ export interface Localization extends MetaLocales {
 		'bytes' | 'kilobytes' | 'megabytes' | 'gigabytes' | 'terabytes',
 		string
 	>;
+
+	languageLabels: Record<AppSettings['language'], string>;
 }

@@ -1,0 +1,36 @@
+@import "src/assets/styles/templates";
+
+button.languageSwitcher {
+  position: relative;
+
+  &:hover {
+    .menu {
+      display: block;
+      pointer-events: all;
+    }
+  }
+
+  .menu {
+    @apply bg-tl-hov-bg z-[1000];
+
+    display: none;
+    pointer-events: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: .75em;
+
+    .button {
+      @extend %flexCenter;
+
+      @apply px-[.75em] py-[.25em];
+
+      justify-content: start;
+
+      &:hover {
+        @apply bg-secondary;
+      }
+    }
+  }
+}

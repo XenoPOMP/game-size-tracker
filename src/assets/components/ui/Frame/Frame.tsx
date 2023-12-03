@@ -4,6 +4,7 @@ import { FC } from 'react';
 import FullscreenStateProvider from '@contexts/FullscreenState.context';
 
 import ControlButton from '@ui/Frame/ControlButton/ControlButton';
+import LanguageSwitcher from '@ui/LanguageSwitcher/LanguageSwitcher';
 import ThemeSwitcher from '@ui/ThemeSwitcher/ThemeSwitcher';
 
 import useAppSettings from '@hooks/useAppSettings';
@@ -23,6 +24,8 @@ const Frame: FC<FrameProps> = ({}) => {
 		<header className={cn(styles.appFrame)}>
 			<section className={cn(styles.controls)}>
 				<ThemeSwitcher />
+
+				<LanguageSwitcher />
 			</section>
 
 			<FullscreenStateProvider>

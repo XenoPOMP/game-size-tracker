@@ -21,6 +21,11 @@ const ru: Localization = {
 		gigabytes: 'ГБ',
 		terabytes: 'ТБ',
 	},
+
+	languageLabels: {
+		en: 'English',
+		ru: 'Русский',
+	},
 };
 
 export default ru;

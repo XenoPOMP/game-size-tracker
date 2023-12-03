@@ -5,7 +5,7 @@ button.frame {
   hover:bg-tl-hov-bg hover:text-tl-hov-color;
 
   height: var(--button-height);
-  aspect-ratio: 1;
+  // aspect-ratio: 1;
   padding: calc(var(--button-height) * .23);
 
   transition: $transition background-color,

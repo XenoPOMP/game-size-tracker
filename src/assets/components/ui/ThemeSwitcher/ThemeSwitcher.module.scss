@@ -2,4 +2,6 @@
 
 button.switcher {
   @extend %flexCenter;
+
+  aspect-ratio: 1;
 }
