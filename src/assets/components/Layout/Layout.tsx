@@ -1,4 +1,4 @@
-import { PropsWith } from '@xenopomp/advanced-types';
+import { PropsWith, VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
 import { FC } from 'react';
@@ -14,9 +14,13 @@ import type { LayoutProps } from './Layout.props';
  * @param children
  * @constructor
  */
-const Layout: FC<PropsWith<'children', LayoutProps>> = ({ children }) => {
+const Layout: VariableFC<'div', LayoutProps> = ({
+	children,
+	className,
+	...props
+}) => {
 	return (
-		<div className={cn(styles.layout)}>
+		<div className={cn(styles.layout, className)} {...props}>
 			<Frame />
 			{children}
 		</div>
