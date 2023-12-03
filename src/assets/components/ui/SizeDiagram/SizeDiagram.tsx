@@ -2,7 +2,7 @@ import { VariableFC } from '@xenopomp/advanced-types';
 import { roundNumber } from '@xenopomp/advanced-utils';
 
 import cn from 'classnames';
-import { FC, ReactNode, useCallback } from 'react';
+import { FC, ReactNode, useCallback, useMemo } from 'react';
 import seedColor from 'seed-color';
 
 import useFormattedSize from '@hooks/useFormattedSize';
@@ -31,6 +31,8 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 		roundPrecision: 2,
 	});
 
+	const memoizedGames = useMemo(() => games, [games]);
+
 	return (
 		<>
 			<section className={cn(styles.diagram, className)} {...props}>
@@ -41,7 +43,7 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 						'w-full h-[8px] bg-secondary rounded-[40px] flex overflow-hidden'
 					}
 				>
-					{games?.map(({ title, size }, index) => {
+					{memoizedGames?.map(({ title, size }, index) => {
 						const seededColor = seedColor(title);
 						const percent = getPercentage(size);
 

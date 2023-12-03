@@ -18,6 +18,8 @@
     }
 
     h4 {
+      @extend %notSelectable;
+
       @apply font-bold text-color-primary;
     }
 
