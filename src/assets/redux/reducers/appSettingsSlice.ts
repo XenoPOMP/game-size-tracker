@@ -5,15 +5,15 @@ import { ReduxAction } from '@redux/types';
 export type AppSettings = {
 	appVersion: string;
 	appName: string;
-	language: 'en';
-	theme: 'dark' | 'light'
+	language: 'en' | 'ru';
+	theme: 'dark' | 'light';
 };
 
 const initialState: AppSettings = {
 	appVersion: '1.3.1',
 	appName: 'React Vite Application',
 	language: 'en',
-	theme: 'dark'
+	theme: 'dark',
 };
 
 const appSettingsSlice = createSlice({
@@ -34,5 +34,6 @@ const appSettingsSlice = createSlice({
 });
 
 export default appSettingsSlice.reducer;
-export const { simpleAction, changeLang, changeTheme } = appSettingsSlice.actions;
+export const { simpleAction, changeLang, changeTheme } =
+	appSettingsSlice.actions;
 export const initialAppSettings = appSettingsSlice.getInitialState();

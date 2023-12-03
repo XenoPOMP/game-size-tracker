@@ -5,6 +5,8 @@ import cn from 'classnames';
 import { FC, ReactNode, useCallback } from 'react';
 import seedColor from 'seed-color';
 
+import useFormattedSize from '@hooks/useFormattedSize';
+
 import { formatDecimal } from '@utils/formatDecimal';
 import { summary } from '@utils/math-utils';
 
@@ -24,20 +26,13 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 		return (target / getRowBytesCount()) * 100;
 	};
 
-	const getTotalSize = (): ReactNode => {
-		return (
-			<>
-				{formatDecimal(getRowBytesCount(), {
-					roundPrecision: 2,
-				})}{' '}
-				bytes
-			</>
-		);
-	};
+	const formattedTotalSize = useFormattedSize(getRowBytesCount(), {
+		roundPrecision: 2,
+	});
 
 	return (
 		<section className={cn(styles.diagram, className)} {...props}>
-			<h2>{getTotalSize()}</h2>
+			<h2>{formattedTotalSize}</h2>
 
 			<article
 				className={

@@ -13,6 +13,14 @@ const ru: Localization = {
 			label: 'Привет мир!',
 		},
 	},
+
+	measurementUnits: {
+		bytes: 'Б',
+		kilobytes: 'КБ',
+		megabytes: 'МБ',
+		gigabytes: 'ГБ',
+		terabytes: 'ТБ',
+	},
 };
 
 export default ru;

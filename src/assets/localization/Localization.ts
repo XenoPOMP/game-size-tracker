@@ -5,4 +5,9 @@ export interface Localization extends MetaLocales {
 	pages: {
 		main: MainPageLocales;
 	};
+
+	measurementUnits: Record<
+		'bytes' | 'kilobytes' | 'megabytes' | 'gigabytes' | 'terabytes',
+		string
+	>;
 }

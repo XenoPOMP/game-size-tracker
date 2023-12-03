@@ -24,12 +24,12 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				games={[
 					{
 						title: 'Call of Duty: Modern Warfare III',
-						size: 180.6,
+						size: 100000000000,
 					},
 
 					{
 						title: 'Warzone 2.0',
-						size: 50.139192,
+						size: 50000000000,
 					},
 				]}
 			/>

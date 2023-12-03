@@ -13,6 +13,14 @@ const en: Localization = {
 			label: 'Hello world!',
 		},
 	},
+
+	measurementUnits: {
+		bytes: 'B',
+		kilobytes: 'KB',
+		megabytes: 'MB',
+		gigabytes: 'GB',
+		terabytes: 'TB',
+	},
 };
 
 export default en;
