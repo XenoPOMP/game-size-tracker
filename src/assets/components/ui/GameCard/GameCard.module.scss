@@ -1,3 +1,40 @@
+@import "src/assets/styles/templates";
+
 .gameCard {
-  @apply flex gap-x-[.5em] items-center;
+  @apply flex gap-x-[.5em] items-center bg-secondary
+         rounded-[.2em] px-[.5em];
+
+  // 1em = 15.75em
+
+  .info {
+    @apply flex flex-col gap-[.2em] py-[.5em] flex-grow;
+
+    line-height: normal;
+
+    // .7875
+
+    h4, .size {
+      // @apply text-[.9em];
+    }
+
+    h4 {
+      @apply font-bold text-color-primary;
+    }
+
+    .size {
+      @apply font-semibold text-color-secondary;
+    }
+  }
+
+  .controls {
+    @extend %flexCenter;
+
+    height: 100%;
+
+    button.more {
+      @apply w-[1.5em] h-[1.5em] rounded-[.2em] bg-tl-hov-bg
+             p-[.2em] text-tl-hov-color
+             ;
+    }
+  }
 }
