@@ -20,7 +20,9 @@ const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> = ({
 
 	return (
 		<article className={cn(styles.gameSection, className)} {...props}>
-			<h3>{label}</h3>
+			<h3>
+				{label} ({memoizedGames.length})
+			</h3>
 
 			{memoizedGames?.map(game => {
 				return <GameCard game={game} />;
