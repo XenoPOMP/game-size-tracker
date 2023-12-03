@@ -5,6 +5,8 @@ import { useMemo } from 'react';
 
 import GameCard from '@ui/GameCard/GameCard';
 
+import { useFilteredGames } from '@hooks/useFilteredGames';
+
 import styles from './GamesSection.module.scss';
 import type { GamesSectionProps } from './GamesSection.props';
 
@@ -14,7 +16,9 @@ const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> = ({
 	label,
 	...props
 }) => {
-	const memoizedGames = useMemo(() => games, [games]);
+	// const memoizedGames = useMemo(() => games, [games]);
+
+	const memoizedGames = useFilteredGames(games ?? []);
 
 	return (
 		<article className={cn(styles.gameSection, className)} {...props}>

@@ -1,3 +1,5 @@
+import { FilteredGameInfo } from '@hooks/useFilteredGames';
+
 export interface GameCardProps {
-	game: GameInfo;
+	game: FilteredGameInfo;
 }

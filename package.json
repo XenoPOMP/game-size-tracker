@@ -34,6 +34,7 @@
     "getsteamfolders": "^1.0.5",
     "go-get-folder-size": "^0.5.2",
     "lucide-react": "^0.294.0",
+    "natural-orderby": "^3.0.2",
     "react-document-meta": "^3.0.0-beta.2",
     "react-helmet": "^6.1.0",
     "react-media": "^1.10.0",
