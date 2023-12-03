@@ -4,13 +4,15 @@ import cn from 'classnames';
 import { LucideProps, Moon, Sun } from 'lucide-react';
 import { FC, ReactNode, useCallback } from 'react';
 
+import FrameButton from '@ui/FrameButton/FrameButton';
+
 import useAppSettings from '@hooks/useAppSettings';
 
 import styles from './ThemeSwitcher.module.scss';
 import type { ThemeSwitcherProps } from './ThemeSwitcher.props';
 
 const ThemeSwitcher: VariableFC<
-	'button',
+	typeof FrameButton,
 	ThemeSwitcherProps,
 	'children' | 'onClick'
 > = ({ className, ...props }) => {
@@ -51,7 +53,7 @@ const ThemeSwitcher: VariableFC<
 	};
 
 	return (
-		<button
+		<FrameButton
 			className={cn(styles.switcher, className)}
 			onClick={() => {
 				toggleTheme();
@@ -59,7 +61,7 @@ const ThemeSwitcher: VariableFC<
 			{...props}
 		>
 			{getIcon(theme.get())}
-		</button>
+		</FrameButton>
 	);
 };
 

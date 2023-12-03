@@ -1,0 +1,13 @@
+button.frame {
+  $transition: .08s ease;
+
+  @apply text-tl-color bg-transparent
+  hover:bg-tl-hov-bg hover:text-tl-hov-color;
+
+  height: var(--button-height);
+  aspect-ratio: 1;
+  padding: calc(var(--button-height) * .23);
+
+  transition: $transition background-color,
+  $transition color;
+}
