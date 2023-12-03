@@ -11,7 +11,7 @@ import type { MainPageProps } from './MainPage.props';
 const MainPage: FC<MainPageProps> = ({}) => {
 	const loc = useLocalization();
 
-	return <Page meta={loc.meta.mainPage}></Page>;
+	return <Page meta={loc.meta.mainPage}>Sus</Page>;
 };
 
 export default MainPage;
