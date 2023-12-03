@@ -20,6 +20,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	return (
 		<Page className={cn(className)} meta={loc.meta.mainPage} {...props}>
 			<SizeDiagram
+				className={cn('sticky top-0 left-0')}
 				games={[
 					{
 						title: 'Call of Duty: Modern Warfare III',
