@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useEffect, useMemo, useState } from 'react';
 import seedColor from 'seed-color';
 
+import GamesSection from '@components/GamesSection/GamesSection';
 import Page from '@components/Page/Page';
 import StateSuspense from '@components/StateSuspense/StateSuspense';
 
@@ -35,9 +36,9 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				setSteamGames(gameArray);
 			})
 			.catch()
-			.finally(() => {});
-
-		setIsLoading(false);
+			.finally(() => {
+				setIsLoading(false);
+			});
 	}, []);
 
 	return (
@@ -48,25 +49,15 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				isLoading={isLoading}
 			/>
 
-			{isLoading && 'Loading...'}
-
-			{steamGames?.map(({ title, size }) => {
-				const seededColor = seedColor(title);
-
-				return (
-					<div className={cn('flex gap-x-[.5em] items-center')}>
-						<div
-							className={'h-[10px] aspect-square'}
-							style={{
-								background: seededColor.toHex(),
-							}}
-						></div>{' '}
-						<div>
-							{title} | {size / 1024 ** 2} MB
-						</div>
-					</div>
-				);
-			})}
+			{isLoading ? (
+				'Loading...'
+			) : (
+				<>
+					<section className={cn('flex flex-col gap-[1.5em]')}>
+						<GamesSection games={steamGames} label={'Steam'} />
+					</section>
+				</>
+			)}
 		</Page>
 	);
 };

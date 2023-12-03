@@ -1,6 +1,7 @@
 import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
+import { getAllFiles } from 'get-all-files';
 import * as steamFolders from 'getsteamfolders';
 import { getFolderSizeBin } from 'go-get-folder-size';
 import { release } from 'node:os';
@@ -173,7 +174,7 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 			const size = await getFolderSizeBin(fullPath);
 
 			response.push({
-				title: gameTitle,
+				title: `${gameTitle}`,
 				size,
 				category: 'steam',
 			});

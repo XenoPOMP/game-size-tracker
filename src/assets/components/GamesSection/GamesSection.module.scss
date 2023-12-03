@@ -1,0 +1,7 @@
+article.gameSection {
+  @apply flex flex-col gap-[.75em];
+
+  h3 {
+    @apply text-[.9em] text-color-primary font-bold;
+  }
+}
