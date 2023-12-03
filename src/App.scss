@@ -1,3 +1,4 @@
+@import "src/assets/styles/templates";
 @import "src/assets/styles/nullstyles";
 
 @tailwind base;
@@ -9,5 +10,7 @@
 }
 
 body {
+  @extend %sfProDisplay;
+
   @apply bg-primary text-red-600;
 }
