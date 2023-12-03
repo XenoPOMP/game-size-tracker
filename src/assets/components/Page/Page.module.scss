@@ -2,7 +2,7 @@
 
 .pageLayout {
   main.pageMain {
-    @extend %scrollable;
+    @extend  %withScrollbar;
 
     @apply w-full h-full p-[1rem];
   }

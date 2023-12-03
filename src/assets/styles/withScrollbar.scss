@@ -1,0 +1,20 @@
+%withScrollbar {
+  $width: 15px;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: $width !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-primary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-secondary border-primary rounded-[2rem];
+
+    border-width: $width / 3.5;
+    border-style: solid;
+  }
+}
