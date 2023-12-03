@@ -1,6 +1,8 @@
-import { Defined } from '@xenopomp/advanced-types';
+import { getObjectKeys } from '@xenopomp/advanced-utils';
 
-import { BrowserWindow, app, ipcMain, ipcRenderer, shell } from 'electron';
+import { BrowserWindow, app, ipcMain, shell } from 'electron';
+import * as steamFolders from 'getsteamfolders';
+import { getFolderSizeBin } from 'go-get-folder-size';
 import { release } from 'node:os';
 import { join } from 'node:path';
 
@@ -53,14 +55,6 @@ const indexHtml = join(process.env.DIST, 'index.html');
 const USE_FRAME = false;
 /** Determines whether app will be transparent or not. */
 const IS_TRANSPARENT = false;
-/** Minimum sizes of window. */
-const MIN_SIZES: Pick<
-	Defined<ConstructorParameters<typeof BrowserWindow>[0]>,
-	'minWidth' | 'minHeight'
-> = {
-	minWidth: 404,
-	minHeight: 556,
-};
 
 async function createWindow() {
 	win = new BrowserWindow({
@@ -68,7 +62,8 @@ async function createWindow() {
 		icon: join(process.env.PUBLIC, 'favicon.ico'),
 		frame: USE_FRAME,
 		transparent: IS_TRANSPARENT,
-		...MIN_SIZES,
+		minWidth: 404,
+		minHeight: 556,
 		webPreferences: {
 			preload,
 			// Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
@@ -162,4 +157,29 @@ ipcMain.on('unmaximize_app', () => win?.unmaximize());
 
 ipcMain.on('close_app', (_, arg) => {
 	app.quit();
+});
+
+ipcMain.on('get-steam-games', async (_, arg) => {
+	let response: GameInfo[] = [];
+
+	const allSteamGames = await steamFolders.getAllSteamGames();
+
+	const tasks = getObjectKeys(allSteamGames)
+		.map(gameTitle => ({
+			fullPath: allSteamGames[gameTitle],
+			gameTitle,
+		}))
+		.map(async ({ fullPath, gameTitle }) => {
+			const size = await getFolderSizeBin(fullPath);
+
+			response.push({
+				title: gameTitle,
+				size,
+				category: 'steam',
+			});
+		});
+
+	await Promise.all(tasks);
+
+	win?.webContents.send('get-steam-games-response', response);
 });

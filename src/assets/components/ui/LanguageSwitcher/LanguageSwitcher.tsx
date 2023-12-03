@@ -46,7 +46,10 @@ const LanguageSwitcher: VariableFC<
 				{getObjectKeys(loc.languageLabels).map((key, index) => {
 					return (
 						<div
-							className={cn(styles.button)}
+							className={cn(
+								styles.button,
+								language.get() === key && styles.active
+							)}
 							key={`lang-${key}-${index}`}
 							onClick={() => {
 								language.set(key);

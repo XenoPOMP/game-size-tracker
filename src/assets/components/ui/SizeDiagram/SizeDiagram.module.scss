@@ -1,7 +1,17 @@
 section.diagram {
-  @apply flex flex-col gap-[.4em];
+  @apply flex flex-col gap-[.4em] bg-primary pb-[1.5em];
 
   font-size: 1rem; // 1em = 20px
+
+  &:before {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    height: 1rem;
+    width: 100%;
+    background: inherit;
+    content: "";
+  }
 
   h2 {
     @apply text-color-primary font-bold uppercase;

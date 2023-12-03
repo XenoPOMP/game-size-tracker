@@ -1,3 +1,4 @@
 export interface SizeDiagramProps {
-	games: Array<Pick<GameInfo, 'title' | 'size'>>;
+	games?: Array<Pick<GameInfo, 'title' | 'size'>>;
+	isLoading?: boolean;
 }

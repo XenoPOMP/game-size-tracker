@@ -24,9 +24,14 @@ button.languageSwitcher {
     .button {
       @extend %flexCenter;
 
-      @apply px-[.75em] py-[.25em];
+      @apply px-[.75em] py-[.25em] border-secondary-hover;
 
       justify-content: start;
+      border-left-width: 3px;
+
+      &.active {
+        @apply border-confirm;
+      }
 
       &:hover {
         @apply bg-secondary;
