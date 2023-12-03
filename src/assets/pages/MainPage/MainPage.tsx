@@ -8,6 +8,7 @@ import GamesSection from '@components/GamesSection/GamesSection';
 import Page from '@components/Page/Page';
 import StateSuspense from '@components/StateSuspense/StateSuspense';
 
+import AddNewGameSection from '@ui/AddNewGameSection/AddNewGameSection';
 import SizeDiagram from '@ui/SizeDiagram/SizeDiagram';
 
 import useBoolean from '@hooks/useBoolean';
@@ -42,7 +43,11 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	}, []);
 
 	return (
-		<Page className={cn(className)} meta={loc.meta.mainPage} {...props}>
+		<Page
+			className={cn(styles.mainPage, className)}
+			meta={loc.meta.mainPage}
+			{...props}
+		>
 			<SizeDiagram
 				className={cn('sticky top-0 left-0')}
 				games={steamGames}
@@ -58,6 +63,8 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 					</section>
 				</>
 			)}
+
+			<AddNewGameSection />
 		</Page>
 	);
 };
