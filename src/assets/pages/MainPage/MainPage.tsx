@@ -32,14 +32,17 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	useEffect(() => {
 		setIsLoading(true);
 
-		sendMessage<GameInfo[]>('get-steam-games')
-			.then(gameArray => {
-				setSteamGames(gameArray);
-			})
-			.catch()
-			.finally(() => {
-				setIsLoading(false);
-			});
+		const tasks: Array<Promise<void>> = [
+			sendMessage<GameInfo[]>('get-steam-games')
+				.then(gameArray => {
+					setSteamGames(gameArray);
+				})
+				.catch(),
+		];
+
+		Promise.all(tasks).finally(() => {
+			setIsLoading(false);
+		});
 	}, []);
 
 	return (
