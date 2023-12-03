@@ -1,3 +1,5 @@
+import { Defined } from '@xenopomp/advanced-types';
+
 import { BrowserWindow, app, ipcMain, ipcRenderer, shell } from 'electron';
 import { release } from 'node:os';
 import { join } from 'node:path';
@@ -51,6 +53,14 @@ const indexHtml = join(process.env.DIST, 'index.html');
 const USE_FRAME = false;
 /** Determines whether app will be transparent or not. */
 const IS_TRANSPARENT = false;
+/** Minimum sizes of window. */
+const MIN_SIZES: Pick<
+	Defined<ConstructorParameters<typeof BrowserWindow>[0]>,
+	'minWidth' | 'minHeight'
+> = {
+	minWidth: 404,
+	minHeight: 556,
+};
 
 async function createWindow() {
 	win = new BrowserWindow({
@@ -58,8 +68,7 @@ async function createWindow() {
 		icon: join(process.env.PUBLIC, 'favicon.ico'),
 		frame: USE_FRAME,
 		transparent: IS_TRANSPARENT,
-		minWidth: 404,
-		minHeight: 556,
+		...MIN_SIZES,
 		webPreferences: {
 			preload,
 			// Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
