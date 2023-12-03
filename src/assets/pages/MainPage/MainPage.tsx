@@ -28,7 +28,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 
 					{
 						title: 'Warzone 2.0',
-						size: 50,
+						size: 50.139192,
 					},
 				]}
 			/>

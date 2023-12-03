@@ -1,0 +1,9 @@
+section.diagram {
+  @apply flex flex-col gap-[.4em];
+
+  font-size: 1rem; // 1em = 20px
+
+  h2 {
+    @apply text-color-primary font-bold uppercase;
+  }
+}

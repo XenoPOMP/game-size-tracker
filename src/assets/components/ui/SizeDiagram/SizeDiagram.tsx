@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { FC, ReactNode, useCallback } from 'react';
 import seedColor from 'seed-color';
 
+import { formatDecimal } from '@utils/formatDecimal';
 import { summary } from '@utils/math-utils';
 
 import styles from './SizeDiagram.module.scss';
@@ -24,24 +25,32 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 	};
 
 	const getTotalSize = (): ReactNode => {
-		return <>{roundNumber(getRowBytesCount(), 2)} bytes</>;
+		return (
+			<>
+				{formatDecimal(getRowBytesCount(), {
+					roundPrecision: 2,
+				})}{' '}
+				bytes
+			</>
+		);
 	};
 
 	return (
-		<section className={cn(className)} {...props}>
-			{getTotalSize()}
+		<section className={cn(styles.diagram, className)} {...props}>
+			<h2>{getTotalSize()}</h2>
 
 			<article
 				className={
 					'w-full h-[8px] bg-secondary rounded-[40px] flex overflow-hidden'
 				}
 			>
-				{games.map(({ title, size }) => {
+				{games.map(({ title, size }, index) => {
 					const seededColor = seedColor(title);
 					const percent = getPercentage(size);
 
 					return (
 						<div
+							key={`${title}-game-percentage-[${index}]`}
 							className={`h-full`}
 							style={{
 								background: seededColor.toHex(),
