@@ -6,12 +6,14 @@ export type AppSettings = {
 	appVersion: string;
 	appName: string;
 	language: 'en';
+	theme: 'dark' | 'light'
 };
 
 const initialState: AppSettings = {
 	appVersion: '1.3.1',
 	appName: 'React Vite Application',
 	language: 'en',
+	theme: 'dark'
 };
 
 const appSettingsSlice = createSlice({
@@ -24,9 +26,13 @@ const appSettingsSlice = createSlice({
 		changeLang(state, action: ReduxAction<AppSettings['language']>) {
 			state.language = action.payload;
 		},
+
+		changeTheme(state, action: ReduxAction<AppSettings['theme']>) {
+			state.theme = action.payload;
+		},
 	},
 });
 
 export default appSettingsSlice.reducer;
-export const { simpleAction, changeLang } = appSettingsSlice.actions;
+export const { simpleAction, changeLang, changeTheme } = appSettingsSlice.actions;
 export const initialAppSettings = appSettingsSlice.getInitialState();

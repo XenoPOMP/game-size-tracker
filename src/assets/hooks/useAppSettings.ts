@@ -1,7 +1,7 @@
 import { DeepPartial } from 'redux';
 
 import { useAppDispatch, useAppSelector } from '@redux/hooks';
-import { AppSettings, changeLang } from '@redux/reducers/appSettingsSlice';
+import { AppSettings, changeLang, changeTheme } from '@redux/reducers/appSettingsSlice';
 
 type SettingController<T> = {
 	get: () => T;
@@ -17,10 +17,11 @@ interface IUseAppSettings
 	appVersion: Omit<SettingController<AppSettings['appVersion']>, 'set'>;
 	appName: Omit<SettingController<AppSettings['appName']>, 'set'>;
 	language: SettingController<AppSettings['language']>;
+	theme: SettingController<AppSettings['theme']>
 }
 
 const useAppSettings = (): IUseAppSettings => {
-	const { appVersion, appName, language }: AppSettings = useAppSelector(
+	const { appVersion, appName, language, theme }: AppSettings = useAppSelector(
 		state => state.appSettings
 	);
 
@@ -39,6 +40,11 @@ const useAppSettings = (): IUseAppSettings => {
 			get: () => language,
 			set: newValue => dispatch(changeLang(newValue)),
 		},
+
+		theme: {
+			get: () => theme,
+			set: newValue => dispatch(changeTheme(newValue))
+		}
 	};
 };
 
