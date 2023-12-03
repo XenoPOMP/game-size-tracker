@@ -1,5 +1,6 @@
 import { PropsWith } from '@xenopomp/advanced-types';
 
+import cn from 'classnames';
 import { FC } from 'react';
 import Helmet from 'react-helmet';
 
@@ -7,6 +8,7 @@ import Layout from '@components/Layout/Layout';
 
 import useAppSettings from '@hooks/useAppSettings';
 
+import styles from './Page.module.scss';
 import { PageProps } from './Page.props';
 
 /**
@@ -25,13 +27,13 @@ const Page: FC<PropsWith<'children' | 'className', PageProps>> = ({
 	className,
 }) => {
 	return (
-		<Layout>
+		<Layout className={cn(styles.pageLayout)}>
 			<Helmet>
 				<title>{meta.title}</title>
 				<meta name={'description'} content={meta.description} />
 			</Helmet>
 
-			<main className={className}>{children}</main>
+			<main className={cn(styles.pageMain, className)}>{children}</main>
 		</Layout>
 	);
 };

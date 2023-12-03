@@ -1,21 +1,24 @@
 @import "src/assets/styles/templates";
 
 header.appFrame {
-  @extend %notSelectable;
+  --button-height: 1.5em;
+
+  @extend %notSelectable, %draggable;
 
   // width: 100%;
   width: 100vw;
-  height: 1.5em;
+  // height: 1.5em;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: globalPadding(1);
-  -webkit-app-region: drag;
+
+  .controls {
+    @extend %notDraggable;
+  }
 
   .trafficLights {
     display: flex;
     height: 100%;
-    -webkit-app-region: no-drag;
   }
 }

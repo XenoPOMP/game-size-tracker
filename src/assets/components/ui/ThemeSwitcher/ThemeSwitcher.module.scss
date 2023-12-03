@@ -1,18 +1,15 @@
 @import "src/assets/styles/templates";
 
-.button {
+button.switcher {
   $transition: .08s ease;
 
   @extend %flexCenter;
-  @extend %notSelectable;
 
-  @apply bg-transparent text-tl-color
+  @apply text-tl-color bg-transparent
          hover:bg-tl-hov-bg hover:text-tl-hov-color;
 
-  aspect-ratio: 1.25 / 1;
-  cursor: pointer;
-  width: var(--button-height);
   height: var(--button-height);
+  aspect-ratio: 1;
   padding: calc(var(--button-height) * .23);
 
   transition: $transition background-color,
