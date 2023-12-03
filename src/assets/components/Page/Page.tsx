@@ -1,4 +1,4 @@
-import { PropsWith } from '@xenopomp/advanced-types';
+import { PropsWith, VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
 import { FC } from 'react';
@@ -21,13 +21,14 @@ import { PageProps } from './Page.props';
  * 																	 the main tag.
  * @constructor
  */
-const Page: FC<PropsWith<'children' | 'className', PageProps>> = ({
+const Page: VariableFC<typeof Layout, PageProps> = ({
 	meta,
 	children,
 	className,
+	...props
 }) => {
 	return (
-		<Layout className={cn(styles.pageLayout)}>
+		<Layout className={cn(styles.pageLayout)} {...props}>
 			<Helmet>
 				<title>{meta.title}</title>
 				<meta name={'description'} content={meta.description} />
