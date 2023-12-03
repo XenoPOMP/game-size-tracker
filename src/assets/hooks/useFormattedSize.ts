@@ -23,6 +23,10 @@ const useFormattedSize = (
 		return target / bytesIn[unit];
 	};
 
+	if (size > bytesIn.terabytes * 1024) {
+		return `> ${1024} ${loc.measurementUnits.terabytes}`;
+	}
+
 	if (size > bytesIn.terabytes) {
 		return `${formatDecimal(convertTo(size, 'terabytes'), options)} ${
 			loc.measurementUnits.terabytes
