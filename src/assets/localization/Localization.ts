@@ -17,5 +17,5 @@ export interface Localization extends MetaLocales {
 
 	groupNames: Record<GameInfo['category'], string>;
 
-	gameTooltip: Record<'goToFolder', string>;
+	gameTooltip: Record<'goToFolder' | 'hide', string>;
 }

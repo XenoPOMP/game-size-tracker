@@ -60,6 +60,14 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 						<Menu.Item
 							as={'div'}
 							className={cn(styles.item)}
+							onClick={() => {}}
+						>
+							{loc.gameTooltip.hide}
+						</Menu.Item>
+
+						<Menu.Item
+							as={'div'}
+							className={cn(styles.item)}
 							onClick={() => {
 								revealInExplorer();
 							}}
