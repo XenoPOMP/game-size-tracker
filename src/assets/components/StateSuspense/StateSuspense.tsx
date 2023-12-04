@@ -9,7 +9,7 @@ const StateSuspense: VariableFC<typeof Suspense, StateSuspenseProps> = ({
 	fallback,
 	condition,
 }) => {
-	return <>{condition ? children : fallback}</>;
+	return <>{!condition ? children : fallback}</>;
 };
 
 export default StateSuspense;
