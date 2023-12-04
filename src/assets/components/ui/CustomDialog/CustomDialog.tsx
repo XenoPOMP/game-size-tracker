@@ -27,6 +27,7 @@ const CustomDialog: VariableFC<
 	title,
 	maxBodyWidth,
 	buttons,
+	hideCloseButton,
 	...props
 }) => {
 	return (
@@ -57,14 +58,16 @@ const CustomDialog: VariableFC<
 							<TextOverflow text={title ?? ''} />
 						</span>
 
-						<X
-							width={'1.25em'}
-							height={'1.25em'}
-							onClick={() => {
-								onClose?.(false);
-							}}
-							className={cn('cursor-pointer')}
-						/>
+						{!hideCloseButton && (
+							<X
+								width={'1.25em'}
+								height={'1.25em'}
+								onClick={() => {
+									onClose?.(false);
+								}}
+								className={cn('cursor-pointer')}
+							/>
+						)}
 					</Dialog.Title>
 
 					<section className={cn(styles.innerBody)}>

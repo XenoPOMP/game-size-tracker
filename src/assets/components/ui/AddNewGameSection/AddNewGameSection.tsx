@@ -28,11 +28,15 @@ const AddNewGameSection: VariableFC<
 				onClose={() => {
 					setIsOpen(false);
 				}}
+				hideCloseButton
 				title={loc.pages.main.addNewGameDialog.heading}
 				buttons={[
 					{
 						variant: 'cancel',
 						children: 'Cancel',
+						onClick: ev => {
+							setIsOpen(false);
+						},
 					},
 					{
 						children: 'Add',

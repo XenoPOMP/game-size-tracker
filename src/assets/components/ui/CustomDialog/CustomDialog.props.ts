@@ -11,6 +11,8 @@ export interface CustomDialogProps {
 	 */
 	maxBodyWidth?: string | number;
 
+	hideCloseButton?: boolean;
+
 	buttons?: Array<
 		Pick<
 			ComponentProps<typeof CustomButton>,
