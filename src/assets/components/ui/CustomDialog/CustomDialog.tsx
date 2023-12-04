@@ -4,6 +4,8 @@ import { Dialog } from '@headlessui/react';
 import cn from 'classnames';
 import { ComponentProps, FC } from 'react';
 
+import CustomButton from '@ui/CustomButton/CustomButton';
+
 import styles from './CustomDialog.module.scss';
 import type { CustomDialogProps } from './CustomDialog.props';
 
@@ -43,9 +45,22 @@ const CustomDialog: VariableFC<
 						<span>{title}</span>
 					</Dialog.Title>
 
-					<div className={cn(styles.innerBody)}>
+					<section className={cn(styles.innerBody)}>
 						<>{children}</>
-					</div>
+					</section>
+
+					<section className={cn(styles.controls)}>
+						<CustomButton
+							className={cn(styles.controlButton)}
+							variant={'cancel'}
+						>
+							Cancel
+						</CustomButton>
+
+						<CustomButton className={cn(styles.controlButton)}>
+							Primary
+						</CustomButton>
+					</section>
 				</Dialog.Panel>
 			</div>
 		</Dialog>

@@ -1,0 +1,10 @@
+button.customButton {
+  $anim: .08s ease;
+
+  // 1em = 16px
+
+  @apply px-[.625em] py-[.3125em] rounded-[.1875em];
+
+  transition: $anim background-color,
+              $anim color;
+}

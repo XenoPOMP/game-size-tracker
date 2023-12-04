@@ -10,7 +10,7 @@
       line-height: normal;
 
       h2.heading,
-      .controls {
+      section.controls {
         @apply bg-brutal sticky left-0;
       }
 
@@ -23,8 +23,16 @@
         }
       }
 
-      .innerBody {
+      section.innerBody {
         @apply p-[.75em] text-color-primary;
+      }
+
+      section.controls {
+        @apply p-[.75em] flex flex-wrap gap-[.5em] justify-end;
+
+        button.controlButton {
+          font-size: .8em;
+        }
       }
     }
   }
