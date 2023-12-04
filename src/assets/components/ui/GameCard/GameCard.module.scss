@@ -55,13 +55,12 @@
       .item {
         @extend %flexCenter;
 
-        @apply px-[.75em] py-[.25em] border-secondary-hover cursor-pointer;
+        @apply px-[.75em] py-[.25em] cursor-pointer;
 
         justify-content: end;
-        border-left-width: 3px;
 
         &.active {
-          @apply border-confirm;
+          // @apply border-confirm;
         }
 
         &:hover {

@@ -5,6 +5,8 @@ import cn from 'classnames';
 import { FC, ReactNode, useCallback, useMemo } from 'react';
 import seedColor from 'seed-color';
 
+import LoadingRect from '@ui/LoadingRect/LoadingRect';
+
 import useFormattedSize from '@hooks/useFormattedSize';
 
 import { formatDecimal } from '@utils/formatDecimal';
@@ -36,28 +38,33 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 	return (
 		<>
 			<section className={cn(styles.diagram, className)} {...props}>
-				<h2>{formattedTotalSize}</h2>
+				{isLoading ? (
+					<LoadingRect className={cn('!h-[1.5em]')} />
+				) : (
+					<h2>{formattedTotalSize}</h2>
+				)}
 
 				<article
 					className={
 						'w-full h-[8px] bg-secondary rounded-[40px] flex overflow-hidden'
 					}
 				>
-					{memoizedGames?.map(({ title, size }, index) => {
-						const seededColor = seedColor(title);
-						const percent = getPercentage(size);
+					{!isLoading &&
+						memoizedGames?.map(({ title, size }, index) => {
+							const seededColor = seedColor(title);
+							const percent = getPercentage(size);
 
-						return (
-							<div
-								key={`${title}-game-percentage-[${index}]`}
-								className={`h-full`}
-								style={{
-									background: seededColor.toHex(),
-									width: `${percent}%`,
-								}}
-							></div>
-						);
-					})}
+							return (
+								<div
+									key={`${title}-game-percentage-[${index}]`}
+									className={`h-full`}
+									style={{
+										background: seededColor.toHex(),
+										width: `${percent}%`,
+									}}
+								></div>
+							);
+						})}
 				</article>
 			</section>
 		</>

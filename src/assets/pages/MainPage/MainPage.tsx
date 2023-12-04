@@ -58,16 +58,16 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 			/>
 
 			{isLoading ? (
-				'Loading...'
+				<></>
 			) : (
 				<>
 					<section className={cn('flex flex-col gap-[1.5em]')}>
 						<GamesSection games={steamGames} label={loc.groupNames.steam} />
 					</section>
+
+					<AddNewGameSection />
 				</>
 			)}
-
-			<AddNewGameSection />
 		</Page>
 	);
 };
