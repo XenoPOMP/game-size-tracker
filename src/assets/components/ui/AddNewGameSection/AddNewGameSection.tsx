@@ -34,6 +34,7 @@ const AddNewGameSection: VariableFC<
 					{
 						variant: 'cancel',
 						children: 'Cancel',
+						blocked: false,
 						onClick: ev => {
 							setIsOpen(false);
 						},
