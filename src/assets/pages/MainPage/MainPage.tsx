@@ -29,7 +29,10 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 
 	const [isLoading, toggleIsLoading, setIsLoading] = useBoolean(false);
 	const [steamGames, setSteamGames] = useState<GameInfo[]>();
+	const [otherGames, setOtherGames] = useState<GameInfo[]>();
+	const [allGames, setAllGames] = useState<GameInfo[]>();
 
+	// Load games from main process
 	useEffect(() => {
 		setIsLoading(true);
 
@@ -46,6 +49,11 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		});
 	}, []);
 
+	// Concat all games in one array
+	useEffect(() => {
+		setAllGames([...(steamGames ?? []), ...(otherGames ?? [])]);
+	}, [steamGames, otherGames]);
+
 	return (
 		<Page
 			className={cn(styles.mainPage, className)}
@@ -54,7 +62,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		>
 			<SizeDiagram
 				className={cn('sticky top-0 left-0')}
-				games={steamGames}
+				games={allGames}
 				isLoading={isLoading}
 			/>
 
@@ -66,6 +74,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				<>
 					<section className={cn('flex flex-col gap-[1.5em]')}>
 						<GamesSection games={steamGames} label={loc.groupNames.steam} />
+						<GamesSection games={otherGames} label={loc.groupNames.other} />
 					</section>
 
 					<AddNewGameSection />
