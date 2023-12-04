@@ -22,9 +22,7 @@ const FilterControls: VariableFC<
 					lineHeight: '100%',
 				}}
 				className={cn('w-[1.5em] h-[1.5em]')}
-				onToggle={newValue => {
-					console.log(`Toggled visibility toggler. New value => ${newValue}`);
-				}}
+				onToggle={newValue => {}}
 			>
 				{({ isToggled }) => {
 					return (
