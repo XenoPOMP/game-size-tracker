@@ -16,10 +16,12 @@
 
       h2.heading {
         @apply font-semibold select-none top-0
-               py-[.5em] px-[.75em] text-color-primary;
+               py-[.5em] px-[.75em] text-color-primary
+               flex gap-[1em] items-center;
 
         span {
-          font-size: 1.2em; // 24px
+          font-size: 1.1em; // 24px
+          flex-grow: 1;
         }
       }
 
@@ -28,7 +30,7 @@
       }
 
       section.controls {
-        @apply p-[.75em] flex flex-wrap gap-[.5em] justify-end;
+        @apply p-[.75em] flex flex-wrap gap-[.5em] justify-end bottom-0;
 
         button.controlButton {
           font-size: .8em;

@@ -30,7 +30,7 @@ const AddNewGameSection: VariableFC<
 				}}
 				title={loc.pages.main.addNewGameDialog.heading}
 			>
-				<p>Sus</p>
+				Here
 			</CustomDialog>
 
 			<section className={cn(styles.addNew, className)} {...props}>

@@ -2,7 +2,9 @@ import { VariableFC } from '@xenopomp/advanced-types';
 
 import { Dialog } from '@headlessui/react';
 import cn from 'classnames';
+import { X } from 'lucide-react';
 import { ComponentProps, FC } from 'react';
+import TextOverflow from 'react-text-overflow';
 
 import CustomButton from '@ui/CustomButton/CustomButton';
 
@@ -42,7 +44,18 @@ const CustomDialog: VariableFC<
 					)}
 				>
 					<Dialog.Title className={cn(styles.heading)}>
-						<span>{title}</span>
+						<span>
+							<TextOverflow text={title ?? ''} />
+						</span>
+
+						<X
+							width={'1.25em'}
+							height={'1.25em'}
+							onClick={() => {
+								onClose?.(false);
+							}}
+							className={cn('cursor-pointer')}
+						/>
 					</Dialog.Title>
 
 					<section className={cn(styles.innerBody)}>
