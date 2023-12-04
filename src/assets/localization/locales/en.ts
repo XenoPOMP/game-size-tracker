@@ -10,7 +10,9 @@ const en: Localization = {
 
 	pages: {
 		main: {
-			label: 'Hello world!',
+			addNewGameDialog: {
+				heading: 'Add external game',
+			},
 		},
 	},
 

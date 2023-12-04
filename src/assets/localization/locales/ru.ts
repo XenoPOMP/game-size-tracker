@@ -10,7 +10,9 @@ const ru: Localization = {
 
 	pages: {
 		main: {
-			label: 'Привет мир!',
+			addNewGameDialog: {
+				heading: 'Добавить стороннюю игру',
+			},
 		},
 	},
 

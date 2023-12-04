@@ -1,3 +1,5 @@
 export type MainPageLocales = {
-	label: string;
+	addNewGameDialog: {
+		heading: string;
+	};
 };
