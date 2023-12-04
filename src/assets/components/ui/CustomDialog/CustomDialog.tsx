@@ -2,19 +2,20 @@ import { VariableFC } from '@xenopomp/advanced-types';
 
 import { Dialog } from '@headlessui/react';
 import cn from 'classnames';
-import { FC } from 'react';
+import { ComponentProps, FC } from 'react';
 
 import styles from './CustomDialog.module.scss';
 import type { CustomDialogProps } from './CustomDialog.props';
 
-const CustomDialog: VariableFC<typeof Dialog, CustomDialogProps, 'as'> = ({
-	className,
-	children,
-	open,
-	onClose,
-	title,
-	...props
-}) => {
+const CustomDialog: VariableFC<
+	typeof Dialog,
+	CustomDialogProps,
+	| 'as'
+	| keyof Omit<
+			ComponentProps<typeof Dialog>,
+			'className' | 'children' | 'open' | 'onClose'
+	  >
+> = ({ className, children, open, onClose, title, ...props }) => {
 	return (
 		<Dialog
 			ref={undefined}
@@ -22,6 +23,7 @@ const CustomDialog: VariableFC<typeof Dialog, CustomDialogProps, 'as'> = ({
 			onClose={onClose}
 			as={'div'}
 			className={cn('relative z-[6000]')}
+			{...props}
 		>
 			<div className='fixed inset-0 flex w-screen items-center justify-center p-[1rem] bg-primary'>
 				<Dialog.Panel className='w-full max-w-sm rounded bg-white'>
