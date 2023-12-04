@@ -1,0 +1,8 @@
+button.toggler {
+  $transition: .12s ease;
+
+  transition: $transition color,
+              $transition background;
+
+  border-width: 1px;
+}

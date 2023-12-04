@@ -9,6 +9,7 @@ import Page from '@components/Page/Page';
 import StateSuspense from '@components/StateSuspense/StateSuspense';
 
 import AddNewGameSection from '@ui/AddNewGameSection/AddNewGameSection';
+import FilterControls from '@ui/FilterControls/FilterControls';
 import SizeDiagram from '@ui/SizeDiagram/SizeDiagram';
 
 import useBoolean from '@hooks/useBoolean';
@@ -56,6 +57,8 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				games={steamGames}
 				isLoading={isLoading}
 			/>
+
+			<FilterControls />
 
 			{isLoading ? (
 				<></>
