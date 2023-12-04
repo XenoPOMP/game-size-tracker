@@ -29,6 +29,7 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	});
 
 	const filters = useAppSelector(state => state.gameFilters[title]);
+	const { showHidden } = useAppSelector(state => state.sortFilters);
 
 	const loc = useLocalization();
 
@@ -38,74 +39,80 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 		let ignore = sendMessage('reveal-in-explorer', pathTo);
 	};
 
+	const notDisplaying = filters?.hidden && !showHidden;
+
 	return (
-		<div
-			className={cn(
-				styles.gameCard,
-				filters?.hidden ? 'bg-opacity-25' : '',
-				className
-			)}
-			style={{
-				borderLeft: `${1 / 4}em solid ${seededColor.toHex()}`,
-			}}
-			{...props}
-		>
-			<div className={cn(styles.info, filters?.hidden ? 'opacity-25' : '')}>
-				<div>
-					<h4>
-						<TextOverflow text={title ?? ''} />
-					</h4>
+		<>
+			{!notDisplaying && (
+				<div
+					className={cn(
+						styles.gameCard,
+						filters?.hidden ? 'bg-opacity-25' : '',
+						className
+					)}
+					style={{
+						borderLeft: `${1 / 4}em solid ${seededColor.toHex()}`,
+					}}
+					{...props}
+				>
+					<div className={cn(styles.info, filters?.hidden ? 'opacity-25' : '')}>
+						<div>
+							<h4>
+								<TextOverflow text={title ?? ''} />
+							</h4>
+						</div>
+
+						<div className={cn(styles.size)}>{formattedSize}</div>
+					</div>
+
+					<div className={cn(styles.controls)}>
+						<Menu>
+							<Menu.Button as={'button'} className={cn(styles.more)}>
+								<MoreHorizontal width={'100%'} height={'100%'} />
+							</Menu.Button>
+
+							<Menu.Items as={'div'} className={cn(styles.menu)}>
+								{filters?.hidden ? (
+									<>
+										<Menu.Item
+											as={'div'}
+											className={cn(styles.item)}
+											onClick={() => {
+												dispatch(showGame(title));
+											}}
+										>
+											{loc.gameTooltip.show}
+										</Menu.Item>
+									</>
+								) : (
+									<>
+										<Menu.Item
+											as={'div'}
+											className={cn(styles.item)}
+											onClick={() => {
+												dispatch(hideGame(title));
+											}}
+										>
+											{loc.gameTooltip.hide}
+										</Menu.Item>
+									</>
+								)}
+
+								<Menu.Item
+									as={'div'}
+									className={cn(styles.item)}
+									onClick={() => {
+										revealInExplorer();
+									}}
+								>
+									{loc.gameTooltip.goToFolder}
+								</Menu.Item>
+							</Menu.Items>
+						</Menu>
+					</div>
 				</div>
-
-				<div className={cn(styles.size)}>{formattedSize}</div>
-			</div>
-
-			<div className={cn(styles.controls)}>
-				<Menu>
-					<Menu.Button as={'button'} className={cn(styles.more)}>
-						<MoreHorizontal width={'100%'} height={'100%'} />
-					</Menu.Button>
-
-					<Menu.Items as={'div'} className={cn(styles.menu)}>
-						{filters?.hidden ? (
-							<>
-								<Menu.Item
-									as={'div'}
-									className={cn(styles.item)}
-									onClick={() => {
-										dispatch(showGame(title));
-									}}
-								>
-									{loc.gameTooltip.show}
-								</Menu.Item>
-							</>
-						) : (
-							<>
-								<Menu.Item
-									as={'div'}
-									className={cn(styles.item)}
-									onClick={() => {
-										dispatch(hideGame(title));
-									}}
-								>
-									{loc.gameTooltip.hide}
-								</Menu.Item>
-							</>
-						)}
-
-						<Menu.Item
-							as={'div'}
-							className={cn(styles.item)}
-							onClick={() => {
-								revealInExplorer();
-							}}
-						>
-							{loc.gameTooltip.goToFolder}
-						</Menu.Item>
-					</Menu.Items>
-				</Menu>
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 
