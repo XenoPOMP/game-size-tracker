@@ -7,6 +7,7 @@ import seedColor from 'seed-color';
 
 import LoadingRect from '@ui/LoadingRect/LoadingRect';
 
+import { useFilteredGames } from '@hooks/useFilteredGames';
 import useFormattedSize from '@hooks/useFormattedSize';
 
 import { formatDecimal } from '@utils/formatDecimal';
@@ -33,7 +34,7 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 		roundPrecision: 2,
 	});
 
-	const memoizedGames = useMemo(() => games, [games]);
+	const memoizedGames = useFilteredGames(games ?? []);
 
 	return (
 		<>
@@ -51,8 +52,8 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 				>
 					{!isLoading &&
 						memoizedGames?.map(({ title, size }, index) => {
-							const seededColor = seedColor(title);
-							const percent = getPercentage(size);
+							const seededColor = seedColor(title ?? '');
+							const percent = getPercentage(size ?? 0);
 
 							return (
 								<div
