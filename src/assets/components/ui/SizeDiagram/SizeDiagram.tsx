@@ -1,8 +1,7 @@
 import { VariableFC } from '@xenopomp/advanced-types';
-import { roundNumber } from '@xenopomp/advanced-utils';
 
 import cn from 'classnames';
-import { FC, ReactNode, useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import seedColor from 'seed-color';
 
 import LoadingRect from '@ui/LoadingRect/LoadingRect';
@@ -10,11 +9,11 @@ import LoadingRect from '@ui/LoadingRect/LoadingRect';
 import { useFilteredGames } from '@hooks/useFilteredGames';
 import useFormattedSize from '@hooks/useFormattedSize';
 
-import { formatDecimal } from '@utils/formatDecimal';
 import { summary } from '@utils/math-utils';
 
 import styles from './SizeDiagram.module.scss';
 import type { SizeDiagramProps } from './SizeDiagram.props';
+
 
 const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 	className,
