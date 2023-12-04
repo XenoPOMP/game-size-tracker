@@ -3,9 +3,11 @@ import { VariableFC } from '@xenopomp/advanced-types';
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
-import { FC } from 'react';
 import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
+
+import { useAppDispatch, useAppSelector } from '@redux/hooks';
+import { hideGame, showGame } from '@redux/reducers/gameFilters.slice';
 
 import useFormattedSize from '@hooks/useFormattedSize';
 import useLocalization from '@hooks/useLocalization';
@@ -26,7 +28,11 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 		roundPrecision: 2,
 	});
 
+	const filters = useAppSelector(state => state.gameFilters[title]);
+
 	const loc = useLocalization();
+
+	const dispatch = useAppDispatch();
 
 	const revealInExplorer = () => {
 		let ignore = sendMessage('reveal-in-explorer', pathTo);
@@ -34,13 +40,17 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 
 	return (
 		<div
-			className={cn(styles.gameCard, className)}
+			className={cn(
+				styles.gameCard,
+				filters?.hidden ? 'bg-opacity-25' : '',
+				className
+			)}
 			style={{
 				borderLeft: `${1 / 4}em solid ${seededColor.toHex()}`,
 			}}
 			{...props}
 		>
-			<div className={cn(styles.info)}>
+			<div className={cn(styles.info, filters?.hidden ? 'opacity-25' : '')}>
 				<div>
 					<h4>
 						<TextOverflow text={title ?? ''} />
@@ -57,13 +67,31 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 					</Menu.Button>
 
 					<Menu.Items as={'div'} className={cn(styles.menu)}>
-						<Menu.Item
-							as={'div'}
-							className={cn(styles.item)}
-							onClick={() => {}}
-						>
-							{loc.gameTooltip.hide}
-						</Menu.Item>
+						{filters?.hidden ? (
+							<>
+								<Menu.Item
+									as={'div'}
+									className={cn(styles.item)}
+									onClick={() => {
+										dispatch(showGame(title));
+									}}
+								>
+									{loc.gameTooltip.show}
+								</Menu.Item>
+							</>
+						) : (
+							<>
+								<Menu.Item
+									as={'div'}
+									className={cn(styles.item)}
+									onClick={() => {
+										dispatch(hideGame(title));
+									}}
+								>
+									{loc.gameTooltip.hide}
+								</Menu.Item>
+							</>
+						)}
 
 						<Menu.Item
 							as={'div'}

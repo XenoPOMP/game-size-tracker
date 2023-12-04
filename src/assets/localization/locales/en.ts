@@ -35,6 +35,7 @@ const en: Localization = {
 	gameTooltip: {
 		goToFolder: 'Reveal in Explorer',
 		hide: 'Hide',
+		show: 'Show',
 	},
 };
 

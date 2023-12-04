@@ -35,6 +35,7 @@ const ru: Localization = {
 	gameTooltip: {
 		goToFolder: 'Показать в Проводнике',
 		hide: 'Скрыть',
+		show: 'Показать',
 	},
 };
 

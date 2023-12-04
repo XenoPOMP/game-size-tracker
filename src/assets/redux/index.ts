@@ -17,12 +17,14 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import appSettingsSlice from '@redux/reducers/appSettingsSlice';
+import gameFiltersSlice from '@redux/reducers/gameFilters.slice';
 import steamGamesSlice from '@redux/reducers/steamGames.slice';
 
 /** App`s root reducer. */
 const rootReducer = combineReducers({
 	appSettings: appSettingsSlice,
 	steamGames: steamGamesSlice,
+	gameFilters: gameFiltersSlice,
 });
 
 /** Redux-persist config. */
