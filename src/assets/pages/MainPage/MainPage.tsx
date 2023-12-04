@@ -1,19 +1,16 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { useEffect, useMemo, useState } from 'react';
-import seedColor from 'seed-color';
+import { useEffect, useState } from 'react';
 
 import GamesSection from '@components/GamesSection/GamesSection';
 import Page from '@components/Page/Page';
-import StateSuspense from '@components/StateSuspense/StateSuspense';
 
 import AddNewGameSection from '@ui/AddNewGameSection/AddNewGameSection';
 import FilterControls from '@ui/FilterControls/FilterControls';
 import SizeDiagram from '@ui/SizeDiagram/SizeDiagram';
 
 import useBoolean from '@hooks/useBoolean';
-import useFormattedSize from '@hooks/useFormattedSize';
 import useLocalization from '@hooks/useLocalization';
 
 import { sendMessage } from '@utils/ipc-tools/sendMessage';

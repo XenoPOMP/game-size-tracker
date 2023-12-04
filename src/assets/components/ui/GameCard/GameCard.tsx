@@ -6,6 +6,8 @@ import { MoreHorizontal } from 'lucide-react';
 import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
 
+import StateSuspense from '@components/StateSuspense/StateSuspense';
+
 import { useAppDispatch, useAppSelector } from '@redux/hooks';
 import { hideGame, showGame } from '@redux/reducers/gameFilters.slice';
 
@@ -22,7 +24,7 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	game,
 	...props
 }) => {
-	const { title, size, pathTo } = game as GameInfo;
+	const { title, size, pathTo, category } = game as GameInfo;
 	const seededColor = seedColor(title ?? '');
 	const formattedSize = useFormattedSize(size ?? 0, {
 		roundPrecision: 2,
@@ -72,29 +74,33 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 							</Menu.Button>
 
 							<Menu.Items as={'div'} className={cn(styles.menu)}>
-								{filters?.hidden ? (
+								{category === 'steam' && (
 									<>
-										<Menu.Item
-											as={'div'}
-											className={cn(styles.item)}
-											onClick={() => {
-												dispatch(showGame(title));
-											}}
-										>
-											{loc.gameTooltip.show}
-										</Menu.Item>
-									</>
-								) : (
-									<>
-										<Menu.Item
-											as={'div'}
-											className={cn(styles.item)}
-											onClick={() => {
-												dispatch(hideGame(title));
-											}}
-										>
-											{loc.gameTooltip.hide}
-										</Menu.Item>
+										{filters?.hidden ? (
+											<>
+												<Menu.Item
+													as={'div'}
+													className={cn(styles.item)}
+													onClick={() => {
+														dispatch(showGame(title));
+													}}
+												>
+													{loc.gameTooltip.show}
+												</Menu.Item>
+											</>
+										) : (
+											<>
+												<Menu.Item
+													as={'div'}
+													className={cn(styles.item)}
+													onClick={() => {
+														dispatch(hideGame(title));
+													}}
+												>
+													{loc.gameTooltip.hide}
+												</Menu.Item>
+											</>
+										)}
 									</>
 								)}
 

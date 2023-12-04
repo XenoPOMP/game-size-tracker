@@ -7,9 +7,9 @@ import type { StateSuspenseProps } from './StateSuspense.props';
 const StateSuspense: VariableFC<typeof Suspense, StateSuspenseProps> = ({
 	children,
 	fallback,
-	condition,
+	isLoading,
 }) => {
-	return <>{!condition ? children : fallback}</>;
+	return <>{!isLoading ? children : fallback}</>;
 };
 
 export default StateSuspense;
