@@ -40,6 +40,7 @@ const CustomButton: VariableFC<'button', CustomButtonProps> = ({
 				styles.customButton,
 				inlineStyles[variant].className,
 				blocked && 'opacity-30 cursor-not-allowed',
+				'select-none',
 				className
 			)}
 			onClick={ev => {
