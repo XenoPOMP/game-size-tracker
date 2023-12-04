@@ -1,4 +1,4 @@
-import { orderBy } from 'natural-orderby';
+import { Identifier, orderBy } from 'natural-orderby';
 import { useMemo } from 'react';
 
 export type FilteredGameInfo =
@@ -6,11 +6,32 @@ export type FilteredGameInfo =
 	| GameInfo
 	| Pick<GameInfo, 'title' | 'size'>;
 
-export const useFilteredGames = <G extends Array<FilteredGameInfo>>(
-	games: G
+interface UseFilteredGamesOptions {
+	/** If **true**, sorts games by size anyway. */
+	ignoreGlobalSort?: boolean;
+}
+
+/** Infer orderBy function order array. */
+type InferOrderArray<G extends Array<any>> = G extends Array<infer T>
+	? Identifier<T> | readonly Identifier<T>[] | null | undefined
+	: never;
+
+export const useFilteredGames = (
+	games: Array<FilteredGameInfo>,
+	options?: UseFilteredGamesOptions
 ) => {
 	const memoizedGames = useMemo(() => {
-		return orderBy(games, [v => v.size], ['desc']);
+		const getOrderArray = (): InferOrderArray<Array<FilteredGameInfo>> => {
+			/** Order by size if ignoreGlobalSort option provided. */
+			if (options?.ignoreGlobalSort) {
+				return [v => v.size];
+			}
+
+			/** Order by size by default. */
+			return [v => v.size];
+		};
+
+		return orderBy(games, getOrderArray(), ['desc']);
 	}, [games]);
 
 	return memoizedGames;

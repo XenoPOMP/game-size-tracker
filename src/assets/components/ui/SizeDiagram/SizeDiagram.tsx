@@ -34,7 +34,9 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 		roundPrecision: 2,
 	});
 
-	const memoizedGames = useFilteredGames(games ?? []);
+	const memoizedGames = useFilteredGames(games ?? [], {
+		ignoreGlobalSort: true,
+	});
 
 	return (
 		<>
