@@ -4,6 +4,8 @@ import { Dialog } from '@headlessui/react';
 import cn from 'classnames';
 import { Plus } from 'lucide-react';
 
+import CustomDialog from '@ui/CustomDialog/CustomDialog';
+
 import useBoolean from '@hooks/useBoolean';
 import useLocalization from '@hooks/useLocalization';
 
@@ -21,21 +23,15 @@ const AddNewGameSection: VariableFC<
 
 	return (
 		<>
-			<Dialog
+			<CustomDialog
 				open={isOpen}
-				onClose={() => setIsOpen(false)}
-				className='relative z-[6000]'
+				onClose={() => {
+					setIsOpen(false);
+				}}
+				title={loc.pages.main.addNewGameDialog.heading}
 			>
-				<div className='fixed inset-0 flex w-screen items-center justify-center p-[1rem] bg-primary'>
-					<Dialog.Panel className='w-full max-w-sm rounded bg-white'>
-						<Dialog.Title>
-							{loc.pages.main.addNewGameDialog.heading}
-						</Dialog.Title>
-
-						{/* ... */}
-					</Dialog.Panel>
-				</div>
-			</Dialog>
+				Sus
+			</CustomDialog>
 
 			<section className={cn(styles.addNew, className)} {...props}>
 				<button
