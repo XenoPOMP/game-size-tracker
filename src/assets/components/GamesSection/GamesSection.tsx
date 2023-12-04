@@ -19,15 +19,19 @@ const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> = ({
 	const memoizedGames = useFilteredGames(games ?? []);
 
 	return (
-		<article className={cn(styles.gameSection, className)} {...props}>
-			<h3>
-				{label} ({memoizedGames.length})
-			</h3>
+		<>
+			{memoizedGames.length > 0 && (
+				<article className={cn(styles.gameSection, className)} {...props}>
+					<h3>
+						{label} ({memoizedGames.length})
+					</h3>
 
-			{memoizedGames?.map(game => {
-				return <GameCard game={game} />;
-			})}
-		</article>
+					{memoizedGames?.map(game => {
+						return <GameCard game={game} />;
+					})}
+				</article>
+			)}
+		</>
 	);
 };
 
