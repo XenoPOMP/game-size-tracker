@@ -1,0 +1,31 @@
+@import "src/assets/styles/templates";
+
+.customDialog {
+  .bodyWrapper {
+    .body {
+      @extend %scrollable;
+
+      @apply bg-secondary;
+
+      line-height: normal;
+
+      h2.heading,
+      .controls {
+        @apply bg-brutal sticky left-0;
+      }
+
+      h2.heading {
+        @apply font-semibold select-none top-0
+               py-[.5em] px-[.75em] text-color-primary;
+
+        span {
+          font-size: 1.2em; // 24px
+        }
+      }
+
+      .innerBody {
+        @apply p-[.75em] text-color-primary;
+      }
+    }
+  }
+}

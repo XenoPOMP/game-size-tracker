@@ -15,21 +15,37 @@ const CustomDialog: VariableFC<
 			ComponentProps<typeof Dialog>,
 			'className' | 'children' | 'open' | 'onClose'
 	  >
-> = ({ className, children, open, onClose, title, ...props }) => {
+> = ({ className, children, open, onClose, title, maxBodyWidth, ...props }) => {
 	return (
 		<Dialog
 			ref={undefined}
 			open={open}
 			onClose={onClose}
 			as={'div'}
-			className={cn('relative z-[6000]')}
+			className={cn('relative z-[6000]', styles.customDialog, className)}
 			{...props}
 		>
-			<div className='fixed inset-0 flex w-screen items-center justify-center p-[1rem] bg-primary'>
-				<Dialog.Panel className='w-full max-w-sm rounded bg-white'>
-					<Dialog.Title>{title}</Dialog.Title>
+			<div
+				className={cn(
+					'fixed inset-0 flex w-screen items-center justify-center p-[1rem] bg-primary',
+					styles.bodyWrapper
+				)}
+			>
+				<Dialog.Panel
+					className={cn(
+						`w-full max-w-${
+							maxBodyWidth ? `[${maxBodyWidth}]` : `lg`
+						} max-h-full rounded`,
+						styles.body
+					)}
+				>
+					<Dialog.Title className={cn(styles.heading)}>
+						<span>{title}</span>
+					</Dialog.Title>
 
-					<>{children}</>
+					<div className={cn(styles.innerBody)}>
+						<>{children}</>
+					</div>
 				</Dialog.Panel>
 			</div>
 		</Dialog>
