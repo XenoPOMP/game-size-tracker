@@ -10,6 +10,8 @@ import seedColor from 'seed-color';
 import useFormattedSize from '@hooks/useFormattedSize';
 import useLocalization from '@hooks/useLocalization';
 
+import { sendMessage } from '@utils/ipc-tools/sendMessage';
+
 import styles from './GameCard.module.scss';
 import type { GameCardProps } from './GameCard.props';
 
@@ -25,6 +27,10 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	});
 
 	const loc = useLocalization();
+
+	const revealInExplorer = () => {
+		let ignore = sendMessage('reveal-in-explorer', pathTo);
+	};
 
 	return (
 		<div
@@ -51,7 +57,13 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 					</Menu.Button>
 
 					<Menu.Items as={'div'} className={cn(styles.menu)}>
-						<Menu.Item as={'div'} className={cn(styles.item)}>
+						<Menu.Item
+							as={'div'}
+							className={cn(styles.item)}
+							onClick={() => {
+								revealInExplorer();
+							}}
+						>
 							{loc.gameTooltip.goToFolder}
 						</Menu.Item>
 					</Menu.Items>

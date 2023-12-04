@@ -1,11 +1,13 @@
 import { getObjectKeys } from '@xenopomp/advanced-utils';
 
+import { exec } from 'child_process';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
 import { getAllFiles } from 'get-all-files';
 import * as steamFolders from 'getsteamfolders';
 import { getFolderSizeBin } from 'go-get-folder-size';
 import { release } from 'node:os';
 import { join } from 'node:path';
+import * as os from 'os';
 
 import { preloadOptions } from '../preload/preload-options';
 
@@ -184,4 +186,14 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 	await Promise.all(tasks);
 
 	win?.webContents.send('get-steam-games-response', response);
+});
+
+ipcMain.on('reveal-in-explorer', async (_, arg) => {
+	if (os.platform() === 'win32') {
+		exec(`explorer "${arg}"`);
+	} else {
+		throw new Error(
+			`For the moment reveal in explorer is not supported on ${os.platform()} platform.`
+		);
+	}
 });
