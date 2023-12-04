@@ -12,6 +12,10 @@ const en: Localization = {
 		main: {
 			addNewGameDialog: {
 				heading: 'Add external game',
+				buttons: {
+					cancel: 'Cancel',
+					add: 'Add',
+				},
 			},
 		},
 	},

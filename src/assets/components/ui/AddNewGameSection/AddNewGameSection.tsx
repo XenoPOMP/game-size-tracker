@@ -33,14 +33,14 @@ const AddNewGameSection: VariableFC<
 				buttons={[
 					{
 						variant: 'cancel',
-						children: 'Cancel',
+						children: loc.pages.main.addNewGameDialog.buttons.cancel,
 						blocked: false,
 						onClick: ev => {
 							setIsOpen(false);
 						},
 					},
 					{
-						children: 'Add',
+						children: loc.pages.main.addNewGameDialog.buttons.add,
 						blocked: true,
 					},
 				]}

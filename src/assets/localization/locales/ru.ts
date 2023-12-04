@@ -12,6 +12,10 @@ const ru: Localization = {
 		main: {
 			addNewGameDialog: {
 				heading: 'Добавить стороннюю игру',
+				buttons: {
+					cancel: 'Отменить',
+					add: 'Добавить',
+				},
 			},
 		},
 	},
