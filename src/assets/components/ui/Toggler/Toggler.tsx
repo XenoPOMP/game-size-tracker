@@ -41,11 +41,21 @@ const Toggler: VariableFC<
 	},
 	'children'
 > = ({ className, children, initialValue, onToggle, onClick, ...props }) => {
-	const [localValue, toggleLocalValue] = useBoolean(initialValue);
+	const [localValue, toggleLocalValue, setLocalValue] =
+		useBoolean(initialValue);
 
+	// Execute onToggle callback each time
+	// component toggles.
 	useEffect(() => {
 		onToggle?.(localValue);
 	}, [localValue]);
+
+	// If initial values changes, change local too.
+	useEffect(() => {
+		if (initialValue !== undefined) {
+			setLocalValue(initialValue);
+		}
+	}, [initialValue]);
 
 	return (
 		<button
