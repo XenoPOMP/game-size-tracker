@@ -1,5 +1,6 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
+import { Menu } from '@headlessui/react';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
 import { FC } from 'react';
@@ -7,6 +8,7 @@ import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
 
 import useFormattedSize from '@hooks/useFormattedSize';
+import useLocalization from '@hooks/useLocalization';
 
 import styles from './GameCard.module.scss';
 import type { GameCardProps } from './GameCard.props';
@@ -16,11 +18,13 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	game,
 	...props
 }) => {
-	const { title, size } = game;
+	const { title, size, pathTo } = game as GameInfo;
 	const seededColor = seedColor(title ?? '');
 	const formattedSize = useFormattedSize(size ?? 0, {
 		roundPrecision: 2,
 	});
+
+	const loc = useLocalization();
 
 	return (
 		<div
@@ -41,9 +45,17 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 			</div>
 
 			<div className={cn(styles.controls)}>
-				<button className={cn(styles.more)}>
-					<MoreHorizontal width={'100%'} height={'100%'} />
-				</button>
+				<Menu>
+					<Menu.Button as={'button'} className={cn(styles.more)}>
+						<MoreHorizontal width={'100%'} height={'100%'} />
+					</Menu.Button>
+
+					<Menu.Items as={'div'} className={cn(styles.menu)}>
+						<Menu.Item as={'div'} className={cn(styles.item)}>
+							{loc.gameTooltip.goToFolder}
+						</Menu.Item>
+					</Menu.Items>
+				</Menu>
 			</div>
 		</div>
 	);

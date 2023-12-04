@@ -3,6 +3,8 @@ section.diagram {
 
   font-size: 1rem; // 1em = 20px
 
+  z-index: 2000;
+
   &:before {
     position: absolute;
     bottom: 100%;

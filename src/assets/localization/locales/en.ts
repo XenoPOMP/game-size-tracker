@@ -31,6 +31,10 @@ const en: Localization = {
 		steam: 'Steam',
 		other: 'Other',
 	},
+
+	gameTooltip: {
+		goToFolder: 'Reveal in Explorer',
+	},
 };
 
 export default en;

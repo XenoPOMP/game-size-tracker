@@ -12,6 +12,7 @@ header.appFrame {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 5000;
 
   .controls {
     @extend %notDraggable;

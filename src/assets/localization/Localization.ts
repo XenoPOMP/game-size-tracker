@@ -16,4 +16,6 @@ export interface Localization extends MetaLocales {
 	languageLabels: Record<AppSettings['language'], string>;
 
 	groupNames: Record<GameInfo['category'], string>;
+
+	gameTooltip: Record<'goToFolder', string>;
 }

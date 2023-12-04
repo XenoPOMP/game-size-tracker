@@ -177,6 +177,7 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 				title: `${gameTitle}`,
 				size,
 				category: 'steam',
+				pathTo: fullPath,
 			});
 		});
 

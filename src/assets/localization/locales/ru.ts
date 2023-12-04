@@ -31,6 +31,10 @@ const ru: Localization = {
 		steam: 'Steam',
 		other: 'Другие',
 	},
+
+	gameTooltip: {
+		goToFolder: 'Показать в Проводнике',
+	},
 };
 
 export default ru;

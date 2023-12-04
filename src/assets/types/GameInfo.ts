@@ -3,4 +3,5 @@ type GameInfo = {
 	displayingTitle?: string;
 	category: 'steam' | 'other';
 	size: number;
+	pathTo: string;
 };

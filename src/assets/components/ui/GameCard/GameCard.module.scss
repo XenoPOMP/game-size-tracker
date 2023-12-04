@@ -32,11 +32,39 @@
     @extend %flexCenter;
 
     height: 100%;
+    position: relative;
 
     button.more {
       @apply w-[1.5em] h-[1.5em] rounded-[.2em] bg-tl-hov-bg
              p-[.2em] text-tl-hov-color
              ;
+    }
+
+    .menu {
+      @extend %notSelectable;
+
+      @apply bg-tl-hov-bg z-[1000] text-[.8em] text-tl-hov-color w-max;
+
+      position: absolute;
+      top: 100%;
+      right: 0;
+
+      .item {
+        @extend %flexCenter;
+
+        @apply px-[.75em] py-[.25em] border-secondary-hover cursor-pointer;
+
+        justify-content: end;
+        border-left-width: 3px;
+
+        &.active {
+          @apply border-confirm;
+        }
+
+        &:hover {
+          @apply bg-secondary;
+        }
+      }
     }
   }
 }
