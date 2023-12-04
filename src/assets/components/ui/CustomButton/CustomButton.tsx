@@ -10,6 +10,8 @@ const CustomButton: VariableFC<'button', CustomButtonProps> = ({
 	className,
 	children,
 	variant = 'primary',
+	onClick,
+	blocked,
 	...props
 }) => {
 	const inlineStyles: Record<
@@ -17,13 +19,17 @@ const CustomButton: VariableFC<'button', CustomButtonProps> = ({
 		Pick<ComponentProps<'button'>, 'className'>
 	> = {
 		primary: {
-			className: cn('bg-confirm text-confirm-color hover:bg-confirm-brutal'),
+			className: cn(
+				`bg-confirm text-confirm-color ${
+					blocked ? '' : 'hover:bg-confirm-brutal'
+				}`
+			),
 		},
 		cancel: {
 			className: cn(
 				'bg-button-cancel-bg',
 				'text-button-cancel-color',
-				'hover:bg-button-cancel-bg-brutal'
+				`${blocked ? '' : 'hover:bg-button-cancel-bg-brutal'}`
 			),
 		},
 	};
@@ -33,8 +39,16 @@ const CustomButton: VariableFC<'button', CustomButtonProps> = ({
 			className={cn(
 				styles.customButton,
 				inlineStyles[variant].className,
+				blocked && 'opacity-30 cursor-not-allowed',
 				className
 			)}
+			onClick={ev => {
+				if (blocked) {
+					return;
+				}
+
+				onClick?.(ev);
+			}}
 			{...props}
 		>
 			{children}

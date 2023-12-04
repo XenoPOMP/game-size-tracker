@@ -19,7 +19,16 @@ const CustomDialog: VariableFC<
 			ComponentProps<typeof Dialog>,
 			'className' | 'children' | 'open' | 'onClose'
 	  >
-> = ({ className, children, open, onClose, title, maxBodyWidth, ...props }) => {
+> = ({
+	className,
+	children,
+	open,
+	onClose,
+	title,
+	maxBodyWidth,
+	buttons,
+	...props
+}) => {
 	return (
 		<Dialog
 			ref={undefined}
@@ -63,16 +72,23 @@ const CustomDialog: VariableFC<
 					</section>
 
 					<section className={cn(styles.controls)}>
-						<CustomButton
-							className={cn(styles.controlButton)}
-							variant={'cancel'}
-						>
-							Cancel
-						</CustomButton>
-
-						<CustomButton className={cn(styles.controlButton)}>
-							Primary
-						</CustomButton>
+						{buttons?.map(({ variant, children, onClick, ...props }, index) => {
+							return (
+								<>
+									<CustomButton
+										className={cn(styles.controlButton)}
+										variant={variant}
+										key={`action-${index}`}
+										onClick={ev => {
+											onClick?.(ev);
+										}}
+										{...props}
+									>
+										{children}
+									</CustomButton>
+								</>
+							);
+						})}
 					</section>
 				</Dialog.Panel>
 			</div>

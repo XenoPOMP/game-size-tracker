@@ -29,6 +29,16 @@ const AddNewGameSection: VariableFC<
 					setIsOpen(false);
 				}}
 				title={loc.pages.main.addNewGameDialog.heading}
+				buttons={[
+					{
+						variant: 'cancel',
+						children: 'Cancel',
+					},
+					{
+						children: 'Add',
+						blocked: true,
+					},
+				]}
 			>
 				Here
 			</CustomDialog>
