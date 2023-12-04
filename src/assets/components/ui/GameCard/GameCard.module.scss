@@ -2,7 +2,10 @@
 
 .gameCard {
   @apply flex gap-x-[.5em] items-center bg-secondary
-         rounded-[.2em] px-[.5em];
+         rounded-[.2em] px-[.5em]
+         hover:bg-brutal;
+
+  transition: .08s ease background-color;
 
   // 1em = 15.75em
 
