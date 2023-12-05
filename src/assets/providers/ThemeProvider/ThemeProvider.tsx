@@ -17,9 +17,7 @@ const ThemeProvider: FC<ProviderProps> = ({ children }) => {
 	useEffect(() => {
 		deleteClassnames(classGroupName);
 
-		if (theme.get() === 'light') {
-			registerClassnames(classGroupName, ['light']);
-		}
+		registerClassnames(classGroupName, [theme.get()]);
 	}, [theme.get()]);
 
 	return <>{children}</>;
