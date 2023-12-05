@@ -92,8 +92,13 @@ const GamesSection: VariableFC<
 									gap: 'inherit',
 								}}
 							>
-								{memoizedGames?.map(game => {
-									return <GameCard game={game} />;
+								{memoizedGames?.map((game, index) => {
+									return (
+										<GameCard
+											game={game}
+											key={`game-card-${game.title}-${index}`}
+										/>
+									);
 								})}
 							</Disclosure.Panel>
 						</>
