@@ -23,7 +23,7 @@ const Frame: FC<FrameProps> = ({}) => {
 	return (
 		<header className={cn(styles.appFrame)}>
 			<section className={cn(styles.controls)}>
-				<ThemeSwitcher />
+				{/*<ThemeSwitcher />*/}
 
 				<LanguageSwitcher />
 			</section>

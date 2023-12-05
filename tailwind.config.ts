@@ -7,11 +7,12 @@ import lightTheme from './themes/lightTheme';
 const config: Config = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,scss}'],
 
+	theme: {
+		extend: darkTheme,
+	},
+
 	plugins: [
 		tailwindThemer({
-			defaultTheme: {
-				extend: darkTheme,
-			},
 			themes: [
 				{
 					name: 'dark',
