@@ -1,7 +1,9 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
+import { Disclosure } from '@headlessui/react';
 import cn from 'classnames';
-import { FC, ReactNode, useMemo } from 'react';
+import { ChevronUp } from 'lucide-react';
+import { FC, Fragment, ReactNode, Ref, useMemo } from 'react';
 
 import { useAppSelector } from '@redux/hooks';
 
@@ -10,13 +12,20 @@ import LoadingRect from '@ui/LoadingRect/LoadingRect';
 
 import { useFilteredGames } from '@hooks/useFilteredGames';
 import useLocalization from '@hooks/useLocalization';
+import { useUniqueId } from '@hooks/useUniqueId';
 
 import { inlineLocalizationVar } from '@utils/inlineLocalizationVar';
 
 import styles from './GamesSection.module.scss';
 import type { GamesSectionProps } from './GamesSection.props';
 
-const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> & {
+const GamesSection: VariableFC<
+	'article',
+	GamesSectionProps & {
+		ref?: Ref<HTMLElement>;
+	},
+	'children' | 'ref'
+> & {
 	Loader: VariableFC<'article', Omit<GamesSectionProps, 'games'>, 'children'>;
 } = ({ className, games, label, ...props }) => {
 	const loc = useLocalization();
@@ -54,15 +63,41 @@ const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> & {
 	return (
 		<>
 			{memoizedGames.length > 0 && (
-				<article className={cn(styles.gameSection, className)} {...props}>
-					<h3>
-						{label} {generateCountLabel()}
-					</h3>
+				<Disclosure
+					as={'article'}
+					className={cn(styles.gameSection, className)}
+					{...props}
+				>
+					{({ open }) => (
+						<>
+							<Disclosure.Button as={'h3'}>
+								<span>
+									{label} {generateCountLabel()}
+								</span>
 
-					{memoizedGames?.map(game => {
-						return <GameCard game={game} />;
-					})}
-				</article>
+								<div className={cn(styles.separator)}></div>
+
+								<ChevronUp
+									width={'1.5em'}
+									className={cn(open && 'rotate-180')}
+								/>
+							</Disclosure.Button>
+
+							<Disclosure.Panel
+								as={'div'}
+								style={{
+									display: 'inherit',
+									flexDirection: 'inherit',
+									gap: 'inherit',
+								}}
+							>
+								{memoizedGames?.map(game => {
+									return <GameCard game={game} />;
+								})}
+							</Disclosure.Panel>
+						</>
+					)}
+				</Disclosure>
 			)}
 		</>
 	);
