@@ -46,12 +46,10 @@ const CustomDialog: VariableFC<
 				)}
 			>
 				<Dialog.Panel
-					className={cn(
-						`w-full max-w-${
-							maxBodyWidth ? `[${maxBodyWidth}]` : `lg`
-						} max-h-full rounded`,
-						styles.body
-					)}
+					className={cn(`w-full max-h-full rounded`, styles.body)}
+					style={{
+						maxWidth: maxBodyWidth,
+					}}
 				>
 					<Dialog.Title className={cn(styles.heading)}>
 						<span>

@@ -29,6 +29,7 @@ const AddNewGameSection: VariableFC<
 					setIsOpen(false);
 				}}
 				hideCloseButton
+				maxBodyWidth={`900px`}
 				title={loc.pages.main.addNewGameDialog.heading}
 				buttons={[
 					{
