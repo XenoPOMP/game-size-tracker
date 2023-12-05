@@ -11,3 +11,11 @@ If you use nvm like me, execute these commands:
 nvm install 18.17.0
 nvm use 18.17.0
 ```
+
+## How to build manually
+
+```shell
+yarn build
+```
+
+After that you can find complete build in `release` folder (installer and unpacked version).

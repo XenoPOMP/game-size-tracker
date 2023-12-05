@@ -3,13 +3,9 @@ import { VariableFC } from '@xenopomp/advanced-types';
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
-
-import StateSuspense from '@components/StateSuspense/StateSuspense';
-
-import CurrentHoveredGameContext from '@contexts/CurrentHoveredGame.context';
 
 import { useAppDispatch, useAppSelector } from '@redux/hooks';
 import { deleteRegisteredPath } from '@redux/reducers/customPaths.slice';

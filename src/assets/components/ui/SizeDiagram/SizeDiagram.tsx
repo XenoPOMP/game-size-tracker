@@ -1,10 +1,8 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import seedColor from 'seed-color';
-
-import CurrentHoveredGameContext from '@contexts/CurrentHoveredGame.context';
 
 import LoadingRect from '@ui/LoadingRect/LoadingRect';
 
