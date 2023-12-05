@@ -1,6 +1,9 @@
 import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 /**
+ * Inline variables to localization strings.
+ *
+ * Use syntax from example.
  *
  * @param target
  * @param vars
