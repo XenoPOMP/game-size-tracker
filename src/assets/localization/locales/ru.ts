@@ -20,6 +20,8 @@ const ru: Localization = {
 		},
 	},
 
+	groupHiddenLabel: 'Всего {{totalGames}}, {{hiddenGames}} скрыто',
+
 	measurementUnits: {
 		bytes: 'Б',
 		kilobytes: 'КБ',

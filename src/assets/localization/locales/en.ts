@@ -20,6 +20,8 @@ const en: Localization = {
 		},
 	},
 
+	groupHiddenLabel: 'Total {{totalGames}}, {{hiddenGames}} hidden',
+
 	measurementUnits: {
 		bytes: 'B',
 		kilobytes: 'KB',

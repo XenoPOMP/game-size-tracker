@@ -8,6 +8,8 @@ export interface Localization extends MetaLocales {
 		main: MainPageLocales;
 	};
 
+	groupHiddenLabel: string;
+
 	measurementUnits: Record<
 		'bytes' | 'kilobytes' | 'megabytes' | 'gigabytes' | 'terabytes',
 		string
