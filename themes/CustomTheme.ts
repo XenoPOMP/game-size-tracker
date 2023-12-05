@@ -1,3 +1,3 @@
-import defaultTheme from './defaultTheme';
+import darkTheme from './darkTheme';
 
-export type CustomTheme = typeof defaultTheme;
+export type CustomTheme = typeof darkTheme;

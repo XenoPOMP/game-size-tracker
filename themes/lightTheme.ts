@@ -1,6 +1,6 @@
 import { CustomTheme } from './CustomTheme';
-import defaultTheme from './defaultTheme';
+import darkTheme from './darkTheme';
 
 const lightTheme: CustomTheme = {
-	...defaultTheme,
+	...darkTheme,
 };

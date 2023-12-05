@@ -1,7 +1,7 @@
 import { type Config } from 'tailwindcss';
 import tailwindThemer from 'tailwindcss-themer';
 
-import defaultTheme from './themes/defaultTheme';
+import darkTheme from './themes/darkTheme';
 
 const config: Config = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,scss}'],
@@ -13,7 +13,7 @@ const config: Config = {
 	plugins: [
 		tailwindThemer({
 			defaultTheme: {
-				extend: defaultTheme,
+				extend: darkTheme,
 			},
 		}),
 	],

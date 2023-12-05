@@ -1,4 +1,4 @@
-const defaultTheme = {
+const darkTheme = {
 	colors: {
 		primary: 'rgb(23.000000528991222 29.000000171363354 37.00000159442425)',
 		secondary: 'rgb(41.00000135600567 46.000001057982445 54.00000058114529)',
@@ -28,4 +28,4 @@ const defaultTheme = {
 	},
 };
 
-export default defaultTheme;
+export default darkTheme;
