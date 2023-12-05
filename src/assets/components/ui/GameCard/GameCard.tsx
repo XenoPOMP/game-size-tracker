@@ -3,11 +3,13 @@ import { VariableFC } from '@xenopomp/advanced-types';
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
 
 import StateSuspense from '@components/StateSuspense/StateSuspense';
+
+import CurrentHoveredGameContext from '@contexts/CurrentHoveredGame.context';
 
 import { useAppDispatch, useAppSelector } from '@redux/hooks';
 import { deleteRegisteredPath } from '@redux/reducers/customPaths.slice';
@@ -28,6 +30,8 @@ import type { GameCardProps } from './GameCard.props';
 const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	className,
 	game,
+	onMouseEnter,
+	onMouseLeave,
 	...props
 }) => {
 	const { title, size, pathTo, category, uuid } = game as GameInfo;
@@ -164,6 +168,12 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 					)}
 					style={{
 						borderLeft: `${1 / 4}em solid ${seededColor.toHex()}`,
+					}}
+					onMouseEnter={ev => {
+						onMouseEnter?.(ev);
+					}}
+					onMouseLeave={ev => {
+						onMouseLeave?.(ev);
 					}}
 					{...props}
 				>
