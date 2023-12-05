@@ -12,6 +12,13 @@ const en: Localization = {
 		main: {
 			addNewGameDialog: {
 				heading: 'Add external game',
+
+				selectGameFolder: {
+					label: 'Select game folder',
+					selectFolderLabel: 'Select folder',
+					reselectFolderLabel: 'Reselect',
+				},
+
 				buttons: {
 					cancel: 'Cancel',
 					add: 'Add',

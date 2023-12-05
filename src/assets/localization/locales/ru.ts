@@ -12,6 +12,13 @@ const ru: Localization = {
 		main: {
 			addNewGameDialog: {
 				heading: 'Добавить стороннюю игру',
+
+				selectGameFolder: {
+					label: 'Выберете папку игры',
+					selectFolderLabel: 'Выбрать папку',
+					reselectFolderLabel: 'Выбрать заново',
+				},
+
 				buttons: {
 					cancel: 'Отменить',
 					add: 'Добавить',

@@ -1,0 +1,7 @@
+article.fileSelector {
+  @apply flex gap-[.5em] items-center flex-wrap;
+
+  button.selectButton {
+    font-size: .8em;
+  }
+}
