@@ -17,6 +17,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import appSettingsSlice from '@redux/reducers/appSettingsSlice';
+import customPathsSlice from '@redux/reducers/customPaths.slice';
 import gameFiltersSlice from '@redux/reducers/gameFilters.slice';
 import sortFiltersSlice from '@redux/reducers/sortFilters.slice';
 import steamGamesSlice from '@redux/reducers/steamGames.slice';
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
 	steamGames: steamGamesSlice,
 	gameFilters: gameFiltersSlice,
 	sortFilters: sortFiltersSlice,
+	customPaths: customPathsSlice,
 });
 
 /** Redux-persist config. */

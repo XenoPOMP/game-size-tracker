@@ -25,6 +25,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	const loc = useLocalization();
 
 	const [isLoading, toggleIsLoading, setIsLoading] = useBoolean(false);
+
 	const [steamGames, setSteamGames] = useState<GameInfo[]>();
 	const [otherGames, setOtherGames] = useState<GameInfo[]>();
 	const [allGames, setAllGames] = useState<GameInfo[]>();

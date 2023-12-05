@@ -5,6 +5,9 @@ import cn from 'classnames';
 import { Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { useAppDispatch } from '@redux/hooks';
+import { registerNewPath } from '@redux/reducers/customPaths.slice';
+
 import CustomDialog from '@ui/CustomDialog/CustomDialog';
 import FileSelector from '@ui/FileSelector/FileSelector';
 
@@ -26,6 +29,8 @@ const AddNewGameSection: VariableFC<
 	const [pathToGame, setPathToGame] = useState<string | undefined>(undefined);
 
 	const [isBlocked, _tb, setIsBlocked] = useBoolean(true);
+
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		if (pathToGame === undefined) {
@@ -58,6 +63,13 @@ const AddNewGameSection: VariableFC<
 					{
 						children: loc.pages.main.addNewGameDialog.buttons.add,
 						blocked: isBlocked,
+						onClick: ev => {
+							if (pathToGame === undefined) {
+								return;
+							}
+
+							dispatch(registerNewPath(pathToGame));
+						},
 					},
 				]}
 			>
