@@ -66,6 +66,7 @@ const GamesSection: VariableFC<
 				<Disclosure
 					as={'article'}
 					className={cn(styles.gameSection, className)}
+					defaultOpen={true}
 					{...props}
 				>
 					{({ open }) => (
