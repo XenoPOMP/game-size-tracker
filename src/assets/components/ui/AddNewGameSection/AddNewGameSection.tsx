@@ -65,10 +65,12 @@ const AddNewGameSection: VariableFC<
 						blocked: isBlocked,
 						onClick: ev => {
 							if (pathToGame === undefined) {
+								setIsOpen(false);
 								return;
 							}
 
 							dispatch(registerNewPath(pathToGame));
+							setIsOpen(false);
 						},
 					},
 				]}

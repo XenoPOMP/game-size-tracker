@@ -3,17 +3,23 @@ import { VariableFC } from '@xenopomp/advanced-types';
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
+import { FC } from 'react';
 import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
 
 import StateSuspense from '@components/StateSuspense/StateSuspense';
 
 import { useAppDispatch, useAppSelector } from '@redux/hooks';
+import { deleteRegisteredPath } from '@redux/reducers/customPaths.slice';
 import { hideGame, showGame } from '@redux/reducers/gameFilters.slice';
 
+import CustomDialog from '@ui/CustomDialog/CustomDialog';
+
+import useBoolean from '@hooks/useBoolean';
 import useFormattedSize from '@hooks/useFormattedSize';
 import useLocalization from '@hooks/useLocalization';
 
+import { inlineLocalizationVar } from '@utils/inlineLocalizationVar';
 import { sendMessage } from '@utils/ipc-tools/sendMessage';
 
 import styles from './GameCard.module.scss';
@@ -24,7 +30,7 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 	game,
 	...props
 }) => {
-	const { title, size, pathTo, category } = game as GameInfo;
+	const { title, size, pathTo, category, uuid } = game as GameInfo;
 	const seededColor = seedColor(title ?? '');
 	const formattedSize = useFormattedSize(size ?? 0, {
 		roundPrecision: 2,
@@ -32,6 +38,9 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 
 	const filters = useAppSelector(state => state.gameFilters[title]);
 	const { showHidden } = useAppSelector(state => state.sortFilters);
+
+	const [isRemoveDialogOpen, toggleRemoveDialog, setRemoveDialogToggled] =
+		useBoolean(false);
 
 	const loc = useLocalization();
 
@@ -43,8 +52,109 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 
 	const notDisplaying = filters?.hidden && !showHidden;
 
+	const CustomMenuButton: VariableFC<typeof Menu.Item, {}> = ({
+		as = 'div',
+		className,
+		children,
+		onClick,
+		...props
+	}) => {
+		return (
+			<Menu.Item
+				as={as}
+				className={cn(styles.item, className)}
+				onClick={() => {
+					onClick?.();
+				}}
+				{...props}
+			>
+				{children}
+			</Menu.Item>
+		);
+	};
+
+	const SteamButtons: FC = () => {
+		return (
+			<>
+				{filters?.hidden ? (
+					<>
+						<CustomMenuButton
+							onClick={() => {
+								dispatch(showGame(title));
+							}}
+						>
+							{loc.gameTooltip.show}
+						</CustomMenuButton>
+					</>
+				) : (
+					<>
+						<CustomMenuButton
+							onClick={() => {
+								dispatch(hideGame(title));
+							}}
+						>
+							{loc.gameTooltip.hide}
+						</CustomMenuButton>
+					</>
+				)}
+			</>
+		);
+	};
+
+	const OtherGamesButtons: FC = () => {
+		return (
+			<>
+				<CustomMenuButton
+					onClick={() => {
+						setRemoveDialogToggled(true);
+					}}
+				>
+					{loc.gameTooltip.remove}
+				</CustomMenuButton>
+			</>
+		);
+	};
+
 	return (
 		<>
+			<CustomDialog
+				open={isRemoveDialogOpen}
+				onClose={() => {
+					setRemoveDialogToggled(false);
+				}}
+				title={loc.gameTooltip.dialogs.removeOtherGame.label}
+				hideCloseButton
+				buttons={[
+					{
+						variant: 'cancel',
+						children: loc.gameTooltip.dialogs.removeOtherGame.cancelButton,
+						blocked: false,
+						onClick: ev => {
+							setRemoveDialogToggled(false);
+						},
+					},
+					{
+						variant: 'danger',
+						children: loc.gameTooltip.dialogs.removeOtherGame.removeButton,
+						blocked: false,
+						onClick: ev => {
+							if (uuid !== undefined) {
+								dispatch(deleteRegisteredPath(uuid));
+							}
+
+							setRemoveDialogToggled(false);
+						},
+					},
+				]}
+			>
+				{inlineLocalizationVar(
+					loc.gameTooltip.dialogs.removeOtherGame.areYouSureLabel,
+					{
+						GAME: title,
+					}
+				)}
+			</CustomDialog>
+
 			{!notDisplaying && (
 				<div
 					className={cn(
@@ -74,35 +184,8 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 							</Menu.Button>
 
 							<Menu.Items as={'div'} className={cn(styles.menu)}>
-								{category === 'steam' && (
-									<>
-										{filters?.hidden ? (
-											<>
-												<Menu.Item
-													as={'div'}
-													className={cn(styles.item)}
-													onClick={() => {
-														dispatch(showGame(title));
-													}}
-												>
-													{loc.gameTooltip.show}
-												</Menu.Item>
-											</>
-										) : (
-											<>
-												<Menu.Item
-													as={'div'}
-													className={cn(styles.item)}
-													onClick={() => {
-														dispatch(hideGame(title));
-													}}
-												>
-													{loc.gameTooltip.hide}
-												</Menu.Item>
-											</>
-										)}
-									</>
-								)}
+								{category === 'steam' && <SteamButtons />}
+								{category === 'other' && <OtherGamesButtons />}
 
 								<Menu.Item
 									as={'div'}

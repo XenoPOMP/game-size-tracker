@@ -28,6 +28,10 @@ module.exports = {
 				'button-cancel-bg-brutal':
 					'rgb(56.817188411951065 60.11093907058239 65.87499797344208)',
 				'button-cancel-color': 'rgb(255 255 255)',
+				'danger-bg': 'rgb(255 0 0)',
+				'danger-brutal-bg':
+					'rgb(153.00000607967377 17.850000075995922 17.850000075995922)',
+				'danger-color': 'rgb(255 255 255)',
 			},
 		},
 	},

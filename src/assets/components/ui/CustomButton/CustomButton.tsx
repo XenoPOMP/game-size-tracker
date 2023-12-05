@@ -32,11 +32,19 @@ const CustomButton: VariableFC<'button', CustomButtonProps> = ({
 				`${blocked ? '' : 'hover:bg-button-cancel-bg-brutal'}`
 			),
 		},
+		danger: {
+			className: cn(
+				'bg-danger-bg',
+				'text-danger-color',
+				`${blocked ? '' : 'hover:bg-danger-brutal-bg'}`
+			),
+		},
 	};
 
 	return (
 		<button
 			className={cn(
+				'',
 				styles.customButton,
 				inlineStyles[variant].className,
 				blocked && 'opacity-30 cursor-not-allowed',

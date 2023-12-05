@@ -51,6 +51,17 @@ const ru: Localization = {
 		goToFolder: 'Показать в Проводнике',
 		hide: 'Скрыть',
 		show: 'Показать',
+		remove: 'Убрать',
+
+		dialogs: {
+			removeOtherGame: {
+				label: 'Вы уверены?',
+				areYouSureLabel:
+					'Вы собираетесь убрать из списка {{GAME}}.\nЭто действие нельзя отменить!',
+				cancelButton: 'Отменить',
+				removeButton: 'Я уверен',
+			},
+		},
 	},
 };
 

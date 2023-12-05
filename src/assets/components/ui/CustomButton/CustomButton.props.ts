@@ -1,4 +1,4 @@
 export interface CustomButtonProps {
-	variant?: 'primary' | 'cancel';
+	variant?: 'primary' | 'cancel' | 'danger';
 	blocked?: boolean;
 }

@@ -51,6 +51,17 @@ const en: Localization = {
 		goToFolder: 'Reveal in Explorer',
 		hide: 'Hide',
 		show: 'Show',
+		remove: 'Remove',
+
+		dialogs: {
+			removeOtherGame: {
+				label: 'Are you sure?',
+				areYouSureLabel:
+					'You`re going to remove {{GAME}} from the list.\nThis action can not be undone!',
+				cancelButton: 'Cancel',
+				removeButton: 'I`m sure',
+			},
+		},
 	},
 };
 
