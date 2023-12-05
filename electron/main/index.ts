@@ -205,6 +205,30 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 	win?.webContents.send('get-steam-games-response', response);
 });
 
+ipcMain.on(
+	'get-all-external-games-info',
+	async (_, request: { path: string; uuid: string }[][]) => {
+		let response: GameInfo[] = [];
+
+		console.log(request);
+
+		const tasks = request[0].map(async ({ path, uuid }, index) => {
+			const currentGame = await fetchGameInfo({
+				title: (path ?? '').replace(/.*\\/g, ''),
+				category: 'other',
+				pathTo: path,
+				uuid,
+			});
+
+			response.push(currentGame);
+		});
+
+		await Promise.all(tasks);
+
+		win?.webContents.send('get-all-external-games-info-response', response);
+	}
+);
+
 ipcMain.on('reveal-in-explorer', async (_, arg) => {
 	if (os.platform() === 'win32') {
 		exec(`explorer "${arg}"`);

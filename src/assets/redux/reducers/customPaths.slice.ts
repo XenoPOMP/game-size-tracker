@@ -22,7 +22,7 @@ const customPathsSlice = createSlice({
 
 		registerNewPath(state, { payload }: ReduxAction<string>) {
 			state.list.push({
-				path: payload,
+				path: payload.replace(/\n/g, ''),
 				uuid: `external-game-${randomUUID()}-${randomUUID()}`,
 			});
 		},
