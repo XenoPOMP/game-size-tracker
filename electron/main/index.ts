@@ -191,8 +191,6 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 			gameTitle,
 		}))
 		.map(async ({ fullPath, gameTitle }) => {
-			const size = await getFolderSizeBin(fullPath);
-
 			const currentGame = await fetchGameInfo({
 				title: gameTitle,
 				pathTo: fullPath,
