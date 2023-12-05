@@ -162,6 +162,24 @@ ipcMain.on('close_app', (_, arg) => {
 	app.quit();
 });
 
+/**
+ * Fetch game info asynchronously.
+ * @param options
+ */
+const fetchGameInfo = async (
+	options: Pick<GameInfo, 'pathTo' | 'category' | 'title' | 'uuid'>
+): Promise<GameInfo> => {
+	const size = await getFolderSizeBin(options.pathTo);
+
+	return {
+		title: options.title,
+		size,
+		category: options.category,
+		pathTo: options.pathTo,
+		uuid: options.uuid,
+	};
+};
+
 ipcMain.on('get-steam-games', async (_, arg) => {
 	let response: GameInfo[] = [];
 
@@ -175,12 +193,13 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 		.map(async ({ fullPath, gameTitle }) => {
 			const size = await getFolderSizeBin(fullPath);
 
-			response.push({
-				title: `${gameTitle}`,
-				size,
-				category: 'steam',
+			const currentGame = await fetchGameInfo({
+				title: gameTitle,
 				pathTo: fullPath,
+				category: 'steam',
 			});
+
+			response.push(currentGame);
 		});
 
 	await Promise.all(tasks);
