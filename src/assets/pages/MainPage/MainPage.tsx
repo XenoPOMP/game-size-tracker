@@ -66,7 +66,10 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 			<FilterControls />
 
 			{isLoading ? (
-				<></>
+				<section className={cn('flex flex-col gap-[1.5em]')}>
+					<GamesSection.Loader />
+					<GamesSection.Loader />
+				</section>
 			) : (
 				<>
 					<section className={cn('flex flex-col gap-[1.5em]')}>

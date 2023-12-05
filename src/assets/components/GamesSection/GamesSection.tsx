@@ -1,11 +1,12 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 
 import { useAppSelector } from '@redux/hooks';
 
 import GameCard from '@ui/GameCard/GameCard';
+import LoadingRect from '@ui/LoadingRect/LoadingRect';
 
 import { useFilteredGames } from '@hooks/useFilteredGames';
 import useLocalization from '@hooks/useLocalization';
@@ -15,12 +16,9 @@ import { inlineLocalizationVar } from '@utils/inlineLocalizationVar';
 import styles from './GamesSection.module.scss';
 import type { GamesSectionProps } from './GamesSection.props';
 
-const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> = ({
-	className,
-	games,
-	label,
-	...props
-}) => {
+const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> & {
+	Loader: VariableFC<'article', Omit<GamesSectionProps, 'games'>, 'children'>;
+} = ({ className, games, label, ...props }) => {
 	const loc = useLocalization();
 
 	const memoizedGames = useFilteredGames(games ?? []);
@@ -67,6 +65,17 @@ const GamesSection: VariableFC<'article', GamesSectionProps, 'children'> = ({
 				</article>
 			)}
 		</>
+	);
+};
+
+GamesSection.Loader = ({ className, label, ...props }) => {
+	return (
+		<article className={cn(styles.gameSection, className)} {...props}>
+			<LoadingRect className={cn('!h-[1.35em]')} style={{}} />
+
+			<LoadingRect className={cn('!h-[3.6em] !w-full')} style={{}} />
+			<LoadingRect className={cn('!h-[3.6em] !w-full')} style={{}} />
+		</article>
 	);
 };
 
