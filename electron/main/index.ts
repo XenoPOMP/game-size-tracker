@@ -162,6 +162,24 @@ ipcMain.on('close_app', (_, arg) => {
 	app.quit();
 });
 
+/**
+ * Fetch game info asynchronously.
+ * @param options
+ */
+const fetchGameInfo = async (
+	options: Pick<GameInfo, 'pathTo' | 'category' | 'title' | 'uuid'>
+): Promise<GameInfo> => {
+	const size = await getFolderSizeBin(options.pathTo);
+
+	return {
+		title: options.title,
+		size,
+		category: options.category,
+		pathTo: options.pathTo,
+		uuid: options.uuid,
+	};
+};
+
 ipcMain.on('get-steam-games', async (_, arg) => {
 	let response: GameInfo[] = [];
 
@@ -173,20 +191,43 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 			gameTitle,
 		}))
 		.map(async ({ fullPath, gameTitle }) => {
-			const size = await getFolderSizeBin(fullPath);
-
-			response.push({
-				title: `${gameTitle}`,
-				size,
-				category: 'steam',
+			const currentGame = await fetchGameInfo({
+				title: gameTitle,
 				pathTo: fullPath,
+				category: 'steam',
 			});
+
+			response.push(currentGame);
 		});
 
 	await Promise.all(tasks);
 
 	win?.webContents.send('get-steam-games-response', response);
 });
+
+ipcMain.on(
+	'get-all-external-games-info',
+	async (_, request: { path: string; uuid: string }[][]) => {
+		let response: GameInfo[] = [];
+
+		console.log(request);
+
+		const tasks = request[0].map(async ({ path, uuid }, index) => {
+			const currentGame = await fetchGameInfo({
+				title: (path ?? '').replace(/.*\\/g, ''),
+				category: 'other',
+				pathTo: path,
+				uuid,
+			});
+
+			response.push(currentGame);
+		});
+
+		await Promise.all(tasks);
+
+		win?.webContents.send('get-all-external-games-info-response', response);
+	}
+);
 
 ipcMain.on('reveal-in-explorer', async (_, arg) => {
 	if (os.platform() === 'win32') {

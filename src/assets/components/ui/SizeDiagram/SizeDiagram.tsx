@@ -1,8 +1,10 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 import seedColor from 'seed-color';
+
+import CurrentHoveredGameContext from '@contexts/CurrentHoveredGame.context';
 
 import LoadingRect from '@ui/LoadingRect/LoadingRect';
 
@@ -13,7 +15,6 @@ import { summary } from '@utils/math-utils';
 
 import styles from './SizeDiagram.module.scss';
 import type { SizeDiagramProps } from './SizeDiagram.props';
-
 
 const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 	className,
@@ -59,7 +60,7 @@ const SizeDiagram: VariableFC<'section', SizeDiagramProps, 'children'> = ({
 							return (
 								<div
 									key={`${title}-game-percentage-[${index}]`}
-									className={`h-full`}
+									className={cn(`h-full`)}
 									style={{
 										background: seededColor.toHex(),
 										width: `${percent}%`,

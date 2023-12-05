@@ -13,7 +13,7 @@ const LoadingRect: VariableFC<'div', LoadingRectProps, 'children'> = ({
 	return (
 		<div
 			className={cn(
-				'min-w-[5ch] w-fit h-[100%] bg-secondary bg-opacity-100 rounded-[.2em]',
+				'min-w-[5ch] w-[5ch] h-[1.5em] bg-secondary bg-opacity-100 rounded-[.2em]',
 				'animate-pulse',
 				className
 			)}

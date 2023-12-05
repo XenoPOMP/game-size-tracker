@@ -10,9 +10,24 @@ const ru: Localization = {
 
 	pages: {
 		main: {
-			label: 'Привет мир!',
+			addNewGameDialog: {
+				heading: 'Добавить стороннюю игру',
+
+				selectGameFolder: {
+					label: 'Выберете папку игры',
+					selectFolderLabel: 'Выбрать папку',
+					reselectFolderLabel: 'Выбрать заново',
+				},
+
+				buttons: {
+					cancel: 'Отменить',
+					add: 'Добавить',
+				},
+			},
 		},
 	},
+
+	groupHiddenLabel: 'Всего {{totalGames}}, {{hiddenGames}} скрыто',
 
 	measurementUnits: {
 		bytes: 'Б',
@@ -36,6 +51,17 @@ const ru: Localization = {
 		goToFolder: 'Показать в Проводнике',
 		hide: 'Скрыть',
 		show: 'Показать',
+		remove: 'Убрать',
+
+		dialogs: {
+			removeOtherGame: {
+				label: 'Вы уверены?',
+				areYouSureLabel:
+					'Вы собираетесь убрать из списка {{GAME}}.\nЭто действие нельзя отменить!',
+				cancelButton: 'Отменить',
+				removeButton: 'Я уверен',
+			},
+		},
 	},
 };
 

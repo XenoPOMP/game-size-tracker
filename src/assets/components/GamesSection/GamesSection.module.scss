@@ -2,6 +2,14 @@ article.gameSection {
   @apply flex flex-col gap-[.75em];
 
   h3 {
-    @apply text-[.9em] text-color-primary font-bold;
+    @apply text-[.9em] text-color-primary font-bold select-none
+           flex gap-[1em] items-center;
+
+    .separator {
+      @apply bg-current opacity-30;
+
+      flex-grow: 1;
+      height: 1px;
+    }
   }
 }

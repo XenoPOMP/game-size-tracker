@@ -4,4 +4,5 @@ type GameInfo = {
 	category: 'steam' | 'other';
 	size: number;
 	pathTo: string;
+	uuid?: string;
 };

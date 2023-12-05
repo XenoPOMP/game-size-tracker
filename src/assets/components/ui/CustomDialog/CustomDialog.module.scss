@@ -1,0 +1,41 @@
+@import "src/assets/styles/templates";
+
+.customDialog {
+  .bodyWrapper {
+    .body {
+      @extend %scrollable;
+
+      @apply bg-secondary;
+
+      line-height: normal;
+
+      h2.heading,
+      section.controls {
+        @apply bg-brutal sticky left-0;
+      }
+
+      h2.heading {
+        @apply font-semibold select-none top-0
+               py-[.5em] px-[.75em] text-color-primary
+               flex gap-[1em] items-center;
+
+        span {
+          font-size: 1.1em; // 24px
+          flex-grow: 1;
+        }
+      }
+
+      section.innerBody {
+        @apply p-[.75em] text-color-primary whitespace-break-spaces;
+      }
+
+      section.controls {
+        @apply p-[.75em] flex flex-wrap gap-[.5em] justify-end bottom-0;
+
+        button.controlButton {
+          font-size: .8em;
+        }
+      }
+    }
+  }
+}

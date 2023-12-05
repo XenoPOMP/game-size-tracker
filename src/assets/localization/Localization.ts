@@ -8,6 +8,8 @@ export interface Localization extends MetaLocales {
 		main: MainPageLocales;
 	};
 
+	groupHiddenLabel: string;
+
 	measurementUnits: Record<
 		'bytes' | 'kilobytes' | 'megabytes' | 'gigabytes' | 'terabytes',
 		string
@@ -17,5 +19,14 @@ export interface Localization extends MetaLocales {
 
 	groupNames: Record<GameInfo['category'], string>;
 
-	gameTooltip: Record<'goToFolder' | 'hide' | 'show', string>;
+	gameTooltip: Record<'goToFolder' | 'hide' | 'show' | 'remove', string> & {
+		dialogs: {
+			removeOtherGame: {
+				label: string;
+				areYouSureLabel: string;
+				cancelButton: string;
+				removeButton: string;
+			};
+		};
+	};
 }
