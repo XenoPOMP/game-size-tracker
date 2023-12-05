@@ -29,6 +29,8 @@ const BodyClassnameProvider: FC<
 			outputString = `${outputString} ${cn(...classList[key])}`;
 		});
 
+		outputString = outputString.replace(/^\s/g, '');
+
 		document.body.className = cn(outputString);
 	}, [classList]);
 
