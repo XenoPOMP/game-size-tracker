@@ -6,11 +6,13 @@ import type { ReduxAction } from '@redux/types';
 export type SortFiltersState = {
 	showHidden: boolean;
 	sortOrder: Exclude<Order, Function>;
+	orderBy: 'size' | 'title';
 };
 
 const initialState: SortFiltersState = {
 	showHidden: true,
 	sortOrder: 'desc',
+	orderBy: 'size',
 };
 
 const sortFiltersSlice = createSlice({

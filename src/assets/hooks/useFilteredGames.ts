@@ -22,13 +22,20 @@ export const useFilteredGames = (
 	games: Array<FilteredGameInfo>,
 	options?: UseFilteredGamesOptions
 ) => {
-	const { sortOrder } = useAppSelector(state => state.sortFilters);
+	const { sortOrder, orderBy: orderByKey } = useAppSelector(
+		state => state.sortFilters
+	);
 
 	const memoizedGames = useMemo(() => {
 		const getOrderArray = (): InferOrderArray<Array<FilteredGameInfo>> => {
 			/** Order by size if ignoreGlobalSort option provided. */
 			if (options?.ignoreGlobalSort) {
 				return [v => v.size];
+			}
+
+			/** Order by title. */
+			if (orderByKey === 'title') {
+				return [v => v.title];
 			}
 
 			/** Order by size by default. */
