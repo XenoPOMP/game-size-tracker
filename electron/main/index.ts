@@ -2,9 +2,8 @@ import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { exec } from 'child_process';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
-import { getAllFiles } from 'get-all-files';
 import * as steamFolders from 'getsteamfolders';
-import { getFolderSize, getFolderSizeBin } from 'go-get-folder-size';
+import { getFolderSizeBin as fetchFolderSize } from 'go-get-folder-size';
 import { release } from 'node:os';
 import { join } from 'node:path';
 import * as os from 'os';
@@ -172,7 +171,7 @@ const fetchGameInfo = async (
 	let size: number = -1;
 
 	try {
-		size = await getFolderSize(options.pathTo);
+		size = await fetchFolderSize(options.pathTo);
 	} catch (e) {
 		console.log(e);
 
