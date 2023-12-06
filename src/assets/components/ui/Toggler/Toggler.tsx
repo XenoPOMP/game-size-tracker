@@ -40,7 +40,15 @@ const Toggler: VariableFC<
 		children?: FunctionalChildren<[props: { isToggled: boolean }]>;
 	},
 	'children'
-> = ({ className, children, initialValue, onToggle, onClick, ...props }) => {
+> = ({
+	className,
+	children,
+	initialValue,
+	onToggle,
+	onClick,
+	fillAlways,
+	...props
+}) => {
 	const [localValue, toggleLocalValue, setLocalValue] =
 		useBoolean(initialValue);
 
@@ -64,6 +72,7 @@ const Toggler: VariableFC<
 				localValue
 					? 'bg-tl-hov-bg text-tl-hov-color border-transparent'
 					: 'text-tl-hov-color border-tl-hov-bg',
+				fillAlways && 'bg-tl-hov-bg text-tl-hov-color border-transparent',
 				styles.toggler,
 				className
 			)}
