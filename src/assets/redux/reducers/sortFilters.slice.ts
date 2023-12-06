@@ -1,31 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Order } from 'natural-orderby';
 
 import type { ReduxAction } from '@redux/types';
 
 export type SortFiltersState = {
 	showHidden: boolean;
+	sortOrder: Exclude<Order, Function>;
 };
 
 const initialState: SortFiltersState = {
 	showHidden: true,
+	sortOrder: 'desc',
 };
 
 const sortFiltersSlice = createSlice({
 	name: 'sortFilters',
 	initialState,
 	reducers: {
-		simpleAction(state, action: ReduxAction<any>) {},
-
 		changeHiddenGamesVisibility(
 			state,
 			{ payload }: ReduxAction<SortFiltersState['showHidden']>
 		) {
 			state.showHidden = payload;
 		},
+
+		changeSortOrder(
+			state,
+			{ payload }: ReduxAction<SortFiltersState['sortOrder']>
+		) {
+			state.sortOrder = payload;
+		},
 	},
 });
 
 export default sortFiltersSlice.reducer;
-export const { simpleAction, changeHiddenGamesVisibility } =
+export const { changeHiddenGamesVisibility, changeSortOrder } =
 	sortFiltersSlice.actions;
 export const initialSortFiltersState = sortFiltersSlice.getInitialState();

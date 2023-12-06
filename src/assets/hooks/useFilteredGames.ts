@@ -1,6 +1,8 @@
 import { Identifier, orderBy } from 'natural-orderby';
 import { useMemo } from 'react';
 
+import { useAppSelector } from '@redux/hooks';
+
 export type FilteredGameInfo =
 	| Partial<GameInfo>
 	| GameInfo
@@ -20,6 +22,8 @@ export const useFilteredGames = (
 	games: Array<FilteredGameInfo>,
 	options?: UseFilteredGamesOptions
 ) => {
+	const { sortOrder } = useAppSelector(state => state.sortFilters);
+
 	const memoizedGames = useMemo(() => {
 		const getOrderArray = (): InferOrderArray<Array<FilteredGameInfo>> => {
 			/** Order by size if ignoreGlobalSort option provided. */
@@ -31,8 +35,8 @@ export const useFilteredGames = (
 			return [v => v.size];
 		};
 
-		return orderBy(games, getOrderArray(), ['desc']);
-	}, [games]);
+		return orderBy(games, getOrderArray(), [sortOrder]);
+	}, [games, sortOrder]);
 
 	return memoizedGames;
 };

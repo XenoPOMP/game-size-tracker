@@ -47,6 +47,7 @@ const Toggler: VariableFC<
 	onToggle,
 	onClick,
 	fillAlways,
+	style,
 	...props
 }) => {
 	const [localValue, toggleLocalValue, setLocalValue] =
@@ -69,16 +70,26 @@ const Toggler: VariableFC<
 		<button
 			className={cn(
 				'min-w-[1.5em] min-h-[1.5em] flex justify-center items-center rounded-[.2em] p-[.3em]',
+
 				localValue
 					? 'bg-tl-hov-bg text-tl-hov-color border-transparent'
 					: 'text-tl-hov-color border-tl-hov-bg',
 				fillAlways && 'bg-tl-hov-bg text-tl-hov-color border-transparent',
+
 				styles.toggler,
+
+				// Default styles
+				'w-[1.5em] h-[1.5em]',
+
 				className
 			)}
 			onClick={ev => {
 				onClick?.(ev);
 				toggleLocalValue();
+			}}
+			style={{
+				lineHeight: '100%',
+				...style,
 			}}
 			{...props}
 		>
