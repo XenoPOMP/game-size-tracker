@@ -1,4 +1,4 @@
-import { VariableFC } from '@xenopomp/advanced-types';
+import { FunctionalChildren, VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
 import { FC, ReactNode, useEffect } from 'react';
@@ -37,7 +37,7 @@ import type { TogglerProps } from './Toggler.props';
 const Toggler: VariableFC<
 	'button',
 	TogglerProps & {
-		children?: ReactNode | ((props: { isToggled: boolean }) => ReactNode);
+		children?: FunctionalChildren<[props: { isToggled: boolean }]>;
 	},
 	'children'
 > = ({ className, children, initialValue, onToggle, onClick, ...props }) => {
