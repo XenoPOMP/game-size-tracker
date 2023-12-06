@@ -2,9 +2,8 @@ import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { exec } from 'child_process';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
-import { getAllFiles } from 'get-all-files';
 import * as steamFolders from 'getsteamfolders';
-import { getFolderSizeBin } from 'go-get-folder-size';
+import { getFolderSizeBin as fetchFolderSize } from 'go-get-folder-size';
 import { release } from 'node:os';
 import { join } from 'node:path';
 import * as os from 'os';
@@ -169,7 +168,15 @@ ipcMain.on('close_app', (_, arg) => {
 const fetchGameInfo = async (
 	options: Pick<GameInfo, 'pathTo' | 'category' | 'title' | 'uuid'>
 ): Promise<GameInfo> => {
-	const size = await getFolderSizeBin(options.pathTo);
+	let size: number = -1;
+
+	try {
+		size = await fetchFolderSize(options.pathTo);
+	} catch (e) {
+		console.log(e);
+
+		// console.log(`Error while fetching ${options.title} info: ${e}.`);
+	}
 
 	return {
 		title: options.title,

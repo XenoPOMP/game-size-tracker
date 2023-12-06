@@ -1,6 +1,6 @@
 {
   "name": "game-size-tracker",
-  "version": "1.0.0",
+  "version": "1.0.0-rc-1",
   "main": "dist-electron/main/index.js",
   "description": "Electron Vite React boilerplate.",
   "author": "草鞋没号 <308487730@qq.com>",
@@ -15,6 +15,7 @@
     "prebuild": "ts-node electron/prebuild/index.ts",
     "dev": "yarn prebuild && vite",
     "build": "yarn prebuild && tsc && vite build && electron-builder",
+    "debug:prod": "yarn build && set ELECTRON_ENV=development && release/1.0.0-rc-1/win-unpacked/game-size-tracker.exe",
     "preview": "yarn prebuild && vite preview",
     "pree2e": "yarn prebuild && vite build --mode=test",
     "e2e": "playwright test"
