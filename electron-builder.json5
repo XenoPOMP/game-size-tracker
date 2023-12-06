@@ -2,7 +2,7 @@
  * @see https://www.electron.build/configuration/configuration
  */
 {
-  "appId": "game-size-tracker",
+  "appId": "Game Size Tracker",
   "asar": false,
   "directories": {
     "output": "release/${version}"
@@ -12,7 +12,7 @@
     "dist"
   ],
   "mac": {
-    "artifactName": "${productName}_${version}.${ext}",
+    "artifactName": "${productName} ${version} Installer.${ext}",
     "target": [
       "dmg",
       "zip"
@@ -27,7 +27,7 @@
         ]
       }
     ],
-    "artifactName": "${productName}_${version}.${ext}"
+    "artifactName": "${productName} ${version} Installer.${ext}"
   },
   "nsis": {
     "oneClick": false,
