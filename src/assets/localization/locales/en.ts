@@ -47,6 +47,12 @@ const en: Localization = {
 		other: 'Other',
 	},
 
+	filters: {
+		orderBy: 'Order by:',
+		size: 'Size',
+		title: 'Title',
+	},
+
 	gameTooltip: {
 		goToFolder: 'Reveal in Explorer',
 		hide: 'Hide',

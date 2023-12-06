@@ -2,6 +2,7 @@ import { MainPageLocales } from '@localization/types/main-page-locales';
 import { MetaLocales } from '@localization/types/meta-locales';
 
 import { AppSettings } from '@redux/reducers/appSettingsSlice';
+import { SortFiltersState } from '@redux/reducers/sortFilters.slice';
 
 export interface Localization extends MetaLocales {
 	pages: {
@@ -18,6 +19,10 @@ export interface Localization extends MetaLocales {
 	languageLabels: Record<AppSettings['language'], string>;
 
 	groupNames: Record<GameInfo['category'], string>;
+
+	filters: {
+		orderBy: string;
+	} & Record<SortFiltersState['orderBy'], string>;
 
 	gameTooltip: Record<'goToFolder' | 'hide' | 'show' | 'remove', string> & {
 		dialogs: {

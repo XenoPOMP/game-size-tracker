@@ -47,6 +47,12 @@ const ru: Localization = {
 		other: 'Другие',
 	},
 
+	filters: {
+		orderBy: 'Сортировать по:',
+		size: 'Размеру',
+		title: 'Названию',
+	},
+
 	gameTooltip: {
 		goToFolder: 'Показать в Проводнике',
 		hide: 'Скрыть',
