@@ -200,7 +200,11 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 			response.push(currentGame);
 		});
 
-	await Promise.all(tasks);
+	try {
+		await Promise.all(tasks);
+	} catch (e) {
+		alert(`Error while fetching Steam games: ${e}`);
+	}
 
 	win?.webContents.send('get-steam-games-response', response);
 });
@@ -223,7 +227,11 @@ ipcMain.on(
 			response.push(currentGame);
 		});
 
-		await Promise.all(tasks);
+		try {
+			await Promise.all(tasks);
+		} catch (e) {
+			alert(`Error while fetching custom games: ${e}`);
+		}
 
 		win?.webContents.send('get-all-external-games-info-response', response);
 	}

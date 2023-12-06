@@ -55,7 +55,9 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		];
 
 		Promise.all(tasks)
-			.catch()
+			.catch(e => {
+				alert(`Failed loading custom games. Reason: ${e}`);
+			})
 			.finally(() => {
 				setIsLoading(false);
 			});
@@ -79,7 +81,9 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		];
 
 		Promise.all(tasks)
-			.catch()
+			.catch(reason => {
+				alert(`Failed loading custom games. Reason: ${reason}`);
+			})
 			.finally(() => {
 				setIsLoading(false);
 			});
