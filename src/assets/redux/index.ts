@@ -25,7 +25,7 @@ import steamGamesSlice from '@redux/reducers/steamGames.slice';
 /** App`s root reducer. */
 const rootReducer = combineReducers({
 	appSettings: appSettingsSlice,
-	steamGames: steamGamesSlice,
+	// steamGames: steamGamesSlice,
 	gameFilters: gameFiltersSlice,
 	sortFilters: sortFiltersSlice,
 	customPaths: customPathsSlice,
