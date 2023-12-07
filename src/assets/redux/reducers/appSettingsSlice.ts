@@ -11,7 +11,7 @@ export type AppSettings = {
 
 const initialState: AppSettings = {
 	appVersion: '1.0.0-rc-2',
-	appName: 'React Vite Application',
+	appName: 'Game Size Tracker',
 	language: 'en',
 	theme: 'dark',
 };
