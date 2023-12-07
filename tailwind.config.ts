@@ -11,20 +11,7 @@ const config: Config = {
 		extend: darkTheme,
 	},
 
-	plugins: [
-		tailwindThemer({
-			themes: [
-				{
-					name: 'dark',
-					extend: darkTheme,
-				},
-				{
-					name: 'light',
-					extend: lightTheme,
-				},
-			],
-		}),
-	],
+	plugins: [],
 };
 
 export default config;

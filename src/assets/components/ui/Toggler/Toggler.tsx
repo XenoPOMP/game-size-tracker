@@ -47,6 +47,7 @@ const Toggler: VariableFC<
 	onToggle,
 	onClick,
 	fillAlways,
+	noToggle,
 	style,
 	...props
 }) => {
@@ -56,25 +57,38 @@ const Toggler: VariableFC<
 	// Execute onToggle callback each time
 	// component toggles.
 	useEffect(() => {
+		if (noToggle) {
+			return;
+		}
+
 		onToggle?.(localValue);
 	}, [localValue]);
 
 	// If initial values changes, change local too.
 	useEffect(() => {
+		if (noToggle) {
+			return;
+		}
+
 		if (initialValue !== undefined) {
 			setLocalValue(initialValue);
 		}
 	}, [initialValue]);
+
+	const toggledClassname = 'bg-tl-hov-bg text-tl-hov-color border-transparent';
+	const untoggledClassname = 'text-tl-hov-color border-tl-hov-bg';
 
 	return (
 		<button
 			className={cn(
 				'min-w-[1.5em] min-h-[1.5em] flex justify-center items-center rounded-[.2em] p-[.3em]',
 
-				localValue
-					? 'bg-tl-hov-bg text-tl-hov-color border-transparent'
-					: 'text-tl-hov-color border-tl-hov-bg',
+				localValue && !noToggle ? toggledClassname : untoggledClassname,
 				fillAlways && 'bg-tl-hov-bg text-tl-hov-color border-transparent',
+
+				// Button styles
+				noToggle &&
+					`${untoggledClassname} hover:bg-tl-hov-bg hover:text-tl-hov-color hover:border-transparent`,
 
 				styles.toggler,
 
@@ -85,6 +99,11 @@ const Toggler: VariableFC<
 			)}
 			onClick={ev => {
 				onClick?.(ev);
+
+				if (noToggle) {
+					return;
+				}
+
 				toggleLocalValue();
 			}}
 			style={{
