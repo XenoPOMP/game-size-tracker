@@ -1,10 +1,17 @@
-import { Jsonish } from '@xenopomp/advanced-types';
+import { ArrayType, Jsonish } from '@xenopomp/advanced-types';
 
 import { join } from 'node:path';
 
+import { CustomPathsState } from '@redux/reducers/customPaths.slice';
+
 import FsManager from './fs-manager';
 
-export type ConfiguratorConfig = Jsonish<{ language: string }>;
+export type ConfiguratorConfig = Jsonish<{
+	customPaths: {
+		paths: Array<ArrayType<CustomPathsState['list']>['path']>;
+		uuid: Array<ArrayType<CustomPathsState['list']>['uuid']>;
+	};
+}>;
 
 /**
  * This class allows to export and import app config (Redux state).

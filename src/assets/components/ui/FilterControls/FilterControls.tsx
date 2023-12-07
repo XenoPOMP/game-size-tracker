@@ -41,6 +41,8 @@ const FilterControls: VariableFC<
 	const { language } = useAppSettings();
 	const { showHidden, sortOrder } = useAppSelector(state => state.sortFilters);
 
+	const customPaths = useAppSelector(state => state.customPaths.list);
+
 	const dispatch = useAppDispatch();
 
 	return (
@@ -99,46 +101,49 @@ const FilterControls: VariableFC<
 				</Toggler>
 			</article>
 
-			<article className={cn(styles.group)}>
-				<FileSelector
-					buttons={{
-						notSelectedLabel: <Import width={'100%'} height={'100%'} />,
-						selectedLabel: <Import width={'100%'} height={'100%'} />,
-					}}
-					buttonElement={DisabledToggler}
-					type={'file'}
-					accept={['.gst']}
-					hidePath
-					onSelect={({ path }) => {
-						sendMessage<ConfiguratorConfig>('import-config', path).then(res => {
-							console.log({
-								receivedConfig: res,
-							});
-						});
-					}}
-				/>
+			{/*<article className={cn(styles.group)}>*/}
+			{/*	<FileSelector*/}
+			{/*		buttons={{*/}
+			{/*			notSelectedLabel: <Import width={'100%'} height={'100%'} />,*/}
+			{/*			selectedLabel: <Import width={'100%'} height={'100%'} />,*/}
+			{/*		}}*/}
+			{/*		buttonElement={DisabledToggler}*/}
+			{/*		type={'file'}*/}
+			{/*		accept={['.gst']}*/}
+			{/*		hidePath*/}
+			{/*		onSelect={({ path }) => {*/}
+			{/*			sendMessage<ConfiguratorConfig>('import-config', path).then(res => {*/}
+			{/*				console.log({*/}
+			{/*					receivedConfig: res,*/}
+			{/*				});*/}
+			{/*			});*/}
+			{/*		}}*/}
+			{/*	/>*/}
 
-				<FileSelector
-					buttons={{
-						notSelectedLabel: <FileUp width={'100%'} height={'100%'} />,
-						selectedLabel: <FileUp width={'100%'} height={'100%'} />,
-					}}
-					buttonElement={DisabledToggler}
-					type={'directory'}
-					hidePath
-					onSelect={({ path }) => {
-						if (path === undefined) {
-							return;
-						}
+			{/*	<FileSelector*/}
+			{/*		buttons={{*/}
+			{/*			notSelectedLabel: <FileUp width={'100%'} height={'100%'} />,*/}
+			{/*			selectedLabel: <FileUp width={'100%'} height={'100%'} />,*/}
+			{/*		}}*/}
+			{/*		buttonElement={DisabledToggler}*/}
+			{/*		type={'directory'}*/}
+			{/*		hidePath*/}
+			{/*		onSelect={({ path }) => {*/}
+			{/*			if (path === undefined) {*/}
+			{/*				return;*/}
+			{/*			}*/}
 
-						const config: ConfiguratorConfig = {
-							language: language.get(),
-						};
+			{/*			const config: ConfiguratorConfig = {*/}
+			{/*				customPaths: {*/}
+			{/*					paths: customPaths.map(path => path.path),*/}
+			{/*					uuid: customPaths.map(path => path.uuid),*/}
+			{/*				},*/}
+			{/*			};*/}
 
-						sendMessage('export-config', path, config);
-					}}
-				/>
-			</article>
+			{/*			sendMessage('export-config', path, config);*/}
+			{/*		}}*/}
+			{/*	/>*/}
+			{/*</article>*/}
 		</section>
 	);
 };
