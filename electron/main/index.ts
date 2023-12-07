@@ -6,8 +6,10 @@ import * as steamFolders from 'getsteamfolders';
 import { getFolderSizeBin as fetchFolderSize } from 'go-get-folder-size';
 import { release } from 'node:os';
 import { join } from 'node:path';
+import { cwd } from 'node:process';
 import * as os from 'os';
 
+import Configurator, { ConfiguratorConfig } from '../assets/utils/configurator';
 import { preloadOptions } from '../preload/preload-options';
 
 import { update } from './update';
@@ -57,6 +59,9 @@ const indexHtml = join(process.env.DIST, 'index.html');
 const USE_FRAME = false;
 /** Determines whether app will be transparent or not. */
 const IS_TRANSPARENT = false;
+
+/** Config exporter / importer. */
+const configurator = new Configurator();
 
 async function createWindow() {
 	win = new BrowserWindow({
@@ -244,4 +249,19 @@ ipcMain.on('reveal-in-explorer', async (_, arg) => {
 			`For the moment reveal in explorer is not supported on ${os.platform()} platform.`
 		);
 	}
+});
+
+ipcMain.on('export-config', async (_, args) => {
+	const path = args[0];
+	const config: ConfiguratorConfig = args[1];
+
+	await configurator.exportConfig(config, {
+		path,
+	});
+});
+
+ipcMain.on('import-config', async (_, args) => {
+	let response: ConfiguratorConfig = await configurator.importConfig(args[0]);
+
+	win?.webContents.send('import-config-response', response);
 });

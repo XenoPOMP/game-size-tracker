@@ -1,12 +1,18 @@
 import { Jsonish } from '@xenopomp/advanced-types';
 
-type Config = Jsonish<{}>;
+import { join } from 'node:path';
+
+import FsManager from './fs-manager';
+
+export type ConfiguratorConfig = Jsonish<{ language: string }>;
 
 /**
  * This class allows to export and import app config (Redux state).
  */
 class Configurator {
-	private readonly fileExt = '.lcmm';
+	private readonly fsManager = new FsManager();
+
+	private readonly fileExt = '.gst';
 
 	private encode(target: string): string {
 		return Buffer.from(target).toString('base64');
@@ -16,13 +22,31 @@ class Configurator {
 		return Buffer.from(target, 'base64').toString('ascii');
 	}
 
-	public exportConfig(config: Config) {
+	public async exportConfig(
+		config: ConfiguratorConfig,
+		options: {
+			path: string;
+			fileName?: string;
+		}
+	) {
 		const encodedString = this.encode(JSON.stringify(config));
 
-		console.log({
-			encodedString,
-			decodedString: this.decode(encodedString),
-		});
+		const outputFileName = join(
+			options.path,
+			`${options.fileName ?? 'Default config'}${this.fileExt}`
+		);
+
+		await this.fsManager.writeFile(outputFileName, encodedString);
+	}
+
+	public async importConfig(path: string): Promise<ConfiguratorConfig> {
+		const decodedConfig: ConfiguratorConfig = JSON.parse(
+			this.decode(await this.fsManager.readFile(path))
+		);
+
+		console.log(decodedConfig);
+
+		return decodedConfig;
 	}
 }
 

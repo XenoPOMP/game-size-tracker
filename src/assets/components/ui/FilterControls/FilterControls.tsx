@@ -23,7 +23,12 @@ import DisabledToggler from '@ui/DisabledToggler/DisabledToggler';
 import FileSelector from '@ui/FileSelector/FileSelector';
 import Toggler from '@ui/Toggler/Toggler';
 
+import useAppSettings from '@hooks/useAppSettings';
 import useBoolean from '@hooks/useBoolean';
+
+import { sendMessage } from '@utils/ipc-tools/sendMessage';
+
+import { ConfiguratorConfig } from '../../../../../electron/assets/utils/configurator';
 
 import styles from './FilterControls.module.scss';
 import type { FilterControlsProps } from './FilterControls.props';
@@ -33,6 +38,7 @@ const FilterControls: VariableFC<
 	FilterControlsProps,
 	'children'
 > = ({ className, ...props }) => {
+	const { language } = useAppSettings();
 	const { showHidden, sortOrder } = useAppSelector(state => state.sortFilters);
 
 	const dispatch = useAppDispatch();
@@ -101,8 +107,15 @@ const FilterControls: VariableFC<
 					}}
 					buttonElement={DisabledToggler}
 					type={'file'}
-					accept={['.lcmm']}
+					accept={['.gst']}
 					hidePath
+					onSelect={({ path }) => {
+						sendMessage<ConfiguratorConfig>('import-config', path).then(res => {
+							console.log({
+								receivedConfig: res,
+							});
+						});
+					}}
 				/>
 
 				<FileSelector
@@ -113,6 +126,17 @@ const FilterControls: VariableFC<
 					buttonElement={DisabledToggler}
 					type={'directory'}
 					hidePath
+					onSelect={({ path }) => {
+						if (path === undefined) {
+							return;
+						}
+
+						const config: ConfiguratorConfig = {
+							language: language.get(),
+						};
+
+						sendMessage('export-config', path, config);
+					}}
 				/>
 			</article>
 		</section>
