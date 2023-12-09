@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 
 /**
- * Sends message to channel and return response by promise.
+ * Sends message to **ipcMain**`s channel and return response by Promise.
  *
  * @param channel
  *
