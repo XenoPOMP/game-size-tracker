@@ -13,6 +13,7 @@ import { useAppSelector } from '@redux/hooks';
 import AddNewGameSection from '@ui/AddNewGameSection/AddNewGameSection';
 import FilterControls from '@ui/FilterControls/FilterControls';
 import SizeDiagram from '@ui/SizeDiagram/SizeDiagram';
+import UiContainer from '@ui/UiContainer/UiContainer';
 
 import useBoolean from '@hooks/useBoolean';
 import useLocalization from '@hooks/useLocalization';
@@ -98,30 +99,32 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 			meta={loc.meta.mainPage}
 			{...props}
 		>
-			<SizeDiagram
-				className={cn('sticky top-0 left-0')}
-				games={allGames}
-				isLoading={isLoading}
-			/>
+			<UiContainer>
+				<SizeDiagram
+					className={cn('sticky top-0 left-0')}
+					games={allGames}
+					isLoading={isLoading}
+				/>
 
-			<FilterControls />
+				<FilterControls />
 
-			{isLoading ? (
-				<section className={cn('flex flex-col gap-[1.5em]')}>
-					<GamesSection.Loader />
-					<GamesSection.Loader />
-				</section>
-			) : (
-				<>
+				{isLoading ? (
 					<section className={cn('flex flex-col gap-[1.5em]')}>
-						<GamesSection games={steamGames} label={loc.groupNames.steam} />
-						<GamesSection games={egsGames} label={loc.groupNames.egs} />
-						<GamesSection games={otherGames} label={loc.groupNames.other} />
+						<GamesSection.Loader />
+						<GamesSection.Loader />
 					</section>
+				) : (
+					<>
+						<section className={cn('flex flex-col gap-[1.5em]')}>
+							<GamesSection games={steamGames} label={loc.groupNames.steam} />
+							<GamesSection games={egsGames} label={loc.groupNames.egs} />
+							<GamesSection games={otherGames} label={loc.groupNames.other} />
+						</section>
 
-					<AddNewGameSection />
-				</>
-			)}
+						<AddNewGameSection />
+					</>
+				)}
+			</UiContainer>
 		</Page>
 	);
 };
