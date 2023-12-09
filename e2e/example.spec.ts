@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto';
 
 import { initialAppSettings } from '../src/assets/redux/reducers/appSettingsSlice';
 
-test('homepage has title and links to intro page', async ({}) => {
+test('App runs without crashes.', async ({}) => {
 	const timestamp = Date.now().toString();
 
 	const app = await electron.launch({ args: ['.', '--no-sandbox'] });
