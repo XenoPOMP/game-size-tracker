@@ -1,9 +1,11 @@
 import { Localization } from '@localization/Localization';
 
+import { initialAppSettings } from '@redux/reducers/appSettingsSlice';
+
 const ru: Localization = {
 	meta: {
 		mainPage: {
-			title: 'Главная',
+			title: initialAppSettings.appName,
 			description: '',
 		},
 	},
