@@ -13,7 +13,7 @@ export type AppSettings = {
 const initialState: AppSettings = {
 	appVersion: '1.0.0-rc-3',
 	appName: 'Game Size Tracker',
-	language: 'en',
+	language: 'system-like',
 	theme: 'dark',
 };
 
