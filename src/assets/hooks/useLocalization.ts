@@ -13,6 +13,9 @@ const useLocalization = (): Localization => {
 			return en;
 		case 'ru':
 			return ru;
+		case 'system-like': {
+			return en;
+		}
 	}
 };
 

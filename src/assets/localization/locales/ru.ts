@@ -72,6 +72,8 @@ const ru: Localization = {
 			},
 		},
 	},
+
+	systemLikeOption: 'Как в системе',
 };
 
 export default ru;

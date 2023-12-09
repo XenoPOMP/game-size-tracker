@@ -1,3 +1,5 @@
+import { SystemLikeOption } from '@type/SystemLikeOption';
+
 import { MainPageLocales } from '@localization/types/main-page-locales';
 import { MetaLocales } from '@localization/types/meta-locales';
 
@@ -16,7 +18,10 @@ export interface Localization extends MetaLocales {
 		string
 	>;
 
-	languageLabels: Record<AppSettings['language'], string>;
+	languageLabels: Record<
+		Exclude<AppSettings['language'], SystemLikeOption>,
+		string
+	>;
 
 	groupNames: Record<GameInfo['category'], string>;
 
@@ -34,4 +39,6 @@ export interface Localization extends MetaLocales {
 			};
 		};
 	};
+
+	systemLikeOption: string;
 }

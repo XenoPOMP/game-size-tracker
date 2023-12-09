@@ -26,6 +26,7 @@ const LanguageSwitcher: VariableFC<
 		const labels: Record<ReturnType<typeof language.get>, string> = {
 			en: 'ENG',
 			ru: 'RUS',
+			'system-like': loc.systemLikeOption,
 		};
 
 		return labels[language.get()];
@@ -43,6 +44,18 @@ const LanguageSwitcher: VariableFC<
 			</div>
 
 			<div className={cn(styles.menu)}>
+				<div
+					className={cn(
+						styles.button,
+						language.get() === 'system-like' && styles.active
+					)}
+					onClick={() => {
+						language.set('system-like');
+					}}
+				>
+					{loc.systemLikeOption}
+				</div>
+
 				{getObjectKeys(loc.languageLabels).map((key, index) => {
 					return (
 						<div

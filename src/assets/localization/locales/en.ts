@@ -72,6 +72,8 @@ const en: Localization = {
 			},
 		},
 	},
+
+	systemLikeOption: 'System like',
 };
 
 export default en;

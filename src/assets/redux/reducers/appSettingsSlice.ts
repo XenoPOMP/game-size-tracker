@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { SystemLikeOption } from '@type/SystemLikeOption';
 
 import { ReduxAction } from '@redux/types';
 
 export type AppSettings = {
 	appVersion: string;
 	appName: string;
-	language: 'en' | 'ru';
+	language: 'en' | 'ru' | SystemLikeOption;
 	theme: 'dark' | 'light';
 };
 
