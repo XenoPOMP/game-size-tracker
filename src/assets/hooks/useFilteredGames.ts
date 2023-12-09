@@ -42,7 +42,15 @@ export const useFilteredGames = (
 			return [v => v.size];
 		};
 
-		return orderBy(games, getOrderArray(), [sortOrder]);
+		const getOrders = (): Array<typeof sortOrder> => {
+			if (options?.ignoreGlobalSort) {
+				return ['desc'];
+			}
+
+			return [sortOrder];
+		};
+
+		return orderBy(games, getOrderArray(), getOrders());
 	}, [games, sortOrder]);
 
 	return memoizedGames;
