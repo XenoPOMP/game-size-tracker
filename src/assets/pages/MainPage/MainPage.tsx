@@ -15,7 +15,6 @@ import FilterControls from '@ui/FilterControls/FilterControls';
 import SizeDiagram from '@ui/SizeDiagram/SizeDiagram';
 import UiContainer from '@ui/UiContainer/UiContainer';
 
-import useBoolean from '@hooks/useBoolean';
 import useLocalization from '@hooks/useLocalization';
 
 import { sendMessage } from '@utils/ipc-tools/sendMessage';
