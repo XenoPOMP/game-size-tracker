@@ -3,6 +3,8 @@
 button.languageSwitcher {
   position: relative;
 
+  @apply pl-[0px];
+
   &:hover {
     .menu {
       display: block;

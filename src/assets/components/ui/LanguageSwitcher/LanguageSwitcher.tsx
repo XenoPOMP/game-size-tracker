@@ -3,6 +3,7 @@ import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
+import { Globe } from 'lucide-react';
 import { FC, Fragment } from 'react';
 
 import FrameButton from '@ui/FrameButton/FrameButton';
@@ -35,11 +36,13 @@ const LanguageSwitcher: VariableFC<
 	return (
 		<FrameButton className={cn(styles.languageSwitcher, className)} {...props}>
 			<div
-				className={'text-[10px] font-medium'}
+				className={'text-[10px] font-medium flex gap-[2px] items-center'}
 				style={{
 					lineHeight: '100%',
 				}}
 			>
+				<Globe height={'15px'} />
+
 				{getLabel()}
 			</div>
 
