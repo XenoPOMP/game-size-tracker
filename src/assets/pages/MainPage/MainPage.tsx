@@ -31,6 +31,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	const { isLoading, setIsLoading } = useContext(LoadingContext);
 
 	const [steamGames, setSteamGames] = useState<GameInfo[]>();
+	const [egsGames, setEgsGames] = useState<GameInfo[]>();
 	const [otherGames, setOtherGames] = useState<GameInfo[]>();
 	const [allGames, setAllGames] = useState<GameInfo[]>();
 
@@ -41,17 +42,19 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		setIsLoading(true);
 
 		const tasks: Array<Promise<void>> = [
-			sendMessage<GameInfo[]>('get-steam-games')
-				.then(gameArray => {
-					setSteamGames(gameArray);
-				})
-				.catch(),
+			sendMessage<GameInfo[]>('get-steam-games').then(gameArray => {
+				setSteamGames(gameArray);
+			}),
 
-			sendMessage<GameInfo[]>('get-all-external-games-info', customPaths)
-				.then(gameArray => {
+			sendMessage<GameInfo[]>('get-egs-games').then(gameArray => {
+				setEgsGames(gameArray);
+			}),
+
+			sendMessage<GameInfo[]>('get-all-external-games-info', customPaths).then(
+				gameArray => {
 					setOtherGames(gameArray);
-				})
-				.catch(),
+				}
+			),
 		];
 
 		Promise.all(tasks)
@@ -63,8 +66,12 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 
 	// Concat all games in one array
 	useEffect(() => {
-		setAllGames([...(steamGames ?? []), ...(otherGames ?? [])]);
-	}, [steamGames, otherGames]);
+		setAllGames([
+			...(steamGames ?? []),
+			...(egsGames ?? []),
+			...(otherGames ?? []),
+		]);
+	}, [steamGames, egsGames, otherGames]);
 
 	// Reload custom games
 	useEffect(() => {
@@ -108,6 +115,7 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				<>
 					<section className={cn('flex flex-col gap-[1.5em]')}>
 						<GamesSection games={steamGames} label={loc.groupNames.steam} />
+						<GamesSection games={egsGames} label={loc.groupNames.egs} />
 						<GamesSection games={otherGames} label={loc.groupNames.other} />
 					</section>
 

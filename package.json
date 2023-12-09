@@ -33,6 +33,7 @@
     "file-select-dialog": "^1.5.4",
     "framer-motion": "^10.12.4",
     "get-all-files": "^4.1.0",
+    "get-egs-folders": "^1.0.5",
     "get-folder-size": "^4.0.0",
     "getsteamfolders": "^1.0.5",
     "go-get-folder-size": "^0.5.2",

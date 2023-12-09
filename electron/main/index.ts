@@ -2,6 +2,7 @@ import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { exec } from 'child_process';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
+import { getAllEgsGames } from 'get-egs-folders';
 import * as steamFolders from 'getsteamfolders';
 import { getFolderSizeBin as fetchFolderSize } from 'go-get-folder-size';
 import { release } from 'node:os';
@@ -215,6 +216,26 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 	await Promise.all(tasks);
 
 	win?.webContents.send('get-steam-games-response', response);
+});
+
+ipcMain.on('get-egs-games', async (_, args: any) => {
+	let response: GameInfo[] = [];
+
+	const egsGames = await getAllEgsGames({ debug: false });
+
+	getObjectKeys(egsGames).forEach(key => {
+		const title = key;
+		const { path, size } = egsGames[key];
+
+		response.push({
+			title,
+			pathTo: path,
+			size,
+			category: 'egs',
+		});
+	});
+
+	win?.webContents.send('get-egs-games-response', response);
 });
 
 ipcMain.on(

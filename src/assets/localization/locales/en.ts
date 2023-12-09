@@ -44,6 +44,7 @@ const en: Localization = {
 
 	groupNames: {
 		steam: 'Steam',
+		egs: 'Epic Games Store',
 		other: 'Other',
 	},
 
