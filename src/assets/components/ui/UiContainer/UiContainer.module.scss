@@ -1,5 +1,8 @@
-@import "src/assets/styles/templates";
+@import "src/styles/templates";
 
-.container {
-  @extend %uiContainer;
+.uiContainer {
+  --margin: 2rem;
+
+  width: min(var(--max-container-width), calc(100% - 2 * var(--margin)));
+  margin: 0 auto;
 }
