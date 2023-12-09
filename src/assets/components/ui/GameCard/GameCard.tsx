@@ -52,6 +52,8 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 
 	const notDisplaying = filters?.hidden && !showHidden;
 
+	const officialStores: GameInfo['category'][] = ['steam', 'egs'];
+
 	const CustomMenuButton: VariableFC<typeof Menu.Item, {}> = ({
 		as = 'div',
 		className,
@@ -190,7 +192,7 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 							</Menu.Button>
 
 							<Menu.Items as={'div'} className={cn(styles.menu)}>
-								{category === 'steam' && <SteamButtons />}
+								{officialStores.includes(category) && <SteamButtons />}
 								{category === 'other' && <OtherGamesButtons />}
 
 								<Menu.Item
