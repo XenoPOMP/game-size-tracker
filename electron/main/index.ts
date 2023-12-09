@@ -272,6 +272,10 @@ ipcMain.on('reveal-in-explorer', async (_, arg) => {
 	}
 });
 
+ipcMain.on('open-in-external-browser', async (_, [link]: [link: string]) => {
+	await shell.openExternal(link);
+});
+
 ipcMain.on('export-config', async (_, args) => {
 	const path = args[0];
 	const config: ConfiguratorConfig = args[1];
