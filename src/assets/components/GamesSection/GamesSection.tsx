@@ -41,7 +41,9 @@ const GamesSection: VariableFC<
 				return false;
 			}
 
-			return gameFilters[title]?.hidden;
+			return false;
+
+			// return gameFilters[title]?.hidden;
 		}).length;
 
 		if (hiddenGamesCount > 0 && !showHidden) {
