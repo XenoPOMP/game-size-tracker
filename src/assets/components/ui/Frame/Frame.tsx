@@ -41,7 +41,7 @@ const Frame: FC<FrameProps> = ({}) => {
 
 				<LanguageSwitcher />
 
-				<ThemeSwitcher />
+				{/*<ThemeSwitcher />*/}
 			</section>
 
 			<FullscreenStateProvider>
