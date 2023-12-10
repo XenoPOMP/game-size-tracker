@@ -7,11 +7,22 @@ import lightTheme from './themes/lightTheme';
 const config: Config = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,scss}'],
 
-	theme: {
-		extend: darkTheme,
-	},
+	theme: {},
 
-	plugins: [],
+	plugins: [
+		tailwindThemer({
+			themes: [
+				{
+					name: 'default-theme',
+					extend: darkTheme,
+				},
+				{
+					name: 'light',
+					extend: lightTheme,
+				},
+			],
+		}),
+	],
 };
 
 export default config;
