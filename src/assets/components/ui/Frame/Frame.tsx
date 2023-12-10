@@ -28,8 +28,6 @@ const Frame: FC<FrameProps> = ({}) => {
 	return (
 		<header className={cn(styles.appFrame)}>
 			<section className={cn(styles.controls)}>
-				{/*<ThemeSwitcher />*/}
-
 				<FrameButton
 					onClick={() => {
 						let ignore = sendMessage<never>(
@@ -42,6 +40,8 @@ const Frame: FC<FrameProps> = ({}) => {
 				</FrameButton>
 
 				<LanguageSwitcher />
+
+				<ThemeSwitcher />
 			</section>
 
 			<FullscreenStateProvider>
