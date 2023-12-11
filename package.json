@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "prebuild": "concurrently \" ts-node electron/prebuild/index.ts \" \" ts-node electron/prebuild/format-themes.ts \"",
+    "prebuild": "concurrently \" ts-node electron/prebuild/index.ts \"",
     "dev": "yarn prebuild && vite",
     "build": "yarn prebuild && tsc && vite build && electron-builder",
     "debug:prod": "yarn build && set ELECTRON_ENV=development && release/1.0.0-rc-1/win-unpacked/game-size-tracker.exe",
