@@ -51,6 +51,7 @@ const ru: Localization = {
 					title: 'Язык',
 				},
 			},
+			version: `вер. {{VERSION}}`,
 		},
 	},
 

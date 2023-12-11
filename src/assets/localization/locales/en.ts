@@ -51,6 +51,7 @@ const en: Localization = {
 					title: 'Language',
 				},
 			},
+			version: `ver. {{VERSION}}`,
 		},
 	},
 

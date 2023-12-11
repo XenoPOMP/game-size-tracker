@@ -1,8 +1,20 @@
 section.optionsPageWrapper {
-  @apply flex flex-col gap-[1.5rem];
+  @apply flex flex-col gap-[1.5rem] min-h-full;
+
+  a.goBack, .version {
+    @apply text-[.75em];
+  }
 
   a.goBack {
     @apply flex text-[.75em] gap-[.5em] items-center
            text-color-primary;
+  }
+
+  .options {
+    @apply flex-grow;
+  }
+
+  .version {
+    @apply font-semibold text-color-secondary;
   }
 }

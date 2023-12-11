@@ -12,13 +12,17 @@ import Options from '@pages/SettingsPage/Options/Options';
 
 import UiContainer from '@ui/UiContainer/UiContainer';
 
+import useAppSettings from '@hooks/useAppSettings';
 import useLocalization from '@hooks/useLocalization';
+
+import { inlineLocalizationVar } from '@utils/inlineLocalizationVar';
 
 import styles from './SettingsPage.module.scss';
 import type { SettingsPageProps } from './SettingsPage.props';
 
 const SettingsPage: FC<SettingsPageProps> = ({}) => {
 	const loc = useLocalization();
+	const { appVersion } = useAppSettings();
 
 	return (
 		<Page meta={loc.meta.optionsPage}>
@@ -28,11 +32,17 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 					{loc.pages.options.goBack}
 				</Link>
 
-				<Options>
+				<Options className={cn(styles.options)}>
 					<AppearanceSettings />
 
 					<LocalizationSettings />
 				</Options>
+
+				<div className={cn(styles.version)}>
+					{inlineLocalizationVar(loc.pages.options.version, {
+						VERSION: appVersion.get(),
+					})}
+				</div>
 			</UiContainer>
 		</Page>
 	);

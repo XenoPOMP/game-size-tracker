@@ -19,4 +19,5 @@ export type OptionsPageLocales = {
 		}>;
 		language: GroupLocale;
 	};
+	version: string;
 };
