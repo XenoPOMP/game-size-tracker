@@ -23,7 +23,7 @@ const Options: VariableFC<'div', OptionsProps> & {
 				displayingName?: string;
 			}>;
 			onSelect?: (item: string) => void;
-		} & OptionsItemProps,
+		},
 		'children' | 'onSelect'
 	>;
 } = ({ className, children, ...props }) => {
@@ -80,17 +80,15 @@ Options.Select = ({
 
 	return (
 		<>
-			<Item
-				title={'Theme:'}
-				className={cn(styles.select, className)}
-				{...props}
-			>
+			<Item title={title} className={cn(styles.select, className)} {...props}>
 				<div className={cn(styles.grid)}>
 					{options?.map(({ option, displayingName }, index) => {
 						return (
 							<CustomButton
 								variant={localState === option ? 'primary' : 'cancel'}
-								className={cn('text-[.75em]')}
+								className={cn(
+									'text-[.75em] flex items-center justify-center gap-[.3em]'
+								)}
 								key={`option-${index}`}
 								onClick={() => {
 									setLocalState(option);

@@ -33,6 +33,20 @@ const ru: Localization = {
 		},
 		options: {
 			goBack: 'Назад',
+			groups: {
+				appearance: {
+					title: 'Внешний вид',
+					options: {
+						theme: {
+							name: 'Тема',
+							options: {
+								dark: 'Темная',
+								light: 'Светлая',
+							},
+						},
+					},
+				},
+			},
 		},
 	},
 

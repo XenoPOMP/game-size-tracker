@@ -33,6 +33,20 @@ const en: Localization = {
 		},
 		options: {
 			goBack: 'Back',
+			groups: {
+				appearance: {
+					title: 'Appearance',
+					options: {
+						theme: {
+							name: 'Theme',
+							options: {
+								dark: 'Dark',
+								light: 'Light',
+							},
+						},
+					},
+				},
+			},
 		},
 	},
 

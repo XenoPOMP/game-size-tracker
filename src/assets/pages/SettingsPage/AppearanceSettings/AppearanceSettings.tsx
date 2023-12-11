@@ -25,15 +25,19 @@ const AppearanceSettings: FC<AppearanceSettingsProps> = ({}) => {
 				<Options.Items>
 					<Options.Select
 						initialValue={theme.get()}
-						title={'Theme:'}
+						title={loc.pages.options.groups.appearance.options.theme.name}
 						options={[
 							{
 								option: 'dark',
-								displayingName: 'Dark theme',
+								displayingName:
+									loc.pages.options.groups.appearance.options.theme.options
+										.dark,
 							},
 							{
 								option: 'light',
-								displayingName: 'Light theme',
+								displayingName:
+									loc.pages.options.groups.appearance.options.theme.options
+										.light,
 							},
 						]}
 						onSelect={val => {
