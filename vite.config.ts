@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { rmSync } from 'node:fs';
 import path from 'node:path';
-import { defineConfig } from 'vite';
+import { UserConfig, defineConfig } from 'vite';
 import electron from 'vite-plugin-electron';
 import renderer from 'vite-plugin-electron-renderer';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -16,19 +16,21 @@ export default defineConfig(({ command }) => {
 	const isBuild = command === 'build';
 	const sourcemap = isServe || !!process.env.VSCODE_DEBUG;
 
+	const externalResources: UserConfig['build']['rollupOptions']['external'] = [
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Regular.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-RegularItalic.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Semibold.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-SemiboldItalic.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Medium.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-MediumItalic.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Bold.otf',
+		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-BoldItalic.otf',
+	];
+
 	return {
 		build: {
 			rollupOptions: {
-				external: [
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Regular.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-RegularItalic.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Semibold.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-SemiboldItalic.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Medium.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-MediumItalic.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Bold.otf',
-					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-BoldItalic.otf',
-				],
+				external: externalResources,
 			},
 		},
 		resolve: {
@@ -57,9 +59,10 @@ export default defineConfig(({ command }) => {
 							minify: isBuild,
 							outDir: 'dist-electron/main',
 							rollupOptions: {
-								external: Object.keys(
-									'dependencies' in pkg ? pkg.dependencies : {}
-								),
+								external: [
+									...Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+									...externalResources,
+								],
 							},
 						},
 					},
@@ -77,9 +80,10 @@ export default defineConfig(({ command }) => {
 							minify: isBuild,
 							outDir: 'dist-electron/preload',
 							rollupOptions: {
-								external: Object.keys(
-									'dependencies' in pkg ? pkg.dependencies : {}
-								),
+								external: [
+									...Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+									...externalResources,
+								],
 							},
 						},
 					},
