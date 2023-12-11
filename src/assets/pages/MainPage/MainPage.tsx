@@ -8,7 +8,8 @@ import Page from '@components/Page/Page';
 
 import LoadingContext from '@contexts/Loading.context';
 
-import { useAppSelector } from '@redux/hooks';
+import { useAppDispatch, useAppSelector } from '@redux/hooks';
+import { cacheEgsGames, cacheSteamGames } from '@redux/reducers/cache.slice';
 
 import AddNewGameSection from '@ui/AddNewGameSection/AddNewGameSection';
 import FilterControls from '@ui/FilterControls/FilterControls';
@@ -27,6 +28,8 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	...props
 }) => {
 	const loc = useLocalization();
+	const dispatch = useAppDispatch();
+	const cache = useAppSelector(state => state.cache);
 
 	const { isLoading, setIsLoading } = useContext(LoadingContext);
 
@@ -42,13 +45,29 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		setIsLoading(true);
 
 		const tasks: Array<Promise<void>> = [
-			sendMessage<GameInfo[]>('get-steam-games').then(gameArray => {
-				setSteamGames(gameArray);
-			}),
+			(async () => {
+				if (cache.officialGames.steam !== null) {
+					setSteamGames(cache.officialGames.steam);
+					return;
+				}
 
-			sendMessage<GameInfo[]>('get-egs-games').then(gameArray => {
-				setEgsGames(gameArray);
-			}),
+				sendMessage<GameInfo[]>('get-steam-games').then(gameArray => {
+					setSteamGames(gameArray);
+					dispatch(cacheSteamGames(gameArray));
+				});
+			})(),
+
+			(async () => {
+				if (cache.officialGames.egs !== null) {
+					setEgsGames(cache.officialGames.egs);
+					return;
+				}
+
+				sendMessage<GameInfo[]>('get-egs-games').then(gameArray => {
+					setEgsGames(gameArray);
+					dispatch(cacheEgsGames(gameArray));
+				});
+			})(),
 
 			sendMessage<GameInfo[]>('get-all-external-games-info', customPaths).then(
 				gameArray => {

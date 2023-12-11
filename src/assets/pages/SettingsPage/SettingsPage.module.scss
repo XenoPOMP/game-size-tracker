@@ -1,0 +1,8 @@
+section.optionsPageWrapper {
+  @apply flex flex-col gap-[1.5rem];
+
+  a.goBack {
+    @apply flex text-[.75em] gap-[.5em] items-center
+           text-color-primary;
+  }
+}

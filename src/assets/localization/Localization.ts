@@ -2,6 +2,7 @@ import { SystemLikeOption } from '@type/SystemLikeOption';
 
 import { MainPageLocales } from '@localization/types/main-page-locales';
 import { MetaLocales } from '@localization/types/meta-locales';
+import { OptionsPageLocales } from '@localization/types/options-page-locales';
 
 import { AppSettings } from '@redux/reducers/appSettingsSlice';
 import { SortFiltersState } from '@redux/reducers/sortFilters.slice';
@@ -9,6 +10,7 @@ import { SortFiltersState } from '@redux/reducers/sortFilters.slice';
 export interface Localization extends MetaLocales {
 	pages: {
 		main: MainPageLocales;
+		options: OptionsPageLocales;
 	};
 
 	groupHiddenLabel: string;

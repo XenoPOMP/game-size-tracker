@@ -11,11 +11,10 @@ const config: Config = {
 
 	plugins: [
 		tailwindThemer({
+			defaultTheme: {
+				extend: darkTheme,
+			},
 			themes: [
-				{
-					name: 'default-theme',
-					extend: darkTheme,
-				},
 				{
 					name: 'light',
 					extend: lightTheme,

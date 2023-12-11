@@ -19,6 +19,7 @@ import storage from 'redux-persist/lib/storage';
 import appSettingsSlice, {
 	initialAppSettings,
 } from '@redux/reducers/appSettingsSlice';
+import cacheSlice from '@redux/reducers/cache.slice';
 import customPathsSlice from '@redux/reducers/customPaths.slice';
 import gameFiltersSlice from '@redux/reducers/gameFilters.slice';
 import sortFiltersSlice from '@redux/reducers/sortFilters.slice';
@@ -31,13 +32,19 @@ const rootReducer = combineReducers({
 	gameFilters: gameFiltersSlice,
 	sortFilters: sortFiltersSlice,
 	customPaths: customPathsSlice,
+	cache: cacheSlice,
 });
 
 /** Redux-persist config. */
 const persistConfig = getPersistConfig({
 	key: `[${initialAppSettings.appName}] root`,
 	storage,
-	blacklist: ['appSettings.appVersion', 'appSettings.appName', 'steamGames'],
+	blacklist: [
+		'appSettings.appVersion',
+		'appSettings.appName',
+		'steamGames',
+		'cache',
+	],
 	rootReducer,
 });
 

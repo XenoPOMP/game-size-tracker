@@ -36,7 +36,7 @@ const LanguageSwitcher: VariableFC<
 	return (
 		<FrameButton className={cn(styles.languageSwitcher, className)} {...props}>
 			<div
-				className={'text-[10px] font-medium flex gap-[2px] items-center'}
+				className={'text-[.6em] font-medium flex gap-[2px] items-center'}
 				style={{
 					lineHeight: '100%',
 				}}
