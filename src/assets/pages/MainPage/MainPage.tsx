@@ -47,6 +47,8 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 		const tasks: Array<Promise<void>> = [
 			(async () => {
 				if (cache.officialGames.steam !== null) {
+					console.log(`[CACHE] Steam cache detected.`);
+
 					setSteamGames(cache.officialGames.steam);
 					return;
 				}
@@ -59,6 +61,8 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 
 			(async () => {
 				if (cache.officialGames.egs !== null) {
+					console.log(`[CACHE] EGS cache detected.`);
+
 					setEgsGames(cache.officialGames.egs);
 					return;
 				}
