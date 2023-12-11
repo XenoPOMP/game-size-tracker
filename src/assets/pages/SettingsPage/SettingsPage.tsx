@@ -1,5 +1,7 @@
 import cn from 'classnames';
+import { MoveLeft } from 'lucide-react';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import Layout from '@components/Layout/Layout';
 import Page from '@components/Page/Page';
@@ -17,7 +19,12 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 				description: '',
 			}}
 		>
-			<UiContainer>Options</UiContainer>
+			<UiContainer className={cn(styles.optionsPageWrapper)}>
+				<Link to={'/'} className={cn(styles.goBack)}>
+					<MoveLeft width={'.9em'} />
+					Back
+				</Link>
+			</UiContainer>
 		</Page>
 	);
 };
