@@ -46,6 +46,10 @@ const ru: Localization = {
 						},
 					},
 				},
+
+				language: {
+					title: 'Язык',
+				},
 			},
 		},
 	},

@@ -24,6 +24,10 @@ const useLocalization = (): Localization => {
 
 			return en;
 		}
+
+		default: {
+			return en;
+		}
 	}
 };
 

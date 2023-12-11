@@ -17,5 +17,6 @@ export type OptionsPageLocales = {
 				theme: SelectLocale<AppSettings['theme']>;
 			};
 		}>;
+		language: GroupLocale;
 	};
 };

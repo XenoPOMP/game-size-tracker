@@ -46,6 +46,10 @@ const en: Localization = {
 						},
 					},
 				},
+
+				language: {
+					title: 'Language',
+				},
 			},
 		},
 	},

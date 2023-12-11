@@ -7,6 +7,7 @@ import Layout from '@components/Layout/Layout';
 import Page from '@components/Page/Page';
 
 import AppearanceSettings from '@pages/SettingsPage/AppearanceSettings/AppearanceSettings';
+import LocalizationSettings from '@pages/SettingsPage/LocalizationSettings/LocalizationSettings';
 import Options from '@pages/SettingsPage/Options/Options';
 
 import UiContainer from '@ui/UiContainer/UiContainer';
@@ -29,6 +30,8 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 
 				<Options>
 					<AppearanceSettings />
+
+					<LocalizationSettings />
 				</Options>
 			</UiContainer>
 		</Page>
