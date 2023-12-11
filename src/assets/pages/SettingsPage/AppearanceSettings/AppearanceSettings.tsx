@@ -44,6 +44,21 @@ const AppearanceSettings: FC<AppearanceSettingsProps> = ({}) => {
 							theme.set(val as AppSettings['theme']);
 						}}
 					/>
+
+					{/*<Options.Select*/}
+					{/*	title={'Decimal separator'}*/}
+					{/*	initialValue={'comma'}*/}
+					{/*	options={[*/}
+					{/*		{*/}
+					{/*			option: 'comma',*/}
+					{/*			displayingName: <>12,12</>,*/}
+					{/*		},*/}
+					{/*		{*/}
+					{/*			option: 'dot',*/}
+					{/*			displayingName: <>12.12</>,*/}
+					{/*		},*/}
+					{/*	]}*/}
+					{/*/>*/}
 				</Options.Items>
 			</Options.Group>
 		</>
