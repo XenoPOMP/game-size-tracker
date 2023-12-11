@@ -12,11 +12,11 @@
     }
 
     h3.heading {
-      @apply font-bold text-color-primary;
+      @apply font-bold text-color-primary select-none;
     }
 
     .items {
-      @apply flex flex-col gap-[.65em];
+      @apply flex flex-col gap-[.65em] select-none;
 
       .item {
         @apply flex flex-col gap-[.4em];

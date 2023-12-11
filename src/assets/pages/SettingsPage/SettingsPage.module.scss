@@ -1,8 +1,10 @@
+@import "src/assets/styles/templates";
+
 section.optionsPageWrapper {
   @apply flex flex-col gap-[1.5rem] min-h-full;
 
   a.goBack, .version {
-    @apply text-[.75em];
+    @apply text-[.75em] select-none;
   }
 
   a.goBack {
