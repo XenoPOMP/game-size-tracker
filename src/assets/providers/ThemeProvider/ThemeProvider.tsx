@@ -17,7 +17,12 @@ const ThemeProvider: FC<ProviderProps> = ({ children }) => {
 	useEffect(() => {
 		deleteClassnames(classGroupName);
 
-		registerClassnames(classGroupName, [theme.get()]);
+		const themeNamesMap: Record<ReturnType<typeof theme.get>, string> = {
+			dark: 'default-theme',
+			light: 'light',
+		};
+
+		registerClassnames(classGroupName, [themeNamesMap[theme.get()]]);
 	}, [theme.get()]);
 
 	return <>{children}</>;
