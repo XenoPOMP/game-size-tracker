@@ -1,0 +1,38 @@
+.options {
+  @apply flex flex-col gap-[.5em];
+
+  article.group {
+    @apply flex flex-col gap-[.65em];
+
+    &:not(:last-of-type) {
+      @apply pb-[1em] border-secondary;
+
+      border-bottom-width: 1px;
+      border-style: solid;
+    }
+
+    h3.heading {
+      @apply font-bold text-color-primary;
+    }
+
+    .items {
+      @apply flex flex-col gap-[.5em];
+
+      .item {
+        @apply flex flex-col gap-[.4em];
+
+        h4.title {
+          @apply text-[.75em] text-color-primary;
+        }
+      }
+
+      .select {
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: .5em;
+        }
+      }
+    }
+  }
+}

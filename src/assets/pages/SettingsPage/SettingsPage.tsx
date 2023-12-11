@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import Layout from '@components/Layout/Layout';
 import Page from '@components/Page/Page';
 
+import AppearanceSettings from '@pages/SettingsPage/AppearanceSettings/AppearanceSettings';
+import Options from '@pages/SettingsPage/Options/Options';
+
 import UiContainer from '@ui/UiContainer/UiContainer';
 
 import useLocalization from '@hooks/useLocalization';
@@ -23,6 +26,10 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 					<MoveLeft width={'.9em'} />
 					{loc.pages.options.goBack}
 				</Link>
+
+				<Options>
+					<AppearanceSettings />
+				</Options>
 			</UiContainer>
 		</Page>
 	);
