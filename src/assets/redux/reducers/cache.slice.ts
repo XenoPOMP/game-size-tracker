@@ -4,13 +4,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { ReduxAction } from '@redux/types';
 
-export type CacheState = {
-	officialGames: Record<
-		Exclude<GameInfo['category'], 'other'>,
-		Nullable<GameInfo[]>
-	>;
+type Cache = Nullable<GameInfo[]>;
 
-	otherGames: Nullable<GameInfo[]>;
+export type CacheState = {
+	officialGames: Record<Exclude<GameInfo['category'], 'other'>, Cache>;
+
+	otherGames: Cache;
 };
 
 const initialState: CacheState = {
