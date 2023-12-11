@@ -4,6 +4,7 @@ import { ipcRenderer } from 'electron';
  * Sends message to **ipcMain**`s channel and return response by Promise.
  *
  * @param channel
+ * @param args
  *
  * @example
  * sendMessage<GameInfo[]>('get-steam-games')
