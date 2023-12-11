@@ -1,11 +1,16 @@
+import { SystemLikeOption } from '@type/SystemLikeOption';
+
 import { MainPageLocales } from '@localization/types/main-page-locales';
 import { MetaLocales } from '@localization/types/meta-locales';
+import { OptionsPageLocales } from '@localization/types/options-page-locales';
 
 import { AppSettings } from '@redux/reducers/appSettingsSlice';
+import { SortFiltersState } from '@redux/reducers/sortFilters.slice';
 
 export interface Localization extends MetaLocales {
 	pages: {
 		main: MainPageLocales;
+		options: OptionsPageLocales;
 	};
 
 	groupHiddenLabel: string;
@@ -15,9 +20,16 @@ export interface Localization extends MetaLocales {
 		string
 	>;
 
-	languageLabels: Record<AppSettings['language'], string>;
+	languageLabels: Record<
+		Exclude<AppSettings['language'], SystemLikeOption>,
+		string
+	>;
 
 	groupNames: Record<GameInfo['category'], string>;
+
+	filters: {
+		orderBy: string;
+	} & Record<SortFiltersState['orderBy'], string>;
 
 	gameTooltip: Record<'goToFolder' | 'hide' | 'show' | 'remove', string> & {
 		dialogs: {
@@ -29,4 +41,6 @@ export interface Localization extends MetaLocales {
 			};
 		};
 	};
+
+	systemLikeOption: string;
 }

@@ -1,18 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { SystemLikeOption } from '@type/SystemLikeOption';
 
 import { ReduxAction } from '@redux/types';
 
 export type AppSettings = {
 	appVersion: string;
 	appName: string;
-	language: 'en' | 'ru';
+	language: 'en' | 'ru' | SystemLikeOption;
 	theme: 'dark' | 'light';
 };
 
 const initialState: AppSettings = {
-	appVersion: '1.0.0-rc-1',
-	appName: 'React Vite Application',
-	language: 'en',
+	appVersion: '1.0.0-rc-3',
+	appName: 'Game Size Tracker',
+	language: 'system-like',
 	theme: 'dark',
 };
 

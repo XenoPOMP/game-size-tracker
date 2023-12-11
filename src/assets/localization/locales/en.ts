@@ -1,9 +1,15 @@
 import { Localization } from '@localization/Localization';
 
+import { initialAppSettings } from '@redux/reducers/appSettingsSlice';
+
 const en: Localization = {
 	meta: {
 		mainPage: {
-			title: 'Main page',
+			title: initialAppSettings.appName,
+			description: '',
+		},
+		optionsPage: {
+			title: 'Settings',
 			description: '',
 		},
 	},
@@ -22,6 +28,27 @@ const en: Localization = {
 				buttons: {
 					cancel: 'Cancel',
 					add: 'Add',
+				},
+			},
+		},
+		options: {
+			goBack: 'Back',
+			groups: {
+				appearance: {
+					title: 'Appearance',
+					options: {
+						theme: {
+							name: 'Theme',
+							options: {
+								dark: 'Dark',
+								light: 'Light',
+							},
+						},
+					},
+				},
+
+				language: {
+					title: 'Language',
 				},
 			},
 		},
@@ -44,7 +71,14 @@ const en: Localization = {
 
 	groupNames: {
 		steam: 'Steam',
+		egs: 'Epic Games Store',
 		other: 'Other',
+	},
+
+	filters: {
+		orderBy: 'Order by:',
+		size: 'Size',
+		title: 'Title',
 	},
 
 	gameTooltip: {
@@ -63,6 +97,8 @@ const en: Localization = {
 			},
 		},
 	},
+
+	systemLikeOption: 'System like',
 };
 
 export default en;

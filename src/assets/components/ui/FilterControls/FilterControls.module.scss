@@ -1,3 +1,8 @@
 section.filterControls {
-  @apply pb-[1.25em];
+  @apply pb-[1.25em] flex gap-[.5em] justify-between;
+
+  article.group {
+    display: inherit;
+    gap: inherit;
+  }
 }

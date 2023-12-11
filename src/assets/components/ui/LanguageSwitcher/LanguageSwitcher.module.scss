@@ -3,6 +3,8 @@
 button.languageSwitcher {
   position: relative;
 
+  @apply pl-[0px];
+
   &:hover {
     .menu {
       display: block;
@@ -20,6 +22,7 @@ button.languageSwitcher {
     top: 100%;
     left: 0;
     font-size: .75em;
+    width: max-content;
 
     .button {
       @extend %flexCenter;

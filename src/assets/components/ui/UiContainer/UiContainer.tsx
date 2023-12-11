@@ -1,48 +1,43 @@
 import { PropsWith } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
 import styles from './UiContainer.module.scss';
 import type { UiContainerProps } from './UiContainer.props';
 
-interface IUiContainerNestedProps
-	extends PropsWith<'className' | 'children' | 'id', UiContainerProps> {}
+interface UiContainerNestedProps
+	extends PropsWith<
+		'children' | 'className' | 'id' | 'style',
+		UiContainerProps
+	> {}
 
-/**
- * UI container with maximum width.
- *
- * @param children
- * @param className
- * @param id
- * @constructor
- */
-const UiContainer: FC<IUiContainerNestedProps> & {
-	Section: FC<IUiContainerNestedProps>;
-	Article: FC<IUiContainerNestedProps>;
-	Header: FC<IUiContainerNestedProps>;
-} = ({ children, className, id }) => {
+const UiContainer: FC<UiContainerNestedProps> = ({
+	children,
+	className,
+	id,
+	style,
+	margin = '0px',
+	maxWidth,
+	as = 'section',
+}) => {
+	const Component = as;
+
 	return (
-		<div id={id} className={cn(styles.container, className)}>
+		<Component
+			style={
+				{
+					'--max-container-width': maxWidth ?? '1920px',
+					'--margin': margin,
+					...style,
+				} as CSSProperties
+			}
+			className={cn(styles.uiContainer, className)}
+			id={id}
+		>
 			{children}
-		</div>
+		</Component>
 	);
 };
-
-UiContainer.Section = ({ children, className, id }) => (
-	<section id={id} className={cn(styles.container, className)}>
-		{children}
-	</section>
-);
-UiContainer.Article = ({ children, className, id }) => (
-	<article id={id} className={cn(styles.container, className)}>
-		{children}
-	</article>
-);
-UiContainer.Header = ({ children, className, id }) => (
-	<header id={id} className={cn(styles.container, className)}>
-		{children}
-	</header>
-);
 
 export default UiContainer;

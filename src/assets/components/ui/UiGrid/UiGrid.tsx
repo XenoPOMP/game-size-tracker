@@ -1,70 +1,53 @@
-import { PropsWith } from '@xenopomp/advanced-types';
+import { PropsWith, VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
-import getUiSx from '@utils/getUiSx';
+import UiContainer from '@ui/UiContainer/UiContainer';
 
-import styles from './UiGrid.module.scss';
 import type { UiGridProps } from './UiGrid.props';
 
-interface IUiGridNestedProps
-	extends PropsWith<'className' | 'id' | 'children', UiGridProps> {}
+interface UiGridNestedProps
+	extends PropsWith<'children' | 'className' | 'id' | 'style', UiGridProps> {}
 
-const UiGrid: FC<IUiGridNestedProps> & {
-	Section: FC<IUiGridNestedProps>;
-	Article: FC<IUiGridNestedProps>;
-} = ({ children, className, id, cols, rows, gap, maxWidth }) => {
-	return (
-		<div
-			style={{
-				...getUiSx({
-					cols,
-					rows,
-					gap,
-					maxWidth,
-				}),
-			}}
-			className={cn(styles.grid, className)}
-			id={id}
-		>
-			{children}
-		</div>
-	);
+const getInlineStyles = ({
+	columns,
+	rows,
+	gap,
+}: Pick<UiGridNestedProps, 'columns' | 'rows' | 'gap'>): CSSProperties => {
+	return {
+		gridTemplateColumns: `repeat(${columns}, 1fr)`,
+		gridTemplateRows: `repeat(${rows}, 1fr)`,
+		gap,
+		display: 'grid',
+	};
 };
 
-UiGrid.Section = ({ children, id, className, cols, rows, gap, maxWidth }) => (
-	<section
-		style={{
-			...getUiSx({
-				cols,
-				rows,
-				gap,
-				maxWidth,
-			}),
-		}}
-		id={id}
-		className={cn(styles.grid, className)}
-	>
-		{children}
-	</section>
-);
-
-UiGrid.Article = ({ children, id, className, cols, rows, gap, maxWidth }) => (
-	<article
-		style={{
-			...getUiSx({
-				cols,
-				rows,
-				gap,
-				maxWidth,
-			}),
-		}}
-		id={id}
-		className={cn(styles.grid, className)}
-	>
-		{children}
-	</article>
-);
+const UiGrid: VariableFC<typeof UiContainer, UiGridNestedProps> = ({
+	children,
+	className,
+	id,
+	style,
+	columns = 12,
+	rows = 1,
+	gap = '1rem',
+	margin,
+	...props
+}) => {
+	return (
+		<UiContainer
+			className={cn(className)}
+			id={id}
+			style={{
+				...getInlineStyles({ columns, rows, gap }),
+				...style,
+			}}
+			margin={margin}
+			{...props}
+		>
+			{children}
+		</UiContainer>
+	);
+};
 
 export default UiGrid;

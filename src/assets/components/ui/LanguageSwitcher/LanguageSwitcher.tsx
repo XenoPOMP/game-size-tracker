@@ -3,6 +3,7 @@ import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { Menu } from '@headlessui/react';
 import cn from 'classnames';
+import { Globe } from 'lucide-react';
 import { FC, Fragment } from 'react';
 
 import FrameButton from '@ui/FrameButton/FrameButton';
@@ -26,6 +27,7 @@ const LanguageSwitcher: VariableFC<
 		const labels: Record<ReturnType<typeof language.get>, string> = {
 			en: 'ENG',
 			ru: 'RUS',
+			'system-like': loc.systemLikeOption,
 		};
 
 		return labels[language.get()];
@@ -34,15 +36,29 @@ const LanguageSwitcher: VariableFC<
 	return (
 		<FrameButton className={cn(styles.languageSwitcher, className)} {...props}>
 			<div
-				className={'text-[10px] font-medium'}
+				className={'text-[.6em] font-medium flex gap-[2px] items-center'}
 				style={{
 					lineHeight: '100%',
 				}}
 			>
+				<Globe height={'15px'} />
+
 				{getLabel()}
 			</div>
 
 			<div className={cn(styles.menu)}>
+				<div
+					className={cn(
+						styles.button,
+						language.get() === 'system-like' && styles.active
+					)}
+					onClick={() => {
+						language.set('system-like');
+					}}
+				>
+					{loc.systemLikeOption}
+				</div>
+
 				{getObjectKeys(loc.languageLabels).map((key, index) => {
 					return (
 						<div

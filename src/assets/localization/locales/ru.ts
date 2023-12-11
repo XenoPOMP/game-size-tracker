@@ -1,9 +1,15 @@
 import { Localization } from '@localization/Localization';
 
+import { initialAppSettings } from '@redux/reducers/appSettingsSlice';
+
 const ru: Localization = {
 	meta: {
 		mainPage: {
-			title: 'Главная',
+			title: initialAppSettings.appName,
+			description: '',
+		},
+		optionsPage: {
+			title: 'Настройки',
 			description: '',
 		},
 	},
@@ -22,6 +28,27 @@ const ru: Localization = {
 				buttons: {
 					cancel: 'Отменить',
 					add: 'Добавить',
+				},
+			},
+		},
+		options: {
+			goBack: 'Назад',
+			groups: {
+				appearance: {
+					title: 'Внешний вид',
+					options: {
+						theme: {
+							name: 'Тема',
+							options: {
+								dark: 'Темная',
+								light: 'Светлая',
+							},
+						},
+					},
+				},
+
+				language: {
+					title: 'Язык',
 				},
 			},
 		},
@@ -44,7 +71,14 @@ const ru: Localization = {
 
 	groupNames: {
 		steam: 'Steam',
+		egs: 'Epic Games Store',
 		other: 'Другие',
+	},
+
+	filters: {
+		orderBy: 'Сортировать по:',
+		size: 'Размеру',
+		title: 'Названию',
 	},
 
 	gameTooltip: {
@@ -63,6 +97,8 @@ const ru: Localization = {
 			},
 		},
 	},
+
+	systemLikeOption: 'Как в системе',
 };
 
 export default ru;

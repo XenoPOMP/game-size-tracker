@@ -2,12 +2,15 @@ import { getObjectKeys } from '@xenopomp/advanced-utils';
 
 import { exec } from 'child_process';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
+import { getAllEgsGames } from 'get-egs-folders';
 import * as steamFolders from 'getsteamfolders';
 import { getFolderSizeBin as fetchFolderSize } from 'go-get-folder-size';
 import { release } from 'node:os';
 import { join } from 'node:path';
+import { cwd } from 'node:process';
 import * as os from 'os';
 
+import Configurator, { ConfiguratorConfig } from '../assets/utils/configurator';
 import { preloadOptions } from '../preload/preload-options';
 
 import { update } from './update';
@@ -57,6 +60,9 @@ const indexHtml = join(process.env.DIST, 'index.html');
 const USE_FRAME = false;
 /** Determines whether app will be transparent or not. */
 const IS_TRANSPARENT = false;
+
+/** Config exporter / importer. */
+const configurator = new Configurator();
 
 async function createWindow() {
 	win = new BrowserWindow({
@@ -212,6 +218,26 @@ ipcMain.on('get-steam-games', async (_, arg) => {
 	win?.webContents.send('get-steam-games-response', response);
 });
 
+ipcMain.on('get-egs-games', async (_, args: any) => {
+	let response: GameInfo[] = [];
+
+	const egsGames = await getAllEgsGames({ debug: false });
+
+	getObjectKeys(egsGames).forEach(key => {
+		const title = key;
+		const { path, size } = egsGames[key];
+
+		response.push({
+			title,
+			pathTo: path,
+			size,
+			category: 'egs',
+		});
+	});
+
+	win?.webContents.send('get-egs-games-response', response);
+});
+
 ipcMain.on(
 	'get-all-external-games-info',
 	async (_, request: { path: string; uuid: string }[][]) => {
@@ -244,4 +270,23 @@ ipcMain.on('reveal-in-explorer', async (_, arg) => {
 			`For the moment reveal in explorer is not supported on ${os.platform()} platform.`
 		);
 	}
+});
+
+ipcMain.on('open-in-external-browser', async (_, [link]: [link: string]) => {
+	await shell.openExternal(link);
+});
+
+ipcMain.on('export-config', async (_, args) => {
+	const path = args[0];
+	const config: ConfiguratorConfig = args[1];
+
+	await configurator.exportConfig(config, {
+		path,
+	});
+});
+
+ipcMain.on('import-config', async (_, args) => {
+	let response: ConfiguratorConfig = await configurator.importConfig(args[0]);
+
+	win?.webContents.send('import-config-response', response);
 });

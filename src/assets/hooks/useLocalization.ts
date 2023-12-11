@@ -11,8 +11,23 @@ const useLocalization = (): Localization => {
 	switch (language.get()) {
 		case 'en':
 			return en;
+
 		case 'ru':
 			return ru;
+
+		case 'system-like': {
+			const preferredLanguage = navigator.language;
+
+			if (preferredLanguage === 'ru') {
+				return ru;
+			}
+
+			return en;
+		}
+
+		default: {
+			return en;
+		}
 	}
 };
 
