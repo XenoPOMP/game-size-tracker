@@ -8,6 +8,10 @@ const en: Localization = {
 			title: initialAppSettings.appName,
 			description: '',
 		},
+		optionsPage: {
+			title: 'Settings',
+			description: '',
+		},
 	},
 
 	pages: {
@@ -26,6 +30,9 @@ const en: Localization = {
 					add: 'Add',
 				},
 			},
+		},
+		options: {
+			goBack: 'Back',
 		},
 	},
 

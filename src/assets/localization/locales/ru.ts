@@ -8,6 +8,10 @@ const ru: Localization = {
 			title: initialAppSettings.appName,
 			description: '',
 		},
+		optionsPage: {
+			title: 'Настройки',
+			description: '',
+		},
 	},
 
 	pages: {
@@ -26,6 +30,9 @@ const ru: Localization = {
 					add: 'Добавить',
 				},
 			},
+		},
+		options: {
+			goBack: 'Назад',
 		},
 	},
 

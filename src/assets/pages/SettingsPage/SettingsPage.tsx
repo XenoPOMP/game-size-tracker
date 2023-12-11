@@ -8,21 +8,20 @@ import Page from '@components/Page/Page';
 
 import UiContainer from '@ui/UiContainer/UiContainer';
 
+import useLocalization from '@hooks/useLocalization';
+
 import styles from './SettingsPage.module.scss';
 import type { SettingsPageProps } from './SettingsPage.props';
 
 const SettingsPage: FC<SettingsPageProps> = ({}) => {
+	const loc = useLocalization();
+
 	return (
-		<Page
-			meta={{
-				title: 'Settings',
-				description: '',
-			}}
-		>
+		<Page meta={loc.meta.optionsPage}>
 			<UiContainer className={cn(styles.optionsPageWrapper)}>
 				<Link to={'/'} className={cn(styles.goBack)}>
 					<MoveLeft width={'.9em'} />
-					Back
+					{loc.pages.options.goBack}
 				</Link>
 			</UiContainer>
 		</Page>
