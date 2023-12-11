@@ -17,6 +17,20 @@ export default defineConfig(({ command }) => {
 	const sourcemap = isServe || !!process.env.VSCODE_DEBUG;
 
 	return {
+		build: {
+			rollupOptions: {
+				external: [
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Regular.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-RegularItalic.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Semibold.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-SemiboldItalic.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Medium.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-MediumItalic.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Bold.otf',
+					'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-BoldItalic.otf',
+				],
+			},
+		},
 		resolve: {
 			alias: {
 				'@': path.join(__dirname, 'src'),
