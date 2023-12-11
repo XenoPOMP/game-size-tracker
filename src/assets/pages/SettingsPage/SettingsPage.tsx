@@ -4,6 +4,8 @@ import { FC } from 'react';
 import Layout from '@components/Layout/Layout';
 import Page from '@components/Page/Page';
 
+import UiContainer from '@ui/UiContainer/UiContainer';
+
 import styles from './SettingsPage.module.scss';
 import type { SettingsPageProps } from './SettingsPage.props';
 
@@ -14,7 +16,9 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 				title: 'Settings',
 				description: '',
 			}}
-		></Page>
+		>
+			<UiContainer>Options</UiContainer>
+		</Page>
 	);
 };
 
