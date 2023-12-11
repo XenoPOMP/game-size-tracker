@@ -1,7 +1,7 @@
 import { Nullable, VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import Item from '@pages/SettingsPage/Options/Item/Item';
 
@@ -20,7 +20,7 @@ const Options: VariableFC<'div', OptionsProps> & {
 			initialValue?: string;
 			options?: Array<{
 				option: string;
-				displayingName?: string;
+				displayingName?: ReactNode;
 			}>;
 			onSelect?: (item: string) => void;
 		},
