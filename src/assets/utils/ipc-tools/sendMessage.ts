@@ -21,7 +21,7 @@ export const sendMessage = <R extends any = unknown>(
 
 		console.log(`[${channel}] Request sended.`);
 
-		ipcRenderer.on(`${channel}-response`, (_, responseArgs) => {
+		ipcRenderer.once(`${channel}-response`, (_, responseArgs) => {
 			console.log(`[${channel}] Request resolved.`);
 
 			resolve(responseArgs as R);
