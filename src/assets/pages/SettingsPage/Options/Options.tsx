@@ -3,6 +3,8 @@ import { Nullable, VariableFC } from '@xenopomp/advanced-types';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 
+import Item from '@pages/SettingsPage/Options/Item/Item';
+
 import CustomButton from '@ui/CustomButton/CustomButton';
 
 import styles from './Options.module.scss';
@@ -13,7 +15,7 @@ const Options: VariableFC<'div', OptionsProps> & {
 	Header: VariableFC<'h3', {}>;
 	Items: VariableFC<'div', {}>;
 	Select: VariableFC<
-		'div',
+		typeof Item,
 		{
 			initialValue?: string;
 			options?: Array<{
@@ -77,26 +79,30 @@ Options.Select = ({
 	}, [localState]);
 
 	return (
-		<div className={cn(styles.select, styles.item, className)} {...props}>
-			{title && <h4 className={cn(styles.title)}>{title}</h4>}
-
-			<div className={cn(styles.grid)}>
-				{options?.map(({ option, displayingName }, index) => {
-					return (
-						<CustomButton
-							variant={localState === option ? 'primary' : 'cancel'}
-							className={cn('text-[.75em]')}
-							key={`option-${index}`}
-							onClick={() => {
-								setLocalState(option);
-							}}
-						>
-							{displayingName ?? option}
-						</CustomButton>
-					);
-				})}
-			</div>
-		</div>
+		<>
+			<Item
+				title={'Theme:'}
+				className={cn(styles.select, className)}
+				{...props}
+			>
+				<div className={cn(styles.grid)}>
+					{options?.map(({ option, displayingName }, index) => {
+						return (
+							<CustomButton
+								variant={localState === option ? 'primary' : 'cancel'}
+								className={cn('text-[.75em]')}
+								key={`option-${index}`}
+								onClick={() => {
+									setLocalState(option);
+								}}
+							>
+								{displayingName ?? option}
+							</CustomButton>
+						);
+					})}
+				</div>
+			</Item>
+		</>
 	);
 };
 
