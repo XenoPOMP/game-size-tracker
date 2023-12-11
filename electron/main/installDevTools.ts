@@ -9,9 +9,9 @@ import installExtension, {
 export const installDevExtensions = async () => {
 	const forceDownload = false;
 
-	const extensions = [
+	const extensions: Array<typeof REACT_DEVELOPER_TOOLS> = [
 		REACT_DEVELOPER_TOOLS,
-		//REDUX_DEVTOOLS
+		REDUX_DEVTOOLS,
 	];
 
 	extensions.map(ext => {
