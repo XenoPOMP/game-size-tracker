@@ -1,8 +1,9 @@
 import { VariableFC } from '@xenopomp/advanced-types';
+import { capitalize } from '@xenopomp/advanced-utils';
 
-import { GameInfo } from '@type/GameInfo';
+import { GameInfo, OfficialProvider } from '@type/GameInfo';
 import cn from 'classnames';
-import { useContext, useEffect, useState } from 'react';
+import { Dispatch, useCallback, useContext, useEffect, useState } from 'react';
 
 import GamesSection from '@components/GamesSection/GamesSection';
 import Page from '@components/Page/Page';
@@ -41,38 +42,59 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 
 	const customPaths = useAppSelector(state => state.customPaths.list);
 
+	/**
+	 * This function checks for cache. If cache exists, it cancels size
+	 * recalculation.
+	 */
+	const checkForCache = useCallback(
+		({
+			provider,
+			action,
+			dispatchAction,
+			channel,
+		}: {
+			provider: OfficialProvider;
+			action: Dispatch<GameInfo[] | undefined>;
+			dispatchAction: typeof cacheSteamGames | typeof cacheEgsGames;
+			channel: string;
+		}) => {
+			if (cache.officialGames[provider] !== null) {
+				console.log(
+					`[CACHE] ${capitalize(provider.toLowerCase())} cache detected.`
+				);
+
+				action(cache.officialGames[provider] ?? []);
+				return;
+			}
+
+			sendMessage<GameInfo[]>(channel).then(gameArray => {
+				action(gameArray);
+				dispatch(dispatchAction(gameArray));
+			});
+		},
+		[cache]
+	);
+
 	// Load games from main process
 	useEffect(() => {
 		setIsLoading(true);
 
-		const checkForCache = async ({}: { provider: GameInfo['category'] }) => {};
-
 		const tasks: Array<Promise<void>> = [
 			(async () => {
-				if (cache.officialGames.steam !== null) {
-					console.log(`[CACHE] Steam cache detected.`);
-
-					setSteamGames(cache.officialGames.steam);
-					return;
-				}
-
-				sendMessage<GameInfo[]>('get-steam-games').then(gameArray => {
-					setSteamGames(gameArray);
-					dispatch(cacheSteamGames(gameArray));
+				checkForCache({
+					provider: 'steam',
+					action: setSteamGames,
+					dispatchAction: cacheSteamGames,
+					channel: 'get-steam-games',
 				});
 			})(),
 
 			(async () => {
-				if (cache.officialGames.egs !== null) {
-					console.log(`[CACHE] EGS cache detected.`);
-
-					setEgsGames(cache.officialGames.egs);
-					return;
-				}
-
-				sendMessage<GameInfo[]>('get-egs-games').then(gameArray => {
-					setEgsGames(gameArray);
-					dispatch(cacheEgsGames(gameArray));
+				checkForCache({
+					provider: 'egs',
+					action: setEgsGames,
+					dispatchAction: cacheEgsGames,
+					channel: 'get-egs-games',
 				});
 			})(),
 
