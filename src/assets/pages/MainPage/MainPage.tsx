@@ -53,11 +53,19 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 			dispatchAction,
 			channel,
 		}: {
+			/** Name of game provider. */
 			provider: OfficialProvider;
+
+			/** React state Dispatch action. */
 			action: Dispatch<GameInfo[] | undefined>;
+
+			/** RTK dispatch action. */
 			dispatchAction: typeof cacheSteamGames | typeof cacheEgsGames;
+
+			/** IPC channel for sending message. */
 			channel: string;
 		}) => {
+			/** Check if cache is already created in RTK store. */
 			if (cache.officialGames[provider] !== null) {
 				console.log(
 					`[CACHE] ${capitalize(provider.toLowerCase())} cache detected.`
@@ -67,6 +75,10 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 				return;
 			}
 
+			/**
+			 * If cache has not been created yet,
+			 * create it and set local state to cache.
+			 */
 			sendMessage<GameInfo[]>(channel).then(gameArray => {
 				action(gameArray);
 				dispatch(dispatchAction(gameArray));
