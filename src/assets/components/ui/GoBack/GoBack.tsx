@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './GoBack.module.scss';
 import type { GoBackProps } from './GoBack.props';
 
-const GoBack: VariableFC<'a', GoBackProps> = ({
+const GoBack: VariableFC<'a', GoBackProps, 'href' | 'hrefLang'> = ({
 	children,
 	className,
 	onClick,
