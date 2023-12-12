@@ -29,7 +29,7 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 	return (
 		<Page meta={loc.meta.optionsPage}>
 			<UiContainer className={cn(styles.optionsPageWrapper)}>
-				<GoBack>{loc.pages.options.goBack}</GoBack>
+				<GoBack />
 
 				<Options className={cn(styles.options)}>
 					<AppearanceSettings />

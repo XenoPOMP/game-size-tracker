@@ -5,16 +5,18 @@ import { MoveLeft } from 'lucide-react';
 import { FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import useLocalization from '@hooks/useLocalization';
+
 import styles from './GoBack.module.scss';
 import type { GoBackProps } from './GoBack.props';
 
-const GoBack: VariableFC<'a', GoBackProps, 'href' | 'hrefLang'> = ({
-	children,
-	className,
-	onClick,
-	...props
-}) => {
+const GoBack: VariableFC<
+	'a',
+	GoBackProps,
+	'href' | 'hrefLang' | 'children'
+> = ({ className, onClick, ...props }) => {
 	const navigate = useNavigate();
+	const loc = useLocalization();
 
 	return (
 		<a
@@ -27,7 +29,7 @@ const GoBack: VariableFC<'a', GoBackProps, 'href' | 'hrefLang'> = ({
 			{...props}
 		>
 			<MoveLeft width={'.9em'} />
-			{children}
+			{loc.pages.options.goBack}
 		</a>
 	);
 };

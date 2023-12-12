@@ -12,6 +12,10 @@ const en: Localization = {
 			title: 'Settings',
 			description: '',
 		},
+		libsPage: {
+			title: 'Libraries',
+			description: '',
+		},
 	},
 
 	pages: {

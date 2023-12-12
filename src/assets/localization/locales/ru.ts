@@ -12,6 +12,10 @@ const ru: Localization = {
 			title: 'Настройки',
 			description: '',
 		},
+		libsPage: {
+			title: 'Библиотеки',
+			description: '',
+		},
 	},
 
 	pages: {
