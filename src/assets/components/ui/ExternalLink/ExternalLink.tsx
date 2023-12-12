@@ -2,7 +2,8 @@ import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
 import { ExternalLinkIcon } from 'lucide-react';
-import { ComponentProps, FC } from 'react';
+import { icons } from 'lucide-react';
+import { ComponentProps, ElementType, FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { sendMessage } from '@utils/ipc-tools/sendMessage';
@@ -18,13 +19,22 @@ import type { ExternalLinkProps } from './ExternalLink.props';
  * @param className
  * @param to
  * @param applyStyles
+ * @param icon
  * @param props
  * @constructor
  */
 const ExternalLink: VariableFC<
 	'div',
 	ExternalLinkProps & Pick<ComponentProps<typeof Link>, 'to'>
-> = ({ children, onClick, className, to, applyStyles = false, ...props }) => {
+> = ({
+	children,
+	onClick,
+	className,
+	to,
+	applyStyles = false,
+	icon: Icon = ExternalLinkIcon,
+	...props
+}) => {
 	return (
 		<div
 			className={cn(styles.link, applyStyles && styles.withStyles, className)}
@@ -35,7 +45,7 @@ const ExternalLink: VariableFC<
 		>
 			{children}
 
-			{applyStyles && <ExternalLinkIcon height={'.9em'} />}
+			{applyStyles && <Icon height={'.9em'} />}
 		</div>
 	);
 };

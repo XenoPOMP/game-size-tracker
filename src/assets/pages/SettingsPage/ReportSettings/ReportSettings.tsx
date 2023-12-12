@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { Code2 } from 'lucide-react';
 import { FC } from 'react';
 
 import Options from '@pages/SettingsPage/Options/Options';
@@ -26,6 +27,15 @@ const ReportSettings: FC<ReportSettingsProps> = ({}) => {
 						to={'https://github.com/XenoPOMP/game-size-tracker/issues/new'}
 					>
 						{loc.pages.options.groups.report.foundBug}
+					</ExternalLink>
+
+					<ExternalLink
+						applyStyles
+						className={cn('text-[.85em]')}
+						to={'https://github.com/XenoPOMP/game-size-tracker'}
+						icon={Code2}
+					>
+						{loc.pages.options.groups.report.sourceCode}
 					</ExternalLink>
 				</Options.Items>
 			</Options.Group>

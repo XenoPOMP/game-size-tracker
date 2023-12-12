@@ -55,6 +55,7 @@ const ru: Localization = {
 					title: 'Обратная связь',
 
 					foundBug: 'Нашли баг?',
+					sourceCode: 'Исходный код',
 				},
 			},
 			version: `вер. {{VERSION}}`,

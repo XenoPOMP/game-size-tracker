@@ -20,9 +20,7 @@ export type OptionsPageLocales = {
 
 		language: GroupLocale;
 
-		report: GroupLocale<{
-			foundBug: string;
-		}>;
+		report: GroupLocale<{} & Record<'foundBug' | 'sourceCode', string>>;
 	};
 	version: string;
 };
