@@ -1,7 +1,7 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
-import { ExternalLinkIcon } from 'lucide-react';
+import { ExternalLinkIcon, LucideIcon } from 'lucide-react';
 import { icons } from 'lucide-react';
 import { ComponentProps, ElementType, FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -34,9 +34,14 @@ const ExternalLink: VariableFC<
 	applyStyles = false,
 	useRouter = false,
 	icon: Icon = ExternalLinkIcon,
+	leftIcon: LeftIcon,
 	...props
 }) => {
 	const navigate = useNavigate();
+
+	const sharedIconProps: ComponentProps<LucideIcon> = {
+		height: '.9em',
+	};
 
 	return (
 		<div
@@ -53,9 +58,11 @@ const ExternalLink: VariableFC<
 				let ignore = sendMessage<never>('open-in-external-browser', to);
 			}}
 		>
+			{LeftIcon && <LeftIcon {...sharedIconProps} />}
+
 			{children}
 
-			{applyStyles && <Icon height={'.9em'} />}
+			{applyStyles && <Icon {...sharedIconProps} />}
 		</div>
 	);
 };

@@ -23,4 +23,6 @@ export interface ExternalLinkProps {
 	 * </ExternalLink>
 	 */
 	icon?: LucideIcon;
+
+	leftIcon?: LucideIcon;
 }

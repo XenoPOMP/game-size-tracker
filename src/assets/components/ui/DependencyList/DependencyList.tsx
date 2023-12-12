@@ -1,6 +1,7 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import cn from 'classnames';
+import { Crown } from 'lucide-react';
 import { FC } from 'react';
 
 import ExternalLink from '@ui/ExternalLink/ExternalLink';
@@ -30,12 +31,15 @@ const DependencyList: VariableFC<
 						)}`;
 					};
 
+					const ownLibs = /(@xenopomp).*/gi;
+
 					return (
 						<div className={cn('flex flex-wrap gap-[.5em]')}>
 							<ExternalLink
 								to={getLinkToNpm()}
 								applyStyles
 								className={cn('flex-row-reverse')}
+								leftIcon={ownLibs.test(name) ? Crown : undefined}
 							>
 								<div className={cn('')}>{name}</div>
 							</ExternalLink>
