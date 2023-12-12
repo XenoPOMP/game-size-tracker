@@ -1,6 +1,8 @@
 .link {
+  @apply cursor-pointer;
+
   &.withStyles {
-    @apply cursor-pointer inline-flex gap-[.25em] items-center
+    @apply inline-flex gap-[.25em] items-center
            text-confirm/80 hover:text-confirm
            w-fit
     ;
