@@ -37,6 +37,7 @@
     "get-folder-size": "^4.0.0",
     "getsteamfolders": "^1.0.5",
     "go-get-folder-size": "^0.5.2",
+    "jsonpath-plus": "^7.2.0",
     "lucide-react": "^0.294.0",
     "natural-orderby": "^3.0.2",
     "react-document-meta": "^3.0.0-beta.2",
