@@ -11,6 +11,7 @@ import LocalizationSettings from '@pages/SettingsPage/LocalizationSettings/Local
 import Options from '@pages/SettingsPage/Options/Options';
 import ReportSettings from '@pages/SettingsPage/ReportSettings/ReportSettings';
 
+import GoBack from '@ui/GoBack/GoBack';
 import UiContainer from '@ui/UiContainer/UiContainer';
 
 import useAppSettings from '@hooks/useAppSettings';
@@ -28,10 +29,7 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 	return (
 		<Page meta={loc.meta.optionsPage}>
 			<UiContainer className={cn(styles.optionsPageWrapper)}>
-				<Link to={'/'} className={cn(styles.goBack)}>
-					<MoveLeft width={'.9em'} />
-					{loc.pages.options.goBack}
-				</Link>
+				<GoBack>{loc.pages.options.goBack}</GoBack>
 
 				<Options className={cn(styles.options)}>
 					<AppearanceSettings />
