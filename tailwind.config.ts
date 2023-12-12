@@ -7,7 +7,14 @@ import lightTheme from './themes/light.theme';
 const config: Config = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,scss}'],
 
-	theme: {},
+	theme: {
+		extend: {
+			colors: {
+				'tl-hov-quit-bg': '#F00',
+				'tl-hov-quit-color': '#FFF',
+			},
+		},
+	},
 
 	plugins: [
 		tailwindThemer({

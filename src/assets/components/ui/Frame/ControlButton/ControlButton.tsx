@@ -63,9 +63,26 @@ const ControlButton: FC<ControlButtonProps> = ({ action }) => {
 		close: 'close_app',
 	};
 
+	/** Inline styles for buttons. */
+	const inlineStyles: {
+		[key in typeof action]: {
+			className: string;
+		};
+	} = {
+		minimize: {
+			className: '',
+		},
+		maximize: {
+			className: '',
+		},
+		close: {
+			className: cn(styles.close),
+		},
+	};
+
 	return (
 		<div
-			className={cn(styles.button)}
+			className={cn(styles.button, inlineStyles[action].className)}
 			onClick={() => ipcRenderer.send(ipcActions[action])}
 		>
 			<Content />
