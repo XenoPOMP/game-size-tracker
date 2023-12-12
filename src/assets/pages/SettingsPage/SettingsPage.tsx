@@ -9,6 +9,7 @@ import Page from '@components/Page/Page';
 import AppearanceSettings from '@pages/SettingsPage/AppearanceSettings/AppearanceSettings';
 import LocalizationSettings from '@pages/SettingsPage/LocalizationSettings/LocalizationSettings';
 import Options from '@pages/SettingsPage/Options/Options';
+import ReportSettings from '@pages/SettingsPage/ReportSettings/ReportSettings';
 
 import UiContainer from '@ui/UiContainer/UiContainer';
 
@@ -36,6 +37,8 @@ const SettingsPage: FC<SettingsPageProps> = ({}) => {
 					<AppearanceSettings />
 
 					<LocalizationSettings />
+
+					<ReportSettings />
 				</Options>
 
 				<div className={cn(styles.version)}>

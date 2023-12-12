@@ -17,7 +17,12 @@ export type OptionsPageLocales = {
 				theme: SelectLocale<AppSettings['theme']>;
 			};
 		}>;
+
 		language: GroupLocale;
+
+		report: GroupLocale<{
+			foundBug: string;
+		}>;
 	};
 	version: string;
 };

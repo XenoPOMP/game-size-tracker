@@ -50,6 +50,12 @@ const ru: Localization = {
 				language: {
 					title: 'Язык',
 				},
+
+				report: {
+					title: 'Обратная связь',
+
+					foundBug: 'Нашли баг?',
+				},
 			},
 			version: `вер. {{VERSION}}`,
 		},

@@ -50,6 +50,12 @@ const en: Localization = {
 				language: {
 					title: 'Language',
 				},
+
+				report: {
+					title: 'Feedback',
+
+					foundBug: 'Found a bug?',
+				},
 			},
 			version: `ver. {{VERSION}}`,
 		},

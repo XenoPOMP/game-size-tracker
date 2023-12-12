@@ -1,1 +1,3 @@
-export interface ExternalLinkProps {}
+export interface ExternalLinkProps {
+	applyStyles?: boolean;
+}
