@@ -8,10 +8,9 @@ import { useAppSelector } from '@redux/hooks';
 
 import { SizeDiagramProps } from '@ui/SizeDiagram/SizeDiagram.props';
 
-export type FilteredGameInfo =
-	| Partial<GameInfo>
-	| GameInfo
-	| ArrayType<Defined<SizeDiagramProps['games']>>;
+export type DiagramGameInfo = ArrayType<Defined<SizeDiagramProps['games']>>;
+
+export type FilteredGameInfo = Partial<GameInfo> | GameInfo | DiagramGameInfo;
 
 interface UseFilteredGamesOptions {
 	/** If **true**, sorts games by size anyway. */
