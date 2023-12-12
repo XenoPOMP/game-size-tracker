@@ -56,6 +56,7 @@ const en: Localization = {
 
 					foundBug: 'Found a bug?',
 					sourceCode: 'Source code',
+					libs: 'Libraries used',
 				},
 			},
 			version: `ver. {{VERSION}}`,

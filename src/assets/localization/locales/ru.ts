@@ -56,6 +56,7 @@ const ru: Localization = {
 
 					foundBug: 'Нашли баг?',
 					sourceCode: 'Исходный код',
+					libs: 'Используемые библиотеки',
 				},
 			},
 			version: `вер. {{VERSION}}`,

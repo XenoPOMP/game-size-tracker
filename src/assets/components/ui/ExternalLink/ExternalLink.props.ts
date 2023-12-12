@@ -3,6 +3,9 @@ import { LucideIcon, icons } from 'lucide-react';
 export interface ExternalLinkProps {
 	applyStyles?: boolean;
 
+	/** If true, this link will act as react-router-dom`s Link component. */
+	useRouter?: boolean;
+
 	/**
 	 * Pass icon component from "lucide-dev"
 	 * as prop.

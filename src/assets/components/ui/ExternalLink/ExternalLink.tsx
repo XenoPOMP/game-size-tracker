@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { ExternalLinkIcon } from 'lucide-react';
 import { icons } from 'lucide-react';
 import { ComponentProps, ElementType, FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { sendMessage } from '@utils/ipc-tools/sendMessage';
 
@@ -32,14 +32,24 @@ const ExternalLink: VariableFC<
 	className,
 	to,
 	applyStyles = false,
+	useRouter = false,
 	icon: Icon = ExternalLinkIcon,
 	...props
 }) => {
+	const navigate = useNavigate();
+
 	return (
 		<div
 			className={cn(styles.link, applyStyles && styles.withStyles, className)}
 			{...props}
-			onClick={() => {
+			onClick={ev => {
+				onClick?.(ev);
+
+				if (useRouter) {
+					navigate(to);
+					return;
+				}
+
 				let ignore = sendMessage<never>('open-in-external-browser', to);
 			}}
 		>

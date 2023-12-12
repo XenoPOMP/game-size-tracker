@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Code2 } from 'lucide-react';
+import { Code2, GanttChartSquare } from 'lucide-react';
 import { FC } from 'react';
 
 import Options from '@pages/SettingsPage/Options/Options';
@@ -36,6 +36,16 @@ const ReportSettings: FC<ReportSettingsProps> = ({}) => {
 						icon={Code2}
 					>
 						{loc.pages.options.groups.report.sourceCode}
+					</ExternalLink>
+
+					<ExternalLink
+						applyStyles
+						className={cn('text-[.85em]')}
+						useRouter
+						to={'/libs'}
+						icon={GanttChartSquare}
+					>
+						{loc.pages.options.groups.report.libs}
 					</ExternalLink>
 				</Options.Items>
 			</Options.Group>
