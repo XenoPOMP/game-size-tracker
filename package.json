@@ -82,6 +82,7 @@
     "edit-file": "^0.3.0",
     "electron": "^23.2.0",
     "electron-builder": "^23.6.0",
+    "electron-devtools-installer": "^3.2.0",
     "jsdom": "^21.1.1",
     "postcss": "^8.4.32",
     "prettier": "^2.8.8",
@@ -94,6 +95,7 @@
     "vite": "^4.1.4",
     "vite-plugin-electron": "^0.11.2",
     "vite-plugin-electron-renderer": "^0.14.1",
+    "vite-plugin-fonts": "^0.7.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.30.1"
   },

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { UserConfig, defineConfig } from 'vite';
 import electron from 'vite-plugin-electron';
 import renderer from 'vite-plugin-electron-renderer';
+import VitePluginFonts from 'vite-plugin-fonts';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import pkg from './package.json';
@@ -16,16 +17,8 @@ export default defineConfig(({ command }) => {
 	const isBuild = command === 'build';
 	const sourcemap = isServe || !!process.env.VSCODE_DEBUG;
 
-	const externalResources: UserConfig['build']['rollupOptions']['external'] = [
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Regular.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-RegularItalic.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Semibold.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-SemiboldItalic.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Medium.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-MediumItalic.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-Bold.otf',
-		'src/assets/fonts/SF Pro Fonts/SF-Pro-Display-BoldItalic.otf',
-	];
+	const externalResources: UserConfig['build']['rollupOptions']['external'] =
+		[];
 
 	return {
 		build: {
@@ -92,6 +85,17 @@ export default defineConfig(({ command }) => {
 			// Use Node.js API in the Renderer-process
 			renderer(),
 			tsconfigPaths(),
+			VitePluginFonts({
+				custom: {
+					families: [
+						{
+							name: 'San Francisco Pro Display',
+							src: './src/assets/fonts/SF Pro Fonts/SF-Pro-Display*',
+							local: 'SF Pro Display',
+						},
+					],
+				},
+			}),
 		],
 		server:
 			process.env.VSCODE_DEBUG &&

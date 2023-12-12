@@ -13,6 +13,7 @@ import * as os from 'os';
 import Configurator, { ConfiguratorConfig } from '../assets/utils/configurator';
 import { preloadOptions } from '../preload/preload-options';
 
+import { installDevExtensions } from './installDevTools';
 import { update } from './update';
 
 // The built directory structure
@@ -114,7 +115,12 @@ async function createWindow() {
 	update(win);
 }
 
-app.whenReady().then(createWindow);
+app
+	.whenReady()
+	.then(createWindow)
+	.then(async () => {
+		await installDevExtensions();
+	});
 
 app.on('window-all-closed', () => {
 	win = null;
