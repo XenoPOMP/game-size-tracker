@@ -1,4 +1,5 @@
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import 'virtual:fonts.css';
 
 import MainPage from '@pages/MainPage/MainPage';
 import SettingsPage from '@pages/SettingsPage/SettingsPage';
