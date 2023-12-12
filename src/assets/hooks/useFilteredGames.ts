@@ -1,7 +1,14 @@
 import { Identifier, orderBy } from 'natural-orderby';
 import { useMemo } from 'react';
 
+
+
 import { useAppSelector } from '@redux/hooks';
+
+
+
+import { GameInfo } from '../types/GameInfo';
+
 
 export type FilteredGameInfo =
 	| Partial<GameInfo>

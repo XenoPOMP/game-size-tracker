@@ -1,3 +1,4 @@
+import { GameInfo } from '@type/GameInfo';
 import { SystemLikeOption } from '@type/SystemLikeOption';
 
 import { MainPageLocales } from '@localization/types/main-page-locales';

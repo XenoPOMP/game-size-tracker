@@ -1,5 +1,6 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
+import { GameInfo } from '@type/GameInfo';
 import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
 
@@ -43,6 +44,8 @@ const MainPage: VariableFC<typeof Page, MainPageProps, 'children' | 'meta'> = ({
 	// Load games from main process
 	useEffect(() => {
 		setIsLoading(true);
+
+		const checkForCache = async ({}: { provider: GameInfo['category'] }) => {};
 
 		const tasks: Array<Promise<void>> = [
 			(async () => {
