@@ -1,14 +1,9 @@
 import { Identifier, orderBy } from 'natural-orderby';
 import { useMemo } from 'react';
 
-
-
 import { useAppSelector } from '@redux/hooks';
 
-
-
 import { GameInfo } from '../types/GameInfo';
-
 
 export type FilteredGameInfo =
 	| Partial<GameInfo>
@@ -40,13 +35,15 @@ export const useFilteredGames = (
 				return [v => v.size];
 			}
 
-			/** Order by title. */
-			if (orderByKey === 'title') {
-				return [v => v.title];
-			}
+			switch (orderByKey) {
+				case 'title': {
+					return [v => v.title];
+				}
 
-			/** Order by size by default. */
-			return [v => v.size];
+				default: {
+					return [v => v.size];
+				}
+			}
 		};
 
 		const getOrders = (): Array<typeof sortOrder> => {
