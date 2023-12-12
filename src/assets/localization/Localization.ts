@@ -1,6 +1,7 @@
 import { GameInfo } from '@type/GameInfo';
 import { SystemLikeOption } from '@type/SystemLikeOption';
 
+import { LibsPageLocales } from '@localization/types/libsPage-locales';
 import { MainPageLocales } from '@localization/types/main-page-locales';
 import { MetaLocales } from '@localization/types/meta-locales';
 import { OptionsPageLocales } from '@localization/types/options-page-locales';
@@ -12,6 +13,7 @@ export interface Localization extends MetaLocales {
 	pages: {
 		main: MainPageLocales;
 		options: OptionsPageLocales;
+		libs: LibsPageLocales;
 	};
 
 	groupHiddenLabel: string;

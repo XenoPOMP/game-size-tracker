@@ -24,8 +24,8 @@ const LibsPage: FC<LibsPageProps> = ({}) => {
 			<UiContainer className={cn(styles.libsPageWrapper)}>
 				<GoBack />
 
-				<DependencyList deps={deps} title={'Deps'} />
-				<DependencyList deps={devDeps} title={'Dev deps'} />
+				<DependencyList deps={deps} title={loc.pages.libs.deps} />
+				<DependencyList deps={devDeps} title={loc.pages.libs.devDeps} />
 			</UiContainer>
 		</Page>
 	);

@@ -65,6 +65,11 @@ const en: Localization = {
 			},
 			version: `ver. {{VERSION}}`,
 		},
+
+		libs: {
+			deps: 'Dependencies',
+			devDeps: 'Developer dependencies',
+		},
 	},
 
 	groupHiddenLabel: 'Total {{totalGames}}, {{hiddenGames}} hidden',

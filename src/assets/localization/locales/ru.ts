@@ -65,6 +65,11 @@ const ru: Localization = {
 			},
 			version: `вер. {{VERSION}}`,
 		},
+
+		libs: {
+			deps: 'Зависимости',
+			devDeps: 'Зависимости для разработчика',
+		},
 	},
 
 	groupHiddenLabel: 'Всего {{totalGames}}, {{hiddenGames}} скрыто',
