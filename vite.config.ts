@@ -94,6 +94,8 @@ export default defineConfig(({ command }) => {
 							local: 'SF Pro Display',
 						},
 					],
+
+					preload: true,
 				},
 			}),
 		],
