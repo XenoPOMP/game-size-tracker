@@ -1,6 +1,7 @@
 import { Nullable } from '@xenopomp/advanced-types';
 
 import { createSlice } from '@reduxjs/toolkit';
+import { GameInfo } from '@type/GameInfo';
 
 import type { ReduxAction } from '@redux/types';
 

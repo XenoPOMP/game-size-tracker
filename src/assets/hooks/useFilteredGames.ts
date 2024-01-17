@@ -1,12 +1,16 @@
+import { ArrayType, Defined } from '@xenopomp/advanced-types';
+
+import { GameInfo } from '@type/GameInfo';
 import { Identifier, orderBy } from 'natural-orderby';
 import { useMemo } from 'react';
 
 import { useAppSelector } from '@redux/hooks';
 
-export type FilteredGameInfo =
-	| Partial<GameInfo>
-	| GameInfo
-	| Pick<GameInfo, 'title' | 'size'>;
+import { SizeDiagramProps } from '@ui/SizeDiagram/SizeDiagram.props';
+
+export type DiagramGameInfo = ArrayType<Defined<SizeDiagramProps['games']>>;
+
+export type FilteredGameInfo = Partial<GameInfo> | GameInfo | DiagramGameInfo;
 
 interface UseFilteredGamesOptions {
 	/** If **true**, sorts games by size anyway. */
@@ -33,13 +37,15 @@ export const useFilteredGames = (
 				return [v => v.size];
 			}
 
-			/** Order by title. */
-			if (orderByKey === 'title') {
-				return [v => v.title];
-			}
+			switch (orderByKey) {
+				case 'title': {
+					return [v => v.title];
+				}
 
-			/** Order by size by default. */
-			return [v => v.size];
+				default: {
+					return [v => v.size];
+				}
+			}
 		};
 
 		const getOrders = (): Array<typeof sortOrder> => {

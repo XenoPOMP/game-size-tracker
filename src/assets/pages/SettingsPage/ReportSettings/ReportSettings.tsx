@@ -1,0 +1,56 @@
+import cn from 'classnames';
+import { Code2, GanttChartSquare } from 'lucide-react';
+import { FC } from 'react';
+
+import Options from '@pages/SettingsPage/Options/Options';
+
+import ExternalLink from '@ui/ExternalLink/ExternalLink';
+import LanguageSwitcher from '@ui/LanguageSwitcher/LanguageSwitcher';
+
+import useLocalization from '@hooks/useLocalization';
+
+import styles from './ReportSettings.module.scss';
+import type { ReportSettingsProps } from './ReportSettings.props';
+
+const ReportSettings: FC<ReportSettingsProps> = ({}) => {
+	const loc = useLocalization();
+
+	return (
+		<>
+			<Options.Group>
+				<Options.Header>{loc.pages.options.groups.report.title}</Options.Header>
+
+				<Options.Items>
+					<ExternalLink
+						applyStyles
+						className={cn('text-[.85em]')}
+						to={'https://github.com/XenoPOMP/game-size-tracker/issues/new'}
+					>
+						{loc.pages.options.groups.report.foundBug}
+					</ExternalLink>
+
+					<ExternalLink
+						applyStyles
+						className={cn('text-[.85em]')}
+						to={'https://github.com/XenoPOMP/game-size-tracker'}
+						icon={Code2}
+					>
+						{loc.pages.options.groups.report.sourceCode}
+					</ExternalLink>
+
+					<ExternalLink
+						applyStyles
+						className={cn('text-[.85em]')}
+						useRouter
+						to={'/libs'}
+						icon={GanttChartSquare}
+					>
+						{loc.pages.options.groups.report.libs}
+					</ExternalLink>
+				</Options.Items>
+			</Options.Group>
+		</>
+	);
+};
+
+export default ReportSettings;

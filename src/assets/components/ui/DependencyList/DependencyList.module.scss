@@ -1,0 +1,8 @@
+article.dependencyList {
+  @apply flex flex-col gap-[.5rem];
+
+  h3 {
+    @apply text-color-primary text-[1.5em] font-bold
+           select-none;
+  }
+}

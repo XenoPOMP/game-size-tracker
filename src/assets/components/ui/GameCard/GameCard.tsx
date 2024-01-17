@@ -1,6 +1,7 @@
 import { VariableFC } from '@xenopomp/advanced-types';
 
 import { Menu } from '@headlessui/react';
+import { GameInfo } from '@type/GameInfo';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
 import { FC } from 'react';

@@ -12,6 +12,10 @@ const en: Localization = {
 			title: 'Settings',
 			description: '',
 		},
+		libsPage: {
+			title: 'Libraries',
+			description: '',
+		},
 	},
 
 	pages: {
@@ -50,8 +54,21 @@ const en: Localization = {
 				language: {
 					title: 'Language',
 				},
+
+				report: {
+					title: 'Feedback',
+
+					foundBug: 'Found a bug?',
+					sourceCode: 'Source code',
+					libs: 'Libraries used',
+				},
 			},
 			version: `ver. {{VERSION}}`,
+		},
+
+		libs: {
+			deps: 'Dependencies',
+			devDeps: 'Developer dependencies',
 		},
 	},
 

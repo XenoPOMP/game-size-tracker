@@ -1,0 +1,14 @@
+.link {
+  @apply cursor-pointer;
+
+  &.withStyles {
+    @apply inline-flex gap-[.25em] items-center
+           text-confirm/80 hover:text-confirm
+           w-fit
+    ;
+
+    line-height: normal;
+
+    transition: .15s ease color;
+  }
+}

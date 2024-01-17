@@ -9,6 +9,10 @@
   @apply bg-transparent text-tl-color
          hover:bg-tl-hov-bg hover:text-tl-hov-color;
 
+  &.close {
+    @apply hover:bg-tl-hov-quit-bg hover:text-tl-hov-quit-color;
+  }
+
   aspect-ratio: 1.25 / 1;
   cursor: pointer;
   width: var(--button-height);

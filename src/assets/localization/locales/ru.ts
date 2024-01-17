@@ -12,6 +12,10 @@ const ru: Localization = {
 			title: 'Настройки',
 			description: '',
 		},
+		libsPage: {
+			title: 'Библиотеки',
+			description: '',
+		},
 	},
 
 	pages: {
@@ -50,8 +54,21 @@ const ru: Localization = {
 				language: {
 					title: 'Язык',
 				},
+
+				report: {
+					title: 'Обратная связь',
+
+					foundBug: 'Нашли баг?',
+					sourceCode: 'Исходный код',
+					libs: 'Используемые библиотеки',
+				},
 			},
 			version: `вер. {{VERSION}}`,
+		},
+
+		libs: {
+			deps: 'Зависимости',
+			devDeps: 'Зависимости для разработчика',
 		},
 	},
 

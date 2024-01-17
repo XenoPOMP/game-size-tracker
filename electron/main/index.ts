@@ -1,5 +1,6 @@
 import { getObjectKeys } from '@xenopomp/advanced-utils';
 
+import { GameInfo } from '@type/GameInfo';
 import { exec } from 'child_process';
 import { BrowserWindow, app, ipcMain, shell } from 'electron';
 import { getAllEgsGames } from 'get-egs-folders';
