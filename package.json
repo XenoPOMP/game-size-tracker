@@ -1,6 +1,6 @@
 {
   "name": "game-size-tracker",
-  "version": "1.0.0-rc-5",
+  "version": "1.0.0",
   "main": "dist-electron/main/index.js",
   "description": "Application for tracking size of your installed games.",
   "author": "XenoPOMP",
