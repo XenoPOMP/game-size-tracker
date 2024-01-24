@@ -37,6 +37,21 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 		roundPrecision: 2,
 	});
 
+	/**
+	 * Fetch displaying name from Redux
+	 */
+	const displayingName = useAppSelector(state =>
+		state.customPaths.list.find(path => path.uuid === uuid)
+	)?.displayingName;
+
+	const formatDisplayingName = (): string | undefined => {
+		if (displayingName === '' || displayingName === undefined) {
+			return undefined;
+		}
+
+		return displayingName;
+	};
+
 	const filters = useAppSelector(state => state.gameFilters[title]);
 	const { showHidden } = useAppSelector(state => state.sortFilters);
 
@@ -155,7 +170,9 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 				{inlineLocalizationVar(
 					loc.gameTooltip.dialogs.removeOtherGame.areYouSureLabel,
 					{
-						GAME: title,
+						GAME: formatDisplayingName()
+							? `${formatDisplayingName()} (${title})`
+							: title,
 					}
 				)}
 			</CustomDialog>
@@ -181,7 +198,7 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 					<div className={cn(styles.info, filters?.hidden ? 'opacity-25' : '')}>
 						<div>
 							<h4>
-								<TextOverflow text={title ?? ''} />
+								<TextOverflow text={formatDisplayingName() ?? title} />
 							</h4>
 						</div>
 
