@@ -1,3 +1,5 @@
+import { getObjectKeys } from '@xenopomp/advanced-utils';
+
 import cn from 'classnames';
 import { FC } from 'react';
 
@@ -26,39 +28,21 @@ const AppearanceSettings: FC<AppearanceSettingsProps> = ({}) => {
 					<Options.Select
 						initialValue={theme.get()}
 						title={loc.pages.options.groups.appearance.options.theme.name}
-						options={[
-							{
-								option: 'dark',
+						options={getObjectKeys(
+							loc.pages.options.groups.appearance.options.theme.options
+						).map(themeName => {
+							return {
+								option: themeName,
 								displayingName:
-									loc.pages.options.groups.appearance.options.theme.options
-										.dark,
-							},
-							{
-								option: 'light',
-								displayingName:
-									loc.pages.options.groups.appearance.options.theme.options
-										.light,
-							},
-						]}
+									loc.pages.options.groups.appearance.options.theme.options[
+										themeName
+									],
+							};
+						})}
 						onSelect={val => {
 							theme.set(val as AppSettings['theme']);
 						}}
 					/>
-
-					{/*<Options.Select*/}
-					{/*	title={'Decimal separator'}*/}
-					{/*	initialValue={'comma'}*/}
-					{/*	options={[*/}
-					{/*		{*/}
-					{/*			option: 'comma',*/}
-					{/*			displayingName: <>12,12</>,*/}
-					{/*		},*/}
-					{/*		{*/}
-					{/*			option: 'dot',*/}
-					{/*			displayingName: <>12.12</>,*/}
-					{/*		},*/}
-					{/*	]}*/}
-					{/*/>*/}
 				</Options.Items>
 			</Options.Group>
 		</>
