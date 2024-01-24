@@ -49,6 +49,7 @@ const en: Localization = {
 								dark: 'Dark',
 								light: 'Light',
 								emerald: 'Emerald',
+								retrowave: 'Retro-wave',
 							},
 						},
 					},

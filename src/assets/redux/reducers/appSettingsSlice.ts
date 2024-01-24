@@ -7,7 +7,7 @@ export type AppSettings = {
 	appVersion: string;
 	appName: string;
 	language: 'en' | 'ru' | SystemLikeOption;
-	theme: 'dark' | 'light' | 'emerald';
+	theme: 'dark' | 'light' | 'emerald' | 'retrowave';
 };
 
 const initialState: AppSettings = {

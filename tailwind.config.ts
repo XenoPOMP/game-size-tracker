@@ -4,6 +4,7 @@ import tailwindThemer from 'tailwindcss-themer';
 import darkTheme from './themes/dark.theme';
 import { emeraldTheme } from './themes/emerald.theme';
 import lightTheme from './themes/light.theme';
+import { retrowaveTheme } from './themes/retrowave.theme';
 
 const config: Config = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,scss}'],
@@ -30,6 +31,10 @@ const config: Config = {
 				{
 					name: 'emerald',
 					extend: emeraldTheme,
+				},
+				{
+					name: 'retrowave',
+					extend: retrowaveTheme,
 				},
 			],
 		}),

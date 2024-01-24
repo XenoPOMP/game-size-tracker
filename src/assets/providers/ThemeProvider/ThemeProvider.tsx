@@ -21,6 +21,7 @@ const ThemeProvider: FC<ProviderProps> = ({ children }) => {
 			dark: 'default-theme',
 			light: 'light',
 			emerald: 'emerald',
+			retrowave: 'retrowave',
 		};
 
 		registerClassnames(classGroupName, [themeNamesMap[theme.get()]]);

@@ -49,6 +49,7 @@ const ru: Localization = {
 								dark: 'Темная',
 								light: 'Светлая',
 								emerald: 'Изумрудная',
+								retrowave: 'Ретро-вейв',
 							},
 						},
 					},
