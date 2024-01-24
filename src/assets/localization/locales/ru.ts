@@ -104,6 +104,7 @@ const ru: Localization = {
 		hide: 'Скрыть',
 		show: 'Показать',
 		remove: 'Убрать',
+		tag: 'Переименовать игру',
 
 		dialogs: {
 			removeOtherGame: {

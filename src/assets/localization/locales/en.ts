@@ -104,6 +104,7 @@ const en: Localization = {
 		hide: 'Hide',
 		show: 'Show',
 		remove: 'Remove',
+		tag: 'Rename game',
 
 		dialogs: {
 			removeOtherGame: {

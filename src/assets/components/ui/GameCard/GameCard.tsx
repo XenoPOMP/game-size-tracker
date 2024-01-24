@@ -114,6 +114,8 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 				>
 					{loc.gameTooltip.remove}
 				</CustomMenuButton>
+
+				<CustomMenuButton>{loc.gameTooltip.tag}</CustomMenuButton>
 			</>
 		);
 	};

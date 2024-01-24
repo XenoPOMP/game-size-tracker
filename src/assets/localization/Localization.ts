@@ -34,7 +34,10 @@ export interface Localization extends MetaLocales {
 		orderBy: string;
 	} & Record<SortFiltersState['orderBy'], string>;
 
-	gameTooltip: Record<'goToFolder' | 'hide' | 'show' | 'remove', string> & {
+	gameTooltip: Record<
+		'goToFolder' | 'hide' | 'show' | 'remove' | 'tag',
+		string
+	> & {
 		dialogs: {
 			removeOtherGame: {
 				label: string;
