@@ -48,6 +48,7 @@ const ru: Localization = {
 							options: {
 								dark: 'Темная',
 								light: 'Светлая',
+								emerald: 'Изумрудная',
 							},
 						},
 					},

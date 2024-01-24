@@ -20,6 +20,7 @@ const ThemeProvider: FC<ProviderProps> = ({ children }) => {
 		const themeNamesMap: Record<ReturnType<typeof theme.get>, string> = {
 			dark: 'default-theme',
 			light: 'light',
+			emerald: 'emerald',
 		};
 
 		registerClassnames(classGroupName, [themeNamesMap[theme.get()]]);

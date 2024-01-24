@@ -2,6 +2,7 @@ import { type Config } from 'tailwindcss';
 import tailwindThemer from 'tailwindcss-themer';
 
 import darkTheme from './themes/dark.theme';
+import { emeraldTheme } from './themes/emerald.theme';
 import lightTheme from './themes/light.theme';
 
 const config: Config = {
@@ -25,6 +26,10 @@ const config: Config = {
 				{
 					name: 'light',
 					extend: lightTheme,
+				},
+				{
+					name: 'emerald',
+					extend: emeraldTheme,
 				},
 			],
 		}),

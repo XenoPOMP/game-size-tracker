@@ -48,6 +48,7 @@ const en: Localization = {
 							options: {
 								dark: 'Dark',
 								light: 'Light',
+								emerald: 'Emerald',
 							},
 						},
 					},
