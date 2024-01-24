@@ -109,6 +109,11 @@ const ru: Localization = {
 		tag: 'Переименовать игру',
 
 		dialogs: {
+			renameGame: {
+				label: 'Переименовать {{GAME}}',
+				rename: 'Переименовать',
+			},
+
 			removeOtherGame: {
 				label: 'Вы уверены?',
 				areYouSureLabel:

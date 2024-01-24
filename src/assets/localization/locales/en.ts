@@ -109,6 +109,11 @@ const en: Localization = {
 		tag: 'Rename game',
 
 		dialogs: {
+			renameGame: {
+				label: 'Rename {{GAME}}',
+				rename: 'Rename',
+			},
+
 			removeOtherGame: {
 				label: 'Are you sure?',
 				areYouSureLabel:

@@ -4,15 +4,19 @@ import { Menu } from '@headlessui/react';
 import { GameInfo } from '@type/GameInfo';
 import cn from 'classnames';
 import { MoreHorizontal } from 'lucide-react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import TextOverflow from 'react-text-overflow';
 import seedColor from 'seed-color';
 
 import { useAppDispatch, useAppSelector } from '@redux/hooks';
-import { deleteRegisteredPath } from '@redux/reducers/customPaths.slice';
+import {
+	changeGameName,
+	deleteRegisteredPath,
+} from '@redux/reducers/customPaths.slice';
 import { hideGame, showGame } from '@redux/reducers/gameFilters.slice';
 
 import CustomDialog from '@ui/CustomDialog/CustomDialog';
+import Input from '@ui/Input/Input';
 
 import useBoolean from '@hooks/useBoolean';
 import useFormattedSize from '@hooks/useFormattedSize';
@@ -52,10 +56,18 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 		return displayingName;
 	};
 
+	/** Local state for input field. */
+	const [localName, setLocalName] = useState<string>(
+		formatDisplayingName() ?? ''
+	);
+
 	const filters = useAppSelector(state => state.gameFilters[title]);
 	const { showHidden } = useAppSelector(state => state.sortFilters);
 
 	const [isRemoveDialogOpen, toggleRemoveDialog, setRemoveDialogToggled] =
+		useBoolean(false);
+
+	const [isRenameDialogOpen, toggleRenameDialog, setRenameDialogToggled] =
 		useBoolean(false);
 
 	const loc = useLocalization();
@@ -130,7 +142,13 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 					{loc.gameTooltip.remove}
 				</CustomMenuButton>
 
-				<CustomMenuButton>{loc.gameTooltip.tag}</CustomMenuButton>
+				<CustomMenuButton
+					onClick={() => {
+						setRenameDialogToggled(true);
+					}}
+				>
+					{loc.gameTooltip.tag}
+				</CustomMenuButton>
 			</>
 		);
 	};
@@ -175,6 +193,57 @@ const GameCard: VariableFC<'div', GameCardProps, 'children'> = ({
 							: title,
 					}
 				)}
+			</CustomDialog>
+
+			<CustomDialog
+				open={isRenameDialogOpen}
+				onClose={() => {
+					setRenameDialogToggled(false);
+				}}
+				title={inlineLocalizationVar(loc.gameTooltip.dialogs.renameGame.label, {
+					GAME: formatDisplayingName()
+						? `${formatDisplayingName()} (${title})`
+						: title,
+				})}
+				hideCloseButton
+				buttons={[
+					{
+						variant: 'cancel',
+						children: loc.gameTooltip.dialogs.removeOtherGame.cancelButton,
+						blocked: false,
+						onClick: ev => {
+							setRenameDialogToggled(false);
+						},
+					},
+					{
+						variant: 'primary',
+						children: loc.gameTooltip.dialogs.renameGame.rename,
+						blocked: false,
+						onClick: ev => {
+							if (uuid !== undefined) {
+								dispatch(changeGameName({ uuid, displayingName: localName }));
+							}
+
+							setRenameDialogToggled(false);
+						},
+					},
+				]}
+			>
+				<div className={cn('flex items-center gap-[.5em]')}>
+					<div>
+						{loc.pages.main.addNewGameDialog.selectGameFolder.tagNameInputLabel}
+					</div>
+
+					<Input
+						className={cn('flex-grow text-[.9em]')}
+						placeholder={
+							loc.pages.main.addNewGameDialog.selectGameFolder
+								.tagNameInputPlaceholder
+						}
+						value={localName}
+						onChange={ev => setLocalName(ev.target.value)}
+					/>
+				</div>
 			</CustomDialog>
 
 			{!notDisplaying && (

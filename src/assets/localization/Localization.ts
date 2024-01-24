@@ -39,6 +39,11 @@ export interface Localization extends MetaLocales {
 		string
 	> & {
 		dialogs: {
+			renameGame: {
+				label: string;
+				rename: string;
+			};
+
 			removeOtherGame: {
 				label: string;
 				areYouSureLabel: string;
