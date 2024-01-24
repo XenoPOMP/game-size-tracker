@@ -76,7 +76,7 @@ const en: Localization = {
 		},
 	},
 
-	groupHiddenLabel: 'Total {{totalGames}}, {{hiddenGames}} hidden',
+	groupHiddenLabel: 'Showing {{showing}} games of {{total}}',
 
 	measurementUnits: {
 		bytes: 'B',

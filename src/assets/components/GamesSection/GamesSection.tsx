@@ -41,9 +41,9 @@ const GamesSection: VariableFC<
 				return false;
 			}
 
-			return false;
+			// return false;
 
-			// return gameFilters[title]?.hidden;
+			return gameFilters[title]?.hidden;
 		}).length;
 
 		if (hiddenGamesCount > 0 && !showHidden) {
@@ -51,8 +51,8 @@ const GamesSection: VariableFC<
 				<>
 					(
 					{inlineLocalizationVar(loc.groupHiddenLabel, {
-						totalGames: `${totalGameCount}`,
-						hiddenGames: `${hiddenGamesCount}`,
+						showing: `${totalGameCount - hiddenGamesCount}`,
+						total: `${totalGameCount}`,
 					})}
 					)
 				</>

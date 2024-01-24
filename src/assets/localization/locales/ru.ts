@@ -76,7 +76,7 @@ const ru: Localization = {
 		},
 	},
 
-	groupHiddenLabel: 'Всего {{totalGames}}, {{hiddenGames}} скрыто',
+	groupHiddenLabel: 'Показано {{showing}} игр из {{total}}',
 
 	measurementUnits: {
 		bytes: 'Б',
