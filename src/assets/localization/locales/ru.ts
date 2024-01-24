@@ -27,6 +27,8 @@ const ru: Localization = {
 					label: 'Выберете папку игры',
 					selectFolderLabel: 'Выбрать папку',
 					reselectFolderLabel: 'Выбрать заново',
+					tagNameInputLabel: 'Название',
+					tagNameInputPlaceholder: 'Это поле может быть пустым',
 				},
 
 				buttons: {

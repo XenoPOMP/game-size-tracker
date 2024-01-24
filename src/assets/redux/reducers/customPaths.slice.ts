@@ -1,3 +1,5 @@
+import { ArrayType } from '@xenopomp/advanced-types';
+
 import { createSlice } from '@reduxjs/toolkit';
 import { randomUUID } from 'crypto';
 
@@ -7,6 +9,7 @@ export type CustomPathsState = {
 	list: Array<{
 		path: string;
 		uuid: string;
+		displayingName?: string;
 	}>;
 };
 
@@ -20,10 +23,18 @@ const customPathsSlice = createSlice({
 	reducers: {
 		simpleAction(state, action: ReduxAction<any>) {},
 
-		registerNewPath(state, { payload }: ReduxAction<string>) {
+		registerNewPath(
+			state,
+			{
+				payload: { path, displayingName },
+			}: ReduxAction<
+				Pick<ArrayType<CustomPathsState['list']>, 'path' | 'displayingName'>
+			>
+		) {
 			state.list.push({
-				path: payload.replace(/\n/g, ''),
+				path: path.replace(/\n/g, ''),
 				uuid: `external-game-${randomUUID()}-${randomUUID()}`,
+				displayingName,
 			});
 		},
 
@@ -36,10 +47,23 @@ const customPathsSlice = createSlice({
 
 			state.list.splice(index, 1);
 		},
+
+		changeGameName(
+			state,
+			{
+				payload: { uuid, displayingName },
+			}: ReduxAction<
+				Pick<ArrayType<CustomPathsState['list']>, 'uuid' | 'displayingName'>
+			>
+		) {
+			const index = state.list.findIndex(item => item.uuid === uuid);
+
+			state.list[index].displayingName = displayingName;
+		},
 	},
 });
 
 export default customPathsSlice.reducer;
-export const { registerNewPath, deleteRegisteredPath } =
+export const { registerNewPath, deleteRegisteredPath, changeGameName } =
 	customPathsSlice.actions;
 export const initialCustomPathsState = customPathsSlice.getInitialState();

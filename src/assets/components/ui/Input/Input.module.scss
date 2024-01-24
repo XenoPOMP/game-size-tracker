@@ -1,0 +1,7 @@
+input.appInput {
+  @apply bg-button-cancel-bg text-button-cancel-color
+         px-[.625em] py-[.3125em] rounded-[.1875em];
+
+  outline: none;
+  border: none;
+}

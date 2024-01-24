@@ -6,6 +6,9 @@ export type MainPageLocales = {
 			label: string;
 			selectFolderLabel: string;
 			reselectFolderLabel: string;
+
+			tagNameInputLabel: string;
+			tagNameInputPlaceholder: string;
 		};
 
 		buttons: {

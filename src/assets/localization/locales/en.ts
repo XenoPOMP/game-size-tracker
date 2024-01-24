@@ -27,6 +27,8 @@ const en: Localization = {
 					label: 'Select game folder',
 					selectFolderLabel: 'Select folder',
 					reselectFolderLabel: 'Reselect',
+					tagNameInputLabel: 'Title',
+					tagNameInputPlaceholder: 'This field can be empty',
 				},
 
 				buttons: {

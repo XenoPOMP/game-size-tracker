@@ -10,6 +10,7 @@ import { registerNewPath } from '@redux/reducers/customPaths.slice';
 
 import CustomDialog from '@ui/CustomDialog/CustomDialog';
 import FileSelector from '@ui/FileSelector/FileSelector';
+import Input from '@ui/Input/Input';
 
 import useBoolean from '@hooks/useBoolean';
 import useLocalization from '@hooks/useLocalization';
@@ -27,6 +28,7 @@ const AddNewGameSection: VariableFC<
 	const [isOpen, _t, setIsOpen] = useBoolean(false);
 
 	const [pathToGame, setPathToGame] = useState<string | undefined>(undefined);
+	const [displayingName, setDisplayingName] = useState<string>('');
 
 	const [isBlocked, _tb, setIsBlocked] = useBoolean(true);
 
@@ -69,7 +71,7 @@ const AddNewGameSection: VariableFC<
 								return;
 							}
 
-							dispatch(registerNewPath(pathToGame));
+							dispatch(registerNewPath({ path: pathToGame, displayingName }));
 							setIsOpen(false);
 						},
 					},
@@ -90,6 +92,29 @@ const AddNewGameSection: VariableFC<
 								.reselectFolderLabel,
 					}}
 				/>
+
+				{pathToGame && (
+					<div className={cn('flex items-center gap-[.5em]')}>
+						<div>
+							{
+								loc.pages.main.addNewGameDialog.selectGameFolder
+									.tagNameInputLabel
+							}
+						</div>
+
+						<Input
+							className={cn('flex-grow text-[.9em]')}
+							placeholder={
+								loc.pages.main.addNewGameDialog.selectGameFolder
+									.tagNameInputPlaceholder
+							}
+							value={displayingName}
+							onChange={ev => {
+								setDisplayingName(ev.target.value);
+							}}
+						/>
+					</div>
+				)}
 			</CustomDialog>
 
 			<section className={cn(styles.addNew, className)} {...props}>

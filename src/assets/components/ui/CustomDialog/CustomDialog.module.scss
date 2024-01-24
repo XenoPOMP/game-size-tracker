@@ -27,6 +27,8 @@
 
       section.innerBody {
         @apply p-[.75em] text-color-primary whitespace-break-spaces;
+
+        @apply flex flex-col gap-[.5em];
       }
 
       section.controls {
